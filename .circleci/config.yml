@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.3
+        environment:
+          APP_ENV: circleci
+          APP_DEBUG: true
+          DB_CONNECTION: sqlite
+    working_directory: ~/laravel
+    steps:
+      - checkout
+      - run: echo 'Hello PHP!'
+      - run: echo 'This is laravel Environmental'
+      - run: echo 'apt install start'
+      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
+      - run: sudo composer self-update
+      - run: touch composer.json
+      - run: touch composer.lock
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            - composer-v1-
+      - run: composer install
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run: echo 'Cache made.'
+
