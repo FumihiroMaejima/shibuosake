@@ -16,7 +16,7 @@ class MainPageController extends Controller
         // 文字化け防止処理
         $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
         // json文字列をPHP変数に変換
-        $decodeData = json_decode($json,true);
+        $decodeData = json_decode($json, true);
         //echo var_dump($decodeData);
 
         /* 整形用のデータを作成 */
@@ -29,8 +29,8 @@ class MainPageController extends Controller
         $newArray = null;
 
         // 配列のkeyによってデータを振り分ける
-        foreach($decodeData as $key => $restdata){
-            switch($key){
+        foreach ($decodeData as $key => $restdata) {
+            switch ($key) {
                 case 'total_hit_count':
                     $totalHitCount = $restdata;
                     break;
@@ -43,7 +43,8 @@ class MainPageController extends Controller
                 case 'rest':
                     $newArray[] = $restdata;
                     break;
-                default:break;
+                default:
+                    break;
             }
         }
         echo var_dump($totalHitCount);
