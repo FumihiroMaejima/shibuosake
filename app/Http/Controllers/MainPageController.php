@@ -47,7 +47,7 @@ class MainPageController extends Controller
                     break;
             }
         }
-        echo var_dump($totalHitCount);
+        //echo var_dump($totalHitCount);
 
         return view('master');
     }

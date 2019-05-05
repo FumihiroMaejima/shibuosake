@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'MainPageController@index');
+Route::get('/', 'MainPageController@index')->name('mainPage');
