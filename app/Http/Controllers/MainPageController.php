@@ -49,6 +49,6 @@ class MainPageController extends Controller
         }
         //echo var_dump($totalHitCount);
 
-        return view('master');
+        return view('main.index');
     }
 }

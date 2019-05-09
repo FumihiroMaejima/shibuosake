@@ -1,30 +1,32 @@
-<template>
-    <div>
-        <!-- <div class="card" v-for="attendance in attendances"> -->
-        <div class="card">
-            <div class="card-header">
-                <span class="fa fa-user" id="start"></span>
-                 <!-- {{ attendance.name }} <label id="started">さん</label> -->
-            </div>
-            <div class="card-body">
-                <strong>本日の意気込み</strong>
-                <!-- <p>{{ attendance.body }}</p> -->
-            </div>
-            <div class="card-footer">
-                <!-- <span class="fa fa-calendar" id="visit"></span> {{ attendance.date }} | -->
-                <span class="fa fa-flag" id="comment"></span>
-                <!-- <a href="#" id="comments" @click="report(attendance.id)">Report</a> -->
+<<template>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Osake Component</div>
+
+                    <div class="card-body">
+                        I'm an Osake component.
+                    </div>
+
+                    <div class="card-footer">Osake Component Footer</div>
+                </div>
             </div>
         </div>
-        <paginate
-                :page-count="pageCount"
-                :click-handler="fetch"
-                :prev-text="'Prev'"
-                :next-text="'Next'"
-                :container-class="'pagination'">
-        </paginate>
     </div>
 </template>
+
+<script>
+   export default {
+
+       data() {
+           return {
+               body: 'Hello Osake!'
+           }
+       },
+       name:'main-page'
+   }
+</script>
 
 <!--
 <script>

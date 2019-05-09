@@ -17,17 +17,13 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
- require('./bootstrap');
-
- window.Vue = require('vue');
-
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 Vue.component('paginate', require('vuejs-paginate'));
-Vue.component('mainPage', require('./components/MainPage.vue'));
+Vue.component('main-page', require('./components/MainPage.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,5 +35,7 @@ Vue.config.delimiters = ['(%', '%)'];
 const app = new Vue({
     el: '#app'
 });
+
+
 
 
