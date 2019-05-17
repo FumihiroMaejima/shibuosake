@@ -212,3 +212,129 @@ article section img {
 .card {
     margin: 10px auto;
 }
+
+
+@media screen and (max-width:479px) {
+    .tab_wrap {
+        width: 350px;
+        margin: 40px auto;
+    }
+
+    .tab_area {
+        font-size: 0;
+        padding: 0 55px;
+
+        label {
+            width: 60px;
+            display: inline-block;
+            padding: 14px 0 12px;
+            color: #fff;
+            background: #90c9cc;
+            text-align: center;
+            font-size: 13px;
+            cursor: pointer;
+            transition: ease 0.2s opacity;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            vertical-align: bottom;
+            transition: ease 0.2s;
+            margin: 10px 5px 0;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+@media screen and (min-width:480px) {
+    .tab_wrap {
+        width: 470px;
+        margin: 80px auto;
+    }
+
+    .tab_area {
+        font-size: 0;
+        padding: 0 55px;
+
+        label {
+            width: 110px;
+            display: inline-block;
+            padding: 14px 0 12px;
+            color: #fff;
+            background: #90c9cc;
+            text-align: center;
+            font-size: 13px;
+            cursor: pointer;
+            transition: ease 0.2s opacity;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            vertical-align: bottom;
+            transition: ease 0.2s;
+            margin: 10px 5px 0;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+
+
+.panel_area {
+    background: #ffffff;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top: 8px solid #d7e9ea;
+}
+
+.tab_panel {
+    width: 100%;
+    padding: 25px 0;
+    display: none;
+
+    p {
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+}
+
+
+
+#tab1:checked~ {
+    .tab_area .tab1_label {
+        background: #d7e9ea;
+        color: #000;
+    }
+
+    .panel_area #panel1 {
+        display: block;
+    }
+}
+
+#tab2:checked~ {
+    .tab_area .tab2_label {
+        background: #d7e9ea;
+        color: #000;
+    }
+
+    .panel_area #panel2 {
+        display: block;
+    }
+}
+
+#tab3:checked~ {
+    .tab_area .tab3_label {
+        background: #d7e9ea;
+        color: #000;
+    }
+
+    .panel_area #panel3 {
+        display: block;
+    }
+}

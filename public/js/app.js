@@ -1812,8 +1812,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1822,22 +1820,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   name: 'main-page'
 });
-$(".tab_label").on("click", function () {
-  var $th = $(this).index();
-  $(".tab_label").removeClass("active");
-  $(".tab_panel").removeClass("active");
-  $(this).addClass("active");
-  $(".tab_panel").eq($th).addClass("active");
-});
-/*
-    $(".tab_label").on("click",function(){
-        var $th = $(this).index();
-        $(".tab_label").removeClass("active");
-        $(".tab_panel").removeClass("active");
-        $(this).addClass("active");
-        $(".tab_panel").eq($th).addClass("active");
-    });
-*/
 
 /***/ }),
 
@@ -37196,22 +37178,29 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Osake Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an Osake component.\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _vm._v("Osake Component Footer")
-            ])
-          ])
+        _c("div", { staticClass: "col-md-10" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card text-white bg-dark mb-3",
+              staticStyle: { "max-width": "20rem" }
+            },
+            [
+              _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("h4", { staticClass: "card-title" }, [
+                  _vm._v("Dark card title")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(
+                    "Some quick example text to build on the card title and make up the bulk of the card's content."
+                  )
+                ])
+              ])
+            ]
+          )
         ])
       ])
     ])

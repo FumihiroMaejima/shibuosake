@@ -1,15 +1,13 @@
 <<template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Osake Component</div>
-
-                    <div class="card-body">
-                        I'm an Osake component.
-                    </div>
-
-                    <div class="card-footer">Osake Component Footer</div>
+            <div class="col-md-10">
+                <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Dark card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
                 </div>
             </div>
         </div>
@@ -26,22 +24,6 @@
        },
        name:'main-page'
    }
-    $(".tab_label").on("click",function(){
-        var $th = $(this).index();
-        $(".tab_label").removeClass("active");
-        $(".tab_panel").removeClass("active");
-        $(this).addClass("active");
-        $(".tab_panel").eq($th).addClass("active");
-    });
-/*
-    $(".tab_label").on("click",function(){
-        var $th = $(this).index();
-        $(".tab_label").removeClass("active");
-        $(".tab_panel").removeClass("active");
-        $(this).addClass("active");
-        $(".tab_panel").eq($th).addClass("active");
-    });
-*/
 </script>
 
 <!--
