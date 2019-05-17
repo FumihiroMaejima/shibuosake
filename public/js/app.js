@@ -1812,11 +1812,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      body: 'Hello Osake!'
-    };
+  props: {
+    test: String
+  },
+  mounted: function mounted() {
+    console.log('ExampleComponent mounted.');
   },
   name: 'main-page'
 });
@@ -37169,43 +37171,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-10" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card text-white bg-dark mb-3",
-              staticStyle: { "max-width": "20rem" }
-            },
-            [
-              _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c(
+          "div",
+          {
+            staticClass: "card text-white bg-dark mb-3",
+            staticStyle: { "max-width": "20rem" }
+          },
+          [
+            _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v("Dark card title")
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h4", { staticClass: "card-title" }, [
-                  _vm._v("Dark card title")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v(
-                    "Some quick example text to build on the card title and make up the bulk of the card's content."
-                  )
-                ])
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "Some quick example text to build on the card title and make up the bulk of the card's content."
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text test" }, [
+                _vm._v(_vm._s(_vm.test))
               ])
-            ]
-          )
-        ])
+            ])
+          ]
+        )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

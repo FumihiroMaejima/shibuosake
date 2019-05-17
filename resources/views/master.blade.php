@@ -14,7 +14,7 @@
 <body>
 <header class="global-header">
     <section class="header-text">
-        <h1><a href="{{ route('mainPage') }}">お酒管理</a></h1>
+        <h1><a href="{{ route('mainPage') }}">お酒site</a></h1>
         <div class="tag-line">お酒一覧だよ！！</div>
     </section>
 </header>
