@@ -26,7 +26,7 @@ class MainPageController extends Controller
         $hitPerPage = null;
         // 表示ページ
         $pageOffset = null;
-        $newArray = null;
+        $restArray = null;
 
         // 配列のkeyによってデータを振り分ける
         foreach ($decodeData as $key => $restdata) {
@@ -41,14 +41,26 @@ class MainPageController extends Controller
                     $pageOffset = $restdata;
                     break;
                 case 'rest':
-                    $newArray[] = $restdata;
+                    $restArray[] = $restdata;
                     break;
                 default:
                     break;
             }
         }
-        //echo var_dump($totalHitCount);
 
-        return view('main.index');
+        $viewData = null;
+
+        // 飲食店データをさらに個々の店舗のデータとしてまとめる
+        foreach ($restArray as $key => $attributesData) {
+            if ($key == "@attributes") {
+                foreach ($attributesData as $shopData) {
+                    $viewData = $shopData;
+                }
+            }
+        }
+        //echo var_dump($totalHitCount);
+        //echo var_dump($viewData);
+
+        return view('main.index')->with('viewData', $viewData);
     }
 }
