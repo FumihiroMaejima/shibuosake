@@ -54,7 +54,8 @@ class MainPageController extends Controller
         foreach ($restArray as $key => $attributesData) {
             if ($key == "@attributes") {
                 foreach ($attributesData as $shopData) {
-                    $viewData = $shopData;
+                    //$viewData = $shopData;
+                    $viewData = json_encode($shopData);
                 }
             }
         }

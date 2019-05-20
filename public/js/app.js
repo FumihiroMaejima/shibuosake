@@ -1813,12 +1813,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    test: String
+    viewData: Object
   },
   mounted: function mounted() {
-    console.log('ExampleComponent mounted.');
+    console.log('MainPageComponent mounted.');
   },
   name: 'main-page'
 });
@@ -37194,8 +37199,24 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "card-text test" }, [
-                _vm._v(_vm._s(_vm.test))
+              _c("p", { staticClass: "card-text viewData" }, [
+                _vm._v(_vm._s(_vm.viewData.name))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text viewData" }, [
+                _vm._v(_vm._s(_vm.viewData.category))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text viewData" }, [
+                _vm._v(_vm._s(_vm.viewData.coupon_url.pc))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text viewData" }, [
+                _vm._v(_vm._s(_vm.viewData.address))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text viewData" }, [
+                _vm._v(_vm._s(_vm.viewData.opentime))
               ])
             ])
           ]

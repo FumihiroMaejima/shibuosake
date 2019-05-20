@@ -15,13 +15,7 @@
                 </div>
                 <div class="panel_area">
                     <div id="panel1" class="tab_panel">
-                        <!-- <p>panel1panel1panel1panel1panel1</p> -->
-                        <main-page test="GET DATA: {{ $_GET['AAA'] }}"></main-page>
-                        @foreach($viewData as $key => $data)
-                            @if($key == "update_date")
-                                <p>{{ $data }}</p>
-                            @endif
-                        @endforeach
+                        <main-page v-bind:view-data="{{ $viewData }}"></main-page>
                     </div>
                     <div id="panel2" class="tab_panel">
                         <p>panel2panel2panel2panel2panel2</p>

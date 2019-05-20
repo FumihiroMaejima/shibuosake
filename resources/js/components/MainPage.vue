@@ -7,7 +7,12 @@
                 <div class="card-body">
                     <h4 class="card-title">Dark card title</h4>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text test">{{ test }}</p>
+                    <!-- <p class="card-text viewData">{{ viewData }}</p> -->
+                    <p class="card-text viewData">{{ viewData.name }}</p>
+                    <p class="card-text viewData">{{ viewData.category }}</p>
+                    <p class="card-text viewData">{{ viewData.coupon_url.pc }}</p>
+                    <p class="card-text viewData">{{ viewData.address }}</p>
+                    <p class="card-text viewData">{{ viewData.opentime }}</p>
                 </div>
                 </div>
             </div>
@@ -18,10 +23,10 @@
 <script>
    export default {
        props: {
-           test: String,
+           viewData: Object,
        },
        mounted() {
-           console.log('ExampleComponent mounted.');
+           console.log('MainPageComponent mounted.');
        },
        name:'main-page'
    }
