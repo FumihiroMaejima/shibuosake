@@ -1818,6 +1818,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: Object
@@ -37220,12 +37228,50 @@ var render = function() {
               ])
             ])
           ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "card text-white bg-dark",
+            staticStyle: { width: "20rem" }
+          },
+          [
+            _c("img", {
+              staticClass: "card-img-top viewData",
+              attrs: {
+                src: _vm.viewData.image_url.shop_image1,
+                alt: "Card image cap"
+              }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
         )
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h4", { staticClass: "card-title" }, [_vm._v("Card title")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(
+          "Some quick example text to build on the card title and make up the bulk of the card's content."
+        )
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+        _vm._v("Go somewhere")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
