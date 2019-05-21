@@ -1,32 +1,19 @@
 <?php
 
-$finder = Symfony\CS\Finder\DefaultFinder::create()
-    ->exclude('bootstrap/cache')
-    ->exclude('resources/assets')
-    ->exclude('resources/views')
-    ->exclude('storage')
-    ->exclude('node_modules')
-    ->in(__DIR__);
-
-$fixers = [
-  '-psr0',
-  '-phpdoc_no_empty_return',
-  '-phpdoc_no_package',
-  '-phpdoc_params',
-  '-phpdoc_short_description',
-  '-unalign_double_arrow',
-  '-unalign_equals',
-  'ereg_to_preg',
-  'ordered_use',
-  'php_unit_construct',
-  'php_unit_strict',
-  'phpdoc_order',
-  'short_array_syntax',
-  'strict',
-  'strict_param',
+$rules = [
+    '@PSR2'        => true,
+    'array_syntax' => ['syntax' => 'short'],
+    'braces'       => false,
 ];
+$excludes = ['bootstrap/cache', 'resources/assets', 'resources/views', 'storage', 'node_modules'];
 
-return Symfony\CS\Config\Config::create()
-    ->fixers($fixers)
-    ->finder($finder)
-    ->setUsingCache(true);
+return PhpCsFixer\Config::create()
+    ->setRules($rules)
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in(__DIR__)
+            ->exclude($excludes)
+            ->notName('README.md')
+            ->notName('*.xml')
+            ->notName('*.yml')
+    );
