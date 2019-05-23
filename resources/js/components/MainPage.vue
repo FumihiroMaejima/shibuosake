@@ -1,13 +1,12 @@
 <<template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
                     <div class="card-header">Header</div>
                     <div class="card-body">
                         <h4 class="card-title">Dark card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <!-- <p class="card-text viewData">{{ viewData }}</p> -->
                         <p class="card-text viewData">{{ viewData.name }}</p>
                         <p class="card-text viewData">{{ viewData.category }}</p>
                         <p class="card-text viewData">{{ viewData.coupon_url.pc }}</p>
@@ -19,6 +18,14 @@
                     <img class="card-img-top viewData" :src="viewData.image_url.shop_image1" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark">
+                    <img class="card-img-top viewData" :src="viewData.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title viewData">{{ viewData.name }}</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
