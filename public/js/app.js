@@ -1864,6 +1864,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: Object
@@ -37432,7 +37436,16 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _vm._v("\n                    ...\n                ")
+                _vm._v(
+                  "\n                            ...\n                            "
+                ),
+                _c("hr"),
+                _vm._v(" "),
+                _c("p", [_vm._v("test")]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("p", [_vm._v("test2")])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
