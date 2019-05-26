@@ -10,6 +10,9 @@
 
 // FontAwesome
 @import "node_modules/font-awesome-scss/css/font-awesome.scss";
+//@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+
 
  .navbar {
      background-color: #fff;
@@ -209,10 +212,19 @@ article section img {
     margin: 13px auto;
 }
 
+/* カードのデザイン */
 .card {
     margin: 10px auto;
+    box-shadow: 0 0 8px gray;
 }
 
+.shopInfoTitle {
+    text-align:left!important;
+}
+
+
+/* 画面サイズごとに分ける */
+/* タブバー設定について */
 
 /* 479px以下 */
 @media screen and (max-width:479px) {
@@ -315,11 +327,14 @@ article section img {
         }
     }
 }
+/* 画面サイズごとの設定 終了 */
+
+
+/* タブバー設定について(各画面共通) */
 
 input[type="radio"] {
     display: none;
 }
-
 
 
 .panel_area {
@@ -340,7 +355,6 @@ input[type="radio"] {
         text-align: center;
     }
 }
-
 
 
 #tab1:checked~ {

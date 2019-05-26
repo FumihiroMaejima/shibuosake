@@ -13734,9 +13734,20 @@ article section img {
   margin: 13px auto;
 }
 
+/* カードのデザイン */
+
 .card {
   margin: 10px auto;
+  box-shadow: 0 0 8px gray;
 }
+
+.shopInfoTitle {
+  text-align: left !important;
+}
+
+/* 画面サイズごとに分ける */
+
+/* タブバー設定について */
 
 /* 479px以下 */
 
@@ -13842,6 +13853,10 @@ article section img {
     opacity: 0.5;
   }
 }
+
+/* 画面サイズごとの設定 終了 */
+
+/* タブバー設定について(各画面共通) */
 
 input[type=radio] {
   display: none;

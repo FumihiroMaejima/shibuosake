@@ -1868,6 +1868,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: Object
@@ -37232,49 +37248,6 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "card text-white bg-dark mb-3",
-            staticStyle: { "max-width": "20rem" }
-          },
-          [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Header")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("h4", { staticClass: "card-title" }, [
-                _vm._v("Dark card title")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _vm._v(
-                  "Some quick example text to build on the card title and make up the bulk of the card's content."
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text viewData" }, [
-                _vm._v(_vm._s(_vm.viewData.name))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text viewData" }, [
-                _vm._v(_vm._s(_vm.viewData.category))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text viewData" }, [
-                _vm._v(_vm._s(_vm.viewData.coupon_url.pc))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text viewData" }, [
-                _vm._v(_vm._s(_vm.viewData.address))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text viewData" }, [
-                _vm._v(_vm._s(_vm.viewData.opentime))
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
             staticClass: "card text-white bg-dark",
             staticStyle: { width: "20rem" }
           },
@@ -37322,43 +37295,110 @@ var render = function() {
               {
                 staticClass: "btn btn-primary",
                 attrs: {
-                  href: "#",
+                  href: "javascript::void(0)",
                   "data-toggle": "modal",
-                  "data-target": "#exampleModalCenter"
+                  "data-target": "#detailModal"
                 }
               },
-              [_vm._v("Go somewhere")]
+              [_vm._v("詳細")]
             )
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card", staticStyle: { width: "20rem" } }, [
-          _c("img", {
-            staticClass: "card-img-top viewData",
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
             attrs: {
-              src: _vm.viewData.image_url.shop_image1,
-              alt: "Card image cap"
+              id: "detailModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "detailModalTitle",
+              "aria-hidden": "true"
             }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("h4", { staticClass: "card-title viewData" }, [
-              _vm._v(_vm._s(_vm.viewData.name))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(
-                "Some quick example text to build on the card title and make up the bulk of the card's content."
-              )
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-              _vm._v("Go somewhere")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "modal-dialog modal-dialog-centered",
+                attrs: { role: "document" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "modal-content text-white bg-dark viewData" },
+                  [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c(
+                        "h5",
+                        {
+                          staticClass: "modal-title",
+                          attrs: { id: "exampleModalLongTitle" }
+                        },
+                        [_vm._v(_vm._s(_vm.viewData.name))]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("img", {
+                        staticClass: "card-img-top",
+                        attrs: {
+                          src: _vm.viewData.image_url.shop_image1,
+                          width: "100%",
+                          height: "180",
+                          alt: "Card image cap"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(_vm.viewData.pr.pr_long))]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "shopInfo" }, [
+                        _c(
+                          "p",
+                          { staticClass: "shopInfoTitle fa fa-calendar" },
+                          [_vm._v(" 店舗スケジュール:")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.viewData.opentime))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.viewData.holiday))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "shopInfo" }, [
+                        _c(
+                          "p",
+                          { staticClass: "shopInfoTitle fa fa-receipt" },
+                          [_vm._v("価格:")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("夜:" + _vm._s(_vm.viewData.party))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("昼:" + _vm._s(_vm.viewData.lunch))])
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。"
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]
+                )
+              ]
+            )
+          ]
+        )
       ])
     ])
   ])
@@ -37387,88 +37427,39 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "button",
       {
-        staticClass: "modal fade",
+        staticClass: "close",
+        staticStyle: { color: "#ffffff" },
         attrs: {
-          id: "exampleModalCenter",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalCenterTitle",
-          "aria-hidden": "true"
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
         }
       },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLongTitle" }
-                  },
-                  [_vm._v("Modal title")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm._v(
-                  "\n                            ...\n                            "
-                ),
-                _c("hr"),
-                _vm._v(" "),
-                _c("p", [_vm._v("test")]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("p", [_vm._v("test2")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                  [_vm._v("Save changes")]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("予約をする")]
+      )
+    ])
   }
 ]
 render._withStripped = true
