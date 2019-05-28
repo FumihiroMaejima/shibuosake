@@ -60,14 +60,14 @@
                                 <br>
                                 <p>{{ viewData.pr.pr_long }}</p>
                                 <div class="shopInfo">
-                                    <p class="shopInfoTitle fa fa-calendar">&nbsp;店舗スケジュール:</p>
-                                    <p>{{ viewData.opentime }}</p>
+                                    <p class="shopInfoTitle"><span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:</p>
+                                    <p class="shopInfoCalender">{{ viewData.opentime }}</p>
                                     <p>{{ viewData.holiday }}</p>
                                 </div>
                                 <div class="shopInfo">
-                                    <p class="shopInfoTitle fa fa-receipt">価格:</p>
-                                    <p>夜:{{ viewData.party }}</p>
-                                    <p>昼:{{ viewData.lunch }}</p>
+                                    <p class="shopInfoTitle"><span class="fa fa-money"></span>&nbsp;価格:</p><br>
+                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ viewData.party }}</p><br>
+                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ viewData.lunch }}</p>
                                 </div>
                                 <br>
                                 <p>*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。</p>

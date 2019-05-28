@@ -37360,27 +37360,29 @@ var render = function() {
                       _c("p", [_vm._v(_vm._s(_vm.viewData.pr.pr_long))]),
                       _vm._v(" "),
                       _c("div", { staticClass: "shopInfo" }, [
-                        _c(
-                          "p",
-                          { staticClass: "shopInfoTitle fa fa-calendar" },
-                          [_vm._v(" 店舗スケジュール:")]
-                        ),
+                        _vm._m(2),
                         _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(_vm.viewData.opentime))]),
+                        _c("p", { staticClass: "shopInfoCalender" }, [
+                          _vm._v(_vm._s(_vm.viewData.opentime))
+                        ]),
                         _vm._v(" "),
                         _c("p", [_vm._v(_vm._s(_vm.viewData.holiday))])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "shopInfo" }, [
-                        _c(
-                          "p",
-                          { staticClass: "shopInfoTitle fa fa-receipt" },
-                          [_vm._v("価格:")]
-                        ),
+                        _vm._m(3),
+                        _c("br"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("夜:" + _vm._s(_vm.viewData.party))]),
+                        _c("p", { staticClass: "shopInfoCost" }, [
+                          _c("span", { staticClass: "fa fa-moon-o" }),
+                          _vm._v(" 夜:" + _vm._s(_vm.viewData.party))
+                        ]),
+                        _c("br"),
                         _vm._v(" "),
-                        _c("p", [_vm._v("昼:" + _vm._s(_vm.viewData.lunch))])
+                        _c("p", { staticClass: "shopInfoCost" }, [
+                          _c("span", { staticClass: "fa fa-sun-o" }),
+                          _vm._v(" 昼:" + _vm._s(_vm.viewData.lunch))
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("br"),
@@ -37392,7 +37394,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(4)
                   ]
                 )
               ]
@@ -37439,6 +37441,24 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-calendar" }),
+      _vm._v(" 店舗スケジュール:")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-money" }),
+      _vm._v(" 価格:")
+    ])
   },
   function() {
     var _vm = this
