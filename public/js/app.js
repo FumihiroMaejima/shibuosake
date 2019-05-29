@@ -1884,6 +1884,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: Object
@@ -37357,7 +37360,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("br"),
                       _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(_vm.viewData.pr.pr_long))]),
+                      _c("div", { staticClass: "shopInfo" }, [
+                        _c("p", { staticClass: "shopInfoMessage" }, [
+                          _vm._v(_vm._s(_vm.viewData.pr.pr_long))
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "shopInfo" }, [
                         _vm._m(2),
@@ -37366,22 +37373,24 @@ var render = function() {
                           _vm._v(_vm._s(_vm.viewData.opentime))
                         ]),
                         _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(_vm.viewData.holiday))])
+                        _c("p", { staticClass: "shopInfoCalender" }, [
+                          _vm._v(_vm._s(_vm.viewData.holiday))
+                        ])
                       ]),
+                      _vm._v(" "),
+                      _c("br"),
                       _vm._v(" "),
                       _c("div", { staticClass: "shopInfo" }, [
                         _vm._m(3),
-                        _c("br"),
                         _vm._v(" "),
                         _c("p", { staticClass: "shopInfoCost" }, [
                           _c("span", { staticClass: "fa fa-moon-o" }),
-                          _vm._v(" 夜:" + _vm._s(_vm.viewData.party))
+                          _vm._v(" 夜:" + _vm._s(_vm.viewData.party) + "円")
                         ]),
-                        _c("br"),
                         _vm._v(" "),
                         _c("p", { staticClass: "shopInfoCost" }, [
                           _c("span", { staticClass: "fa fa-sun-o" }),
-                          _vm._v(" 昼:" + _vm._s(_vm.viewData.lunch))
+                          _vm._v(" 昼:" + _vm._s(_vm.viewData.lunch) + "円")
                         ])
                       ]),
                       _vm._v(" "),

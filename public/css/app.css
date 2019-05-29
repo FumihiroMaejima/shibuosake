@@ -13746,12 +13746,18 @@ article section img {
   font-size: xx-large;
 }
 
+.shopInfoMessage {
+  text-align: left !important;
+}
+
 .shopInfoCalender {
   text-align: left !important;
+  margin: 2px;
 }
 
 .shopInfoCost {
   text-align: center !important;
+  margin: 2px;
 }
 
 /* 画面サイズごとに分ける */
