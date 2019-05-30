@@ -62,15 +62,33 @@
                                     <p class="shopInfoMessage">{{ viewData.pr.pr_long }}</p>
                                 </div>
                                 <div class="shopInfo">
-                                    <p class="shopInfoTitle"><span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:</p>
+                                    <p class="shopInfoTitle">
+                                        <span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:
+                                    </p>
                                     <p class="shopInfoCalender">{{ viewData.opentime }}</p>
                                     <p  class="shopInfoCalender">{{ viewData.holiday }}</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
-                                    <p class="shopInfoTitle"><span class="fa fa-money"></span>&nbsp;価格:</p>
+                                    <p class="shopInfoTitle">
+                                        <span class="fa fa-money"></span>&nbsp;価格:
+                                    </p>
                                     <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ viewData.party }}円</p>
                                     <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ viewData.lunch }}円</p>
+                                </div>
+                                <br>
+                                <div class="shopInfo">
+                                    <p class="shopInfoTitle">
+                                        <span class="fa fa-home"></span>&nbsp;住所:
+                                    </p>
+                                    <p class="shopInfoAddress">&nbsp;{{ viewData.address }}</p>
+                                </div>
+                                <br>
+                                <div class="shopInfo">
+                                    <p class="shopInfoTitle">
+                                        <span class="fa fa-phone"></span>&nbsp;TEL:
+                                    </p>
+                                    <p class="shopInfoPhone">{{ viewData.tel }}</p>
                                 </div>
                                 <br>
                                 <p>*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。</p>

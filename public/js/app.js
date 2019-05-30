@@ -1887,6 +1887,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: Object
@@ -37396,6 +37414,26 @@ var render = function() {
                       _vm._v(" "),
                       _c("br"),
                       _vm._v(" "),
+                      _c("div", { staticClass: "shopInfo" }, [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "shopInfoAddress" }, [
+                          _vm._v(" " + _vm._s(_vm.viewData.address))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "shopInfo" }, [
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "shopInfoPhone" }, [
+                          _vm._v(_vm._s(_vm.viewData.tel))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
                       _c("p", [
                         _vm._v(
                           "*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。"
@@ -37403,7 +37441,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(4)
+                    _vm._m(6)
                   ]
                 )
               ]
@@ -37457,7 +37495,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "shopInfoTitle" }, [
       _c("span", { staticClass: "fa fa-calendar" }),
-      _vm._v(" 店舗スケジュール:")
+      _vm._v(" 店舗スケジュール:\n                                ")
     ])
   },
   function() {
@@ -37466,7 +37504,25 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "shopInfoTitle" }, [
       _c("span", { staticClass: "fa fa-money" }),
-      _vm._v(" 価格:")
+      _vm._v(" 価格:\n                                ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-home" }),
+      _vm._v(" 住所:\n                                ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-phone" }),
+      _vm._v(" TEL:\n                                ")
     ])
   },
   function() {

@@ -13744,6 +13744,7 @@ article section img {
 .shopInfoTitle {
   text-align: left !important;
   font-size: xx-large;
+  margin: 2px;
 }
 
 .shopInfoMessage {
@@ -13757,6 +13758,16 @@ article section img {
 
 .shopInfoCost {
   text-align: center !important;
+  margin: 2px;
+}
+
+.shopInfoAddress {
+  text-align: left !important;
+  margin: 2px;
+}
+
+.shopInfoPhone {
+  text-align: left !important;
   margin: 2px;
 }
 
