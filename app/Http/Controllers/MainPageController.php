@@ -49,7 +49,7 @@ class MainPageController extends Controller
         }
 
         $viewData = null;
-        $test = null;
+        //$test = null;
         //dd($restArray);
         // 飲食店データをさらに個々の店舗のデータとしてまとめる
         foreach ($restArray as $attributesData) {
