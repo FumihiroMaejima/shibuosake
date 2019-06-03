@@ -49,18 +49,17 @@ class MainPageController extends Controller
         }
 
         $viewData = null;
-
+        $test = null;
+        //dd($restArray);
         // 飲食店データをさらに個々の店舗のデータとしてまとめる
-        foreach ($restArray as $key => $attributesData) {
-            if ($key == "@attributes") {
-                foreach ($attributesData as $shopData) {
-                    //$viewData = $shopData;
-                    $viewData = json_encode($shopData);
-                }
-            }
+        foreach ($restArray as $attributesData) {
+                $viewData = $attributesData;
+                $viewData = json_encode($viewData);
         }
+        //dd($test);
         //echo var_dump($totalHitCount);
         //echo var_dump($viewData);
+        //dd($viewData);
 
         return view('main.index')->with('viewData', $viewData);
     }
