@@ -16,6 +16,7 @@
                 <div class="panel_area">
                     <div id="panel1" class="tab_panel">
                         <main-page v-bind:view-data="{{ $viewData }}"></main-page>
+                        <main-page v-bind:view-data="{{ $viewData }}"></main-page>
                     </div>
                     <div id="panel2" class="tab_panel">
                         <p>panel2panel2panel2panel2panel2</p>

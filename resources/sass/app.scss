@@ -10,6 +10,9 @@
 
 // FontAwesome
 @import "node_modules/font-awesome-scss/css/font-awesome.scss";
+//@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+
 
  .navbar {
      background-color: #fff;
@@ -19,7 +22,7 @@
  }
 
 body {
-    background-color: #fff;
+    background-color: #f7f7f7;
 }
 
 main {
@@ -36,7 +39,7 @@ main {
         position: relative;
         padding-bottom: 1px;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: #212529;
         color: rgba(255, 255, 255, 0.9);
 
         h1 {
@@ -209,15 +212,50 @@ article section img {
     margin: 13px auto;
 }
 
+/* カードのデザイン */
 .card {
     margin: 10px auto;
+    box-shadow: 0 0 8px gray;
 }
 
+.shopInfoTitle {
+    text-align:left!important;
+    font-size:xx-large;
+    margin:2px;
+}
 
+.shopInfoMessage {
+    text-align:left!important;
+}
+
+.shopInfoCalender {
+    text-align:left!important;
+    margin:2px;
+}
+
+.shopInfoCost {
+    text-align:center!important;
+    margin:2px;
+}
+
+.shopInfoAddress {
+    text-align:left!important;
+    margin: 2px;
+}
+
+.shopInfoPhone {
+    text-align:left!important;
+    margin: 2px;
+}
+
+/* 画面サイズごとに分ける */
+/* タブバー設定について */
+
+/* 479px以下 */
 @media screen and (max-width:479px) {
     .tab_wrap {
         width: 350px;
-        margin: 40px auto;
+        margin: 10px auto;
     }
 
     .tab_area {
@@ -247,10 +285,11 @@ article section img {
     }
 }
 
-@media screen and (min-width:480px) {
+/* 480px以上 764px以下*/
+@media screen and (min-width:480px) and (max-width:764px) {
     .tab_wrap {
         width: 470px;
-        margin: 80px auto;
+        margin: 10px auto;
     }
 
     .tab_area {
@@ -280,14 +319,51 @@ article section img {
     }
 }
 
+/* 765px以上 */
+@media screen and (min-width:765px) {
+    .tab_wrap {
+        width: 680px;
+        margin: 10px auto;
+    }
+
+    .tab_area {
+        font-size: 0;
+        padding: 0 55px;
+
+        label {
+            width: 110px;
+            display: inline-block;
+            padding: 14px 0 12px;
+            color: #fff;
+            background: #90c9cc;
+            text-align: center;
+            font-size: 13px;
+            cursor: pointer;
+            transition: ease 0.2s opacity;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            vertical-align: bottom;
+            transition: ease 0.2s;
+            margin: 10px 5px 0;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+/* 画面サイズごとの設定 終了 */
+
+
+/* タブバー設定について(各画面共通) */
+
 input[type="radio"] {
     display: none;
 }
 
 
-
 .panel_area {
-    background: #ffffff;
+  background: #f7f7f7;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top: 8px solid #d7e9ea;
@@ -304,7 +380,6 @@ input[type="radio"] {
         text-align: center;
     }
 }
-
 
 
 #tab1:checked~ {
