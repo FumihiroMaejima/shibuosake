@@ -32,7 +32,7 @@ jobs:
       - run: echo 'start deploy.'
       - add_ssh_keys:
           fingerprints:
-            - "4e:ff:6a:41:f9:95:4d:2a:c7:08:1b:9e:ae:a2:c1:c6"
+            - "c4:4e:d7:48:fa:ae:c3:f9:a4:bb:06:0a:4d:d1:0d:25"
       - run:
           name: Start ssh-keyscan
           command: |
