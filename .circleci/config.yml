@@ -41,6 +41,6 @@ jobs:
           name: Start master deploy
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                ssh -p ${PORT} ${USER_NAME}@${HOST_NAME} "cd ${DOCROOT}; git pull origin master;"
+                ssh -p ${PORT} ${USER_NAME}@${HOST_NAME} "cd ${DOCROOT}; ${HAVEOWN1}; git pull origin master; ${HAVEOWN2}; "
             fi
 
