@@ -17,7 +17,7 @@ class IpLimit
     {
         // IPの配列
         $whiteListIp = [
-            ['id' => 1, 'name' => 'admin', 'ip' => env(' ADMIN_CONTROL_IP ')]
+            ['id' => 1, 'name' => 'admin', 'ip' => env('ADMIN_CONTROL_IP')]
         ];
 
         /* 変数$ipにアクセスされたIPが含まれているかチェック */
