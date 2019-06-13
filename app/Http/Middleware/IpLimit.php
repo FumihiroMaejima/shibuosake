@@ -28,7 +28,7 @@ class IpLimit
         if (!$detect) {
             // ここでは route()->name('invalid')にリダイレクト
             // return redirect('invalid');
-            return edirect()->to('errors/404');
+            return redirect()->to('errors/404');
         }
         // ipが含まれていればリクエストが通る
         return $next($request);

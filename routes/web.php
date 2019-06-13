@@ -11,4 +11,14 @@
 |
 */
 
+// メインページ
 Route::get('/', 'MainPageController@index')->name('mainPage');
+
+
+// メンテナンスページ
+Route::get('mainte', 'MaintenancePageController@index')->name('maintenancePage');
+/*
+Route::group(['middleware' => 'ipLimit'], function () {
+    Route::get('maintenance', 'MaintenancePageController@index')->name('maintenancePage');
+});
+*/

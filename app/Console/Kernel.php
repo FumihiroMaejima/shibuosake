@@ -16,9 +16,6 @@ class Kernel extends ConsoleKernel
         //
     ];
 
-    protected $routeMiddleware = [
-        'ipLimit' => \App\Http\Middleware\IpLimit::class,
-    ];
 
     /**
      * Define the application's command schedule.
