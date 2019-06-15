@@ -26,16 +26,11 @@ class MaintenancePageController extends Controller
         //dd($path);
 
         $headers = [
-            'Origin'                    => 'http://google.com',
+            'Origin'                    => 'https://google.com',
             'Accept-Encoding'           => 'gzip, deflate, br',
             'Accept-Language'           => 'ja,en-US;q=0.8,en;q=0.6',
             'Upgrade-Insecure-Requests' => '1',
-            'User-Agent'                => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.2840.71 Safari/537.36',
             'Content-Type'              => 'application/json; charset=utf-8',
-            'Accept'                    => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Cache-Control'             => 'max-age=0',
-            'Referer'                   => 'http://www.google.com',
-            'Connection'                => 'keep-alive'
         ];
 
         $response = $client->request('GET', $path, [
@@ -44,9 +39,17 @@ class MaintenancePageController extends Controller
         ]);
         $responseBody = (string)$response->getBody();
 
-        dd($responseBody);
+        // 表示内容が変わらない
+        //$test = mb_convert_encoding($responseBody, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+
+        $responseData = json_decode($responseBody, true);
 
 
+        // チェック用
+        //dd($responseData);
+
+
+        /*
         // 画面表示用データ(テスト用)の取得
         //$url = public_path() . '/data/testdata.xml';
         $url = public_path() . '/data/testdata.json';
@@ -57,6 +60,7 @@ class MaintenancePageController extends Controller
         // json文字列をPHP変数に変換
         $decodeData = json_decode($json, true);
         //echo var_dump($decodeData);
+        */
 
         /* 整形用のデータを作成 */
         // 該当件数
@@ -65,8 +69,36 @@ class MaintenancePageController extends Controller
         $hitPerPage = null;
         // 表示ページ
         $pageOffset = null;
-        $restArray = null;
+        //$restArray = null;
+        $restaurantArray = null;
+        $viewData = null;
 
+        // 配列のkeyによってデータを振り分ける
+        foreach ($responseData as $responseKey => $apiData) {
+            switch ($responseKey) {
+                case 'total_hit_count':
+                    $totalHitCount = $apiData;
+                    break;
+                case 'hit_per_page':
+                    $hitPerPage = $apiData;
+                    break;
+                case 'page_offset':
+                    $pageOffset = $apiData;
+                    break;
+                case 'rest':
+                    $restaurantArray = $apiData;
+                    $viewData = json_encode($restaurantArray);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // チェック用
+        //dd($restaurantArray);
+        //dd($viewData);
+
+        /*
         // 配列のkeyによってデータを振り分ける
         foreach ($decodeData as $key => $restdata) {
             switch ($key) {
@@ -95,6 +127,7 @@ class MaintenancePageController extends Controller
             $viewData = $attributesData;
             $viewData = json_encode($viewData);
         }
+        */
         //dd($test);
         //echo var_dump($totalHitCount);
         //echo var_dump($viewData);

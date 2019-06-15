@@ -2223,9 +2223,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    viewData: Object
+    viewData: {
+      type: Array
+    }
   },
   mounted: function mounted() {//console.log('MainPageComponent mounted.');
   },
@@ -38073,506 +38102,54 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card text-white bg-dark" }, [
-          _c("img", {
-            staticClass: "card-img-top viewData",
-            attrs: {
-              src: _vm.viewData.attributes.image_url.shop_image1,
-              width: "100%",
-              height: "180",
-              alt: "Card image cap"
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("h4", { staticClass: "card-title viewData" }, [
-              _vm._v(_vm._s(_vm.viewData.attributes.name))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(
-                "Some quick example text to build on the card title and make up the bulk of the card's content."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text viewData" }, [
-              _vm._v(_vm._s(_vm.viewData.attributes.pr.pr_short))
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  href: "javascript::void(0)",
-                  "data-toggle": "modal",
-                  "data-target": "#detailModal"
-                }
-              },
-              [_vm._v("詳細")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card text-white bg-dark" }, [
-          _c("img", {
-            staticClass: "card-img-top viewData",
-            attrs: {
-              src: _vm.viewData.attributes2.image_url.shop_image1,
-              width: "100%",
-              height: "180",
-              alt: "Card image cap"
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("h4", { staticClass: "card-title viewData" }, [
-              _vm._v(_vm._s(_vm.viewData.attributes2.name))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(
-                "Some quick example text to build on the card title and make up the bulk of the card's content."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text viewData" }, [
-              _vm._v(_vm._s(_vm.viewData.attributes2.pr.pr_short))
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  href: "javascript::void(0)",
-                  "data-toggle": "modal",
-                  "data-target": "#detailModal2"
-                }
-              },
-              [_vm._v("詳細")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "modal fade",
-            attrs: {
-              id: "detailModal",
-              tabindex: "-1",
-              role: "dialog",
-              "aria-labelledby": "detailModalTitle",
-              "aria-hidden": "true"
-            }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "modal-dialog modal-dialog-centered",
-                attrs: { role: "document" }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "modal-content text-white bg-dark viewData" },
-                  [
-                    _c("div", { staticClass: "modal-header" }, [
-                      _c(
-                        "h5",
-                        {
-                          staticClass: "modal-title",
-                          attrs: { id: "exampleModalLongTitle" }
-                        },
-                        [_vm._v(_vm._s(_vm.viewData.attributes.name))]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(0)
+      _c(
+        "div",
+        { staticClass: "col-md-12" },
+        _vm._l(_vm.viewData, function(value, name) {
+          return _c("div", { key: value.id }, [
+            _c("div", { staticClass: "card text-white bg-dark mb-3" }, [
+              _c("div", { staticClass: "row no-gutters" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("img", {
+                    staticClass: "card-img",
+                    attrs: { src: value.image_url.shop_image1, alt: "..." }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(_vm._s(value.name))
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "modal-body" }, [
-                      _c("img", {
-                        staticClass: "card-img-top",
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(value.pr.pr_short))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary",
                         attrs: {
-                          src: _vm.viewData.attributes.image_url.shop_image1,
-                          width: "100%",
-                          height: "180",
-                          alt: "Card image cap"
+                          href: "javascript::void(0)",
+                          "data-toggle": "modal",
+                          "data-target": "#detailModal"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _c("p", { staticClass: "shopInfoMessage" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes.pr.pr_long))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCalender" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes.opentime))
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCalender" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes.holiday))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCost" }, [
-                          _c("span", { staticClass: "fa fa-moon-o" }),
-                          _vm._v(
-                            " 夜:" +
-                              _vm._s(_vm.viewData.attributes.party) +
-                              "円"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCost" }, [
-                          _c("span", { staticClass: "fa fa-sun-o" }),
-                          _vm._v(
-                            " 昼:" +
-                              _vm._s(_vm.viewData.attributes.lunch) +
-                              "円"
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoAddress" }, [
-                          _vm._v(" " + _vm._s(_vm.viewData.attributes.address))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(4),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoPhone" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes.tel))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。"
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(5)
-                  ]
-                )
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "modal fade",
-            attrs: {
-              id: "detailModal2",
-              tabindex: "-1",
-              role: "dialog",
-              "aria-labelledby": "detailModalTitle",
-              "aria-hidden": "true"
-            }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "modal-dialog modal-dialog-centered",
-                attrs: { role: "document" }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "modal-content text-white bg-dark viewData" },
-                  [
-                    _c("div", { staticClass: "modal-header" }, [
-                      _c(
-                        "h5",
-                        {
-                          staticClass: "modal-title",
-                          attrs: { id: "exampleModalLongTitle" }
-                        },
-                        [_vm._v(_vm._s(_vm.viewData.attributes2.name))]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(6)
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-body" }, [
-                      _c("img", {
-                        staticClass: "card-img-top",
-                        attrs: {
-                          src: _vm.viewData.attributes2.image_url.shop_image1,
-                          width: "100%",
-                          height: "180",
-                          alt: "Card image cap"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _c("p", { staticClass: "shopInfoMessage" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes2.pr.pr_long))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(7),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCalender" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes2.opentime))
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCalender" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes2.holiday))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(8),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCost" }, [
-                          _c("span", { staticClass: "fa fa-moon-o" }),
-                          _vm._v(
-                            " 夜:" +
-                              _vm._s(_vm.viewData.attributes2.party) +
-                              "円"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoCost" }, [
-                          _c("span", { staticClass: "fa fa-sun-o" }),
-                          _vm._v(
-                            " 昼:" +
-                              _vm._s(_vm.viewData.attributes2.lunch) +
-                              "円"
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(9),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoAddress" }, [
-                          _vm._v(" " + _vm._s(_vm.viewData.attributes2.address))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "shopInfo" }, [
-                        _vm._m(10),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "shopInfoPhone" }, [
-                          _vm._v(_vm._s(_vm.viewData.attributes2.tel))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。"
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(11)
-                  ]
-                )
-              ]
-            )
-          ]
-        )
-      ])
+                      },
+                      [_vm._v("詳細")]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        }),
+        0
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        staticStyle: { color: "#ffffff" },
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-calendar" }),
-      _vm._v(" 店舗スケジュール:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-money" }),
-      _vm._v(" 価格:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-home" }),
-      _vm._v(" 住所:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-phone" }),
-      _vm._v(" TEL:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("予約をする")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        staticStyle: { color: "#ffffff" },
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-calendar" }),
-      _vm._v(" 店舗スケジュール:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-money" }),
-      _vm._v(" 価格:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-home" }),
-      _vm._v(" 住所:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "shopInfoTitle" }, [
-      _c("span", { staticClass: "fa fa-phone" }),
-      _vm._v(" TEL:\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("予約をする")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

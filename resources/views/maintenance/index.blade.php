@@ -17,7 +17,6 @@
                 <div class="panel_area">
                     <div id="panel1" class="tab_panel">
                         <maintenance v-bind:view-data="{{ $viewData }}"></maintenance>
-                        <maintenance v-bind:view-data="{{ $viewData }}"></maintenance>
                     </div>
                     <div id="panel2" class="tab_panel">
                         <p>maintenance tab2</p>
