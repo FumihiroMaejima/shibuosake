@@ -25,142 +25,67 @@
                 </div>
                 -->
 
-                <div v-for="(value, name) in viewData" v-bind:key="value.id">
-                    <div class="card text-white bg-dark mb-3" >
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img class="card-img" :src="value.image_url.shop_image1" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ value.name }}</h5>
-                                    <p class="card-text">{{ value.pr.pr_short }}</p>
-                                    <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
-                                </div>
+
+                <div class="card text-white bg-dark mb-3" v-for="(value, name) in viewData" v-bind:key="value.id">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="card-img" :src="value.image_url.shop_image1" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ value.name }}</h5>
+                                <p class="card-text">{{ value.pr.pr_short }}</p>
+                                <a v-on:click="attach(value)" href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
                             </div>
                         </div>
                     </div>
-
-                    <!--
-                    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content text-white bg-dark viewData">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">{{ value.name }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#ffffff;">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="card-img-top" :src="value.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
-                                    <br>
-                                    <br>
-                                    <div class="shopInfo">
-                                        <p class="shopInfoMessage">{{ value.pr.pr_long }}</p>
-                                    </div>
-                                    <div class="shopInfo">
-                                        <p class="shopInfoTitle">
-                                            <span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:
-                                        </p>
-                                        <p class="shopInfoCalender">{{ value.opentime }}</p>
-                                        <p  class="shopInfoCalender">{{ value.holiday }}</p>
-                                    </div>
-                                    <br>
-                                    <div class="shopInfo">
-                                        <p class="shopInfoTitle">
-                                            <span class="fa fa-money"></span>&nbsp;価格:
-                                        </p>
-                                        <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ value.party }}円</p>
-                                        <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ value.lunch }}円</p>
-                                    </div>
-                                    <br>
-                                    <div class="shopInfo">
-                                        <p class="shopInfoTitle">
-                                            <span class="fa fa-home"></span>&nbsp;住所:
-                                        </p>
-                                        <p class="shopInfoAddress">&nbsp;{{ value.address }}</p>
-                                    </div>
-                                    <br>
-                                    <div class="shopInfo">
-                                        <p class="shopInfoTitle">
-                                            <span class="fa fa-phone"></span>&nbsp;TEL:
-                                        </p>
-                                        <p class="shopInfoPhone">{{ value.tel }}</p>
-                                    </div>
-                                    <br>
-                                    <p>*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。</p>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">予約をする</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
                 </div>
 
-
-                <!-- 20190615
-                <div class="card text-white bg-dark">
-                    <img class="card-img-top viewData" :src="viewData.attributes.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title viewData">{{ viewData.attributes.name }}</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p class="card-text viewData">{{ viewData.attributes.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
-                    </div>
-                </div>
-                -->
-
-                <!-- Modal -->
-                <!--
+                <!-- modal -->
                 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content text-white bg-dark viewData">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">{{ viewData.attributes.name }}</h5>
+                                <h5 class="modal-title" id="ModalLongTitle">{{ title }}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#ffffff;">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img class="card-img-top" :src="viewData.attributes.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
+                                <img class="card-img-top" :src="shop_image1" width="100%" height="180" alt="Card image cap">
                                 <br>
                                 <br>
                                 <div class="shopInfo">
-                                    <p class="shopInfoMessage">{{ viewData.attributes.pr.pr_long }}</p>
+                                    <p class="shopInfoMessage">{{ pr_long }}</p>
                                 </div>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:
                                     </p>
-                                    <p class="shopInfoCalender">{{ viewData.attributes.opentime }}</p>
-                                    <p  class="shopInfoCalender">{{ viewData.attributes.holiday }}</p>
+                                    <p class="shopInfoCalender">{{ opentime }}</p>
+                                    <p  class="shopInfoCalender">{{ holiday }}</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-money"></span>&nbsp;価格:
                                     </p>
-                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ viewData.attributes.party }}円</p>
-                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ viewData.attributes.lunch }}円</p>
+                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ party }}円</p>
+                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ lunch }}円</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-home"></span>&nbsp;住所:
                                     </p>
-                                    <p class="shopInfoAddress">&nbsp;{{ viewData.attributes.address }}</p>
+                                    <p class="shopInfoAddress">&nbsp;{{ address }}</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-phone"></span>&nbsp;TEL:
                                     </p>
-                                    <p class="shopInfoPhone">{{ viewData.attributes.tel }}</p>
+                                    <p class="shopInfoPhone">{{ tel }}</p>
                                 </div>
                                 <br>
                                 <p>*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。</p>
@@ -168,12 +93,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">予約をする</button>
+                                <!-- <button type="button" class="btn btn-primary">予約をする</button> -->
+                                <a :href="url" class="btn btn-success">予約をする</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                -->
 
             </div>
         </div>
@@ -187,9 +112,34 @@
                type: Array
            },
        },
-       mounted() {
-           //console.log('MainPageComponent mounted.');
-       },
+        data() {
+            return {
+                title: 'title',
+                shop_image1: 'favicon.ico',
+                pr_long: 'pr_long',
+                opentime: 'opentime',
+                holiday: 'holiday',
+                party: 'shop_image1',
+                lunch: 'shop_image1',
+                address: 'address',
+                tel: 'tel',
+                url: 'localhost'
+            }
+        },
+        methods: {
+            attach: function(object) {
+                this.title = object.name
+                this.shop_image1 = object.image_url.shop_image1
+                this.pr_long = object.pr.pr_long
+                this.opentime = object.opentime
+                this.holiday = object.holiday
+                this.party = object.party
+                this.lunch = object.lunch
+                this.address = object.address
+                this.tel = object.tel
+                this.url = object.url
+            }
+        },
        name:'maintenance'
    }
 </script>

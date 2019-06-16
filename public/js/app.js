@@ -2175,88 +2175,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: {
       type: Array
     }
   },
-  mounted: function mounted() {//console.log('MainPageComponent mounted.');
+  data: function data() {
+    return {
+      title: 'title',
+      shop_image1: 'favicon.ico',
+      pr_long: 'pr_long',
+      opentime: 'opentime',
+      holiday: 'holiday',
+      party: 'shop_image1',
+      lunch: 'shop_image1',
+      address: 'address',
+      tel: 'tel',
+      url: 'localhost'
+    };
+  },
+  methods: {
+    attach: function attach(object) {
+      this.title = object.name;
+      this.shop_image1 = object.image_url.shop_image1;
+      this.pr_long = object.pr.pr_long;
+      this.opentime = object.opentime;
+      this.holiday = object.holiday;
+      this.party = object.party;
+      this.lunch = object.lunch;
+      this.address = object.address;
+      this.tel = object.tel;
+      this.url = object.url;
+    }
   },
   name: 'maintenance'
 });
@@ -38105,51 +38056,258 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col-md-12" },
-        _vm._l(_vm.viewData, function(value, name) {
-          return _c("div", { key: value.id }, [
-            _c("div", { staticClass: "card text-white bg-dark mb-3" }, [
-              _c("div", { staticClass: "row no-gutters" }, [
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c("img", {
-                    staticClass: "card-img",
-                    attrs: { src: value.image_url.shop_image1, alt: "..." }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h5", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(value.name))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(_vm._s(value.pr.pr_short))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: {
-                          href: "javascript::void(0)",
-                          "data-toggle": "modal",
-                          "data-target": "#detailModal"
-                        }
-                      },
-                      [_vm._v("詳細")]
-                    )
+        [
+          _vm._l(_vm.viewData, function(value, name) {
+            return _c(
+              "div",
+              { key: value.id, staticClass: "card text-white bg-dark mb-3" },
+              [
+                _c("div", { staticClass: "row no-gutters" }, [
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("img", {
+                      staticClass: "card-img",
+                      attrs: { src: value.image_url.shop_image1, alt: "..." }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("h5", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(value.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(_vm._s(value.pr.pr_short))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            href: "javascript::void(0)",
+                            "data-toggle": "modal",
+                            "data-target": "#detailModal"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.attach(value)
+                            }
+                          }
+                        },
+                        [_vm._v("詳細")]
+                      )
+                    ])
                   ])
                 ])
-              ])
-            ])
-          ])
-        }),
-        0
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "modal fade",
+              attrs: {
+                id: "detailModal",
+                tabindex: "-1",
+                role: "dialog",
+                "aria-labelledby": "detailModalTitle",
+                "aria-hidden": "true"
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "modal-dialog modal-dialog-centered",
+                  attrs: { role: "document" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-content text-white bg-dark viewData"
+                    },
+                    [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "modal-title",
+                            attrs: { id: "ModalLongTitle" }
+                          },
+                          [_vm._v(_vm._s(_vm.title))]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c("img", {
+                          staticClass: "card-img-top",
+                          attrs: {
+                            src: _vm.shop_image1,
+                            width: "100%",
+                            height: "180",
+                            alt: "Card image cap"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "shopInfo" }, [
+                          _c("p", { staticClass: "shopInfoMessage" }, [
+                            _vm._v(_vm._s(_vm.pr_long))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "shopInfo" }, [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "shopInfoCalender" }, [
+                            _vm._v(_vm._s(_vm.opentime))
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "shopInfoCalender" }, [
+                            _vm._v(_vm._s(_vm.holiday))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "shopInfo" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "shopInfoCost" }, [
+                            _c("span", { staticClass: "fa fa-moon-o" }),
+                            _vm._v(" 夜:" + _vm._s(_vm.party) + "円")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "shopInfoCost" }, [
+                            _c("span", { staticClass: "fa fa-sun-o" }),
+                            _vm._v(" 昼:" + _vm._s(_vm.lunch) + "円")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "shopInfo" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "shopInfoAddress" }, [
+                            _vm._v(" " + _vm._s(_vm.address))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "shopInfo" }, [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "shopInfoPhone" }, [
+                            _vm._v(_vm._s(_vm.tel))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。"
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-footer" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            attrs: { type: "button", "data-dismiss": "modal" }
+                          },
+                          [_vm._v("Close")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { href: _vm.url }
+                          },
+                          [_vm._v("予約をする")]
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        ],
+        2
       )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        staticStyle: { color: "#ffffff" },
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-calendar" }),
+      _vm._v(" 店舗スケジュール:\n                                ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-money" }),
+      _vm._v(" 価格:\n                                ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-home" }),
+      _vm._v(" 住所:\n                                ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "shopInfoTitle" }, [
+      _c("span", { staticClass: "fa fa-phone" }),
+      _vm._v(" TEL:\n                                ")
+    ])
+  }
+]
 render._withStripped = true
 
 
