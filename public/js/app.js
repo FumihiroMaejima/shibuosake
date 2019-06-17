@@ -2185,6 +2185,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: 'title',
       shop_image1: 'favicon.ico',
+      shop_image2: 'favicon.ico',
       pr_long: 'pr_long',
       opentime: 'opentime',
       holiday: 'holiday',
@@ -2199,6 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
     attach: function attach(object) {
       this.title = object.name;
       this.shop_image1 = object.image_url.shop_image1;
+      this.shop_image2 = object.image_url.shop_image2;
       this.pr_long = object.pr.pr_long;
       this.opentime = object.opentime;
       this.holiday = object.holiday;
@@ -38057,27 +38059,33 @@ var render = function() {
         "div",
         { staticClass: "col-md-12" },
         [
-          _vm._l(_vm.viewData, function(value, name) {
+          _vm._l(_vm.viewData, function(restaurant, key) {
             return _c(
               "div",
-              { key: value.id, staticClass: "card text-white bg-dark mb-3" },
+              {
+                key: restaurant.id,
+                staticClass: "card text-white bg-dark mb-3"
+              },
               [
                 _c("div", { staticClass: "row no-gutters" }, [
                   _c("div", { staticClass: "col-md-4" }, [
                     _c("img", {
                       staticClass: "card-img",
-                      attrs: { src: value.image_url.shop_image1, alt: "..." }
+                      attrs: {
+                        src: restaurant.image_url.shop_image1,
+                        alt: "..."
+                      }
                     })
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "card-body" }, [
                       _c("h5", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(value.name))
+                        _vm._v(_vm._s(restaurant.name))
                       ]),
                       _vm._v(" "),
                       _c("p", { staticClass: "card-text" }, [
-                        _vm._v(_vm._s(value.pr.pr_short))
+                        _vm._v(_vm._s(restaurant.pr.pr_short))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -38091,7 +38099,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              return _vm.attach(value)
+                              return _vm.attach(restaurant)
                             }
                           }
                         },
@@ -38147,9 +38155,9 @@ var render = function() {
                         _c("img", {
                           staticClass: "card-img-top",
                           attrs: {
-                            src: _vm.shop_image1,
+                            src: _vm.shop_image2,
                             width: "100%",
-                            height: "180",
+                            height: "100%",
                             alt: "Card image cap"
                           }
                         }),

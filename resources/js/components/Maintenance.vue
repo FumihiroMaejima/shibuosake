@@ -4,44 +4,44 @@
             <div class="col-md-12">
 
                 <!--
-                <div class="card text-white bg-dark" style="width: 20rem;" v-for="(value, name) in viewData" v-bind:key="value.id">
-                    <img class="card-img-top" :src="value.image_url.shop_image1" alt="Card image cap">
+                <div class="card text-white bg-dark" style="width: 20rem;" v-for="(value, key) in viewData" v-bind:key="restaurant.id">
+                    <img class="card-img-top" :src="restaurant.image_url.shop_image1" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">{{ value.name }}</h4>
-                        <p class="card-text">{{ value.pr.pr_short }}</p>
+                        <h4 class="card-title">{{ restaurant.key }}</h4>
+                        <p class="card-text">{{ restaurant.pr.pr_short }}</p>
                         <a href="javascript::void(0)" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
                 -->
 
                 <!--
-                <div class="card text-white bg-dark" v-for="(value, name) in viewData" v-bind:key="value.id">
-                    <img class="card-img-top" :src="value.image_url.shop_image1" width="100%" height="100%" alt="Card image cap">
+                <div class="card text-white bg-dark" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
+                    <img class="card-img-top" :src="restaurant.image_url.shop_image1" width="100%" height="100%" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">{{ value.name }}</h4>
-                        <p class="card-text">{{ value.pr.pr_short }}</p>
+                        <h4 class="card-title">{{ restaurant.name }}</h4>
+                        <p class="card-text">{{ restaurant.pr.pr_short }}</p>
                         <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
                     </div>
                 </div>
                 -->
 
 
-                <div class="card text-white bg-dark mb-3" v-for="(value, name) in viewData" v-bind:key="value.id">
+                <div class="card text-white bg-dark mb-3" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img class="card-img" :src="value.image_url.shop_image1" alt="...">
+                            <img class="card-img" :src="restaurant.image_url.shop_image1" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{ value.name }}</h5>
-                                <p class="card-text">{{ value.pr.pr_short }}</p>
-                                <a v-on:click="attach(value)" href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
+                                <h5 class="card-title">{{ restaurant.name }}</h5>
+                                <p class="card-text">{{ restaurant.pr.pr_short }}</p>
+                                <a v-on:click="attach(restaurant)" href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- modal -->
+               <!-- modal -->
                 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content text-white bg-dark viewData">
@@ -52,7 +52,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img class="card-img-top" :src="shop_image1" width="100%" height="180" alt="Card image cap">
+                                <img class="card-img-top" :src="shop_image2" width="100%" height="100%" alt="Card image cap">
                                 <br>
                                 <br>
                                 <div class="shopInfo">
@@ -93,12 +93,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <!-- <button type="button" class="btn btn-primary">予約をする</button> -->
                                 <a :href="url" class="btn btn-success">予約をする</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -116,6 +116,7 @@
             return {
                 title: 'title',
                 shop_image1: 'favicon.ico',
+                shop_image2: 'favicon.ico',
                 pr_long: 'pr_long',
                 opentime: 'opentime',
                 holiday: 'holiday',
@@ -130,6 +131,7 @@
             attach: function(object) {
                 this.title = object.name
                 this.shop_image1 = object.image_url.shop_image1
+                this.shop_image2 = object.image_url.shop_image2
                 this.pr_long = object.pr.pr_long
                 this.opentime = object.opentime
                 this.holiday = object.holiday
