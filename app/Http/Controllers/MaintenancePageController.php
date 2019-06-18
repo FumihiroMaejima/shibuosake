@@ -132,15 +132,46 @@ class MaintenancePageController extends Controller
     // レストラン検索等のAPIの実行
     public function execApi()
     {
+        $baseUrl = 'https://api.gnavi.co.jp';
         /**
+         * 飲食店検索
          * guzzleHttpClientによるAPI実行
          * /RestSearchAPI/:レストラン検索API
          * keyid:アクセスキー
          * address:地名
          * category_l:業態
          **/
-        $baseUrl = 'https://api.gnavi.co.jp';
-        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
+
+        /**
+         * 口コミ検索
+         * keyid:アクセスキー
+         * area:地名
+         * hit_per_page:API1回あたりの検索数(最大50)
+         * vote_date:現在日時型何日前までの範囲を指定
+         * photo_genre_id:写真ジャンルで絞込み/1:料理・ドリンク,2:店内・外観,3:人物・その他
+         * comment:コメント
+         * menu_name:メニュー名
+         **/
+        //$path = '/PhotoSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&area=渋谷&hit_per_page=50&vote_date=720&photo_genre_id=1';
+
+        /**
+         * エリア取得
+         * エリアLマスタ:GAreaLargeSearchAPI
+         * エリアMマスタ:GAreaMiddleSearchAPI
+         * エリアSマスタ:GAreaSmallSearchAPI
+         * keyid:アクセスキー
+         **/
+        $path = '/master/GAreaMiddleSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY');
+
+        /**
+         * 業態マスタ取得
+         * 大業態マスタ:CategoryLargeSearchAPI
+         * 小業態マスタ:CategorySmallSearchAPI
+         * keyid:アクセスキー
+         **/
+        //$path = '/master/CategorySmallSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY');
+
         $client = new \GuzzleHttp\Client([
             'base_uri' => $baseUrl,
         ]);
@@ -161,6 +192,7 @@ class MaintenancePageController extends Controller
 
         $responseData = json_decode($responseBody, true);
 
+        dd($responseBody);
         return $responseData;
     }
 }
