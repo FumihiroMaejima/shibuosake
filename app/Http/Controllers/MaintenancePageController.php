@@ -56,10 +56,13 @@ class MaintenancePageController extends Controller
          * /RestSearchAPI/:レストラン検索API
          * keyid:アクセスキー
          * address:地名
-         * category_l:業態
+         * areacode_m:エリアコード
+         * category_l:大業態/RSFST21000=お酒
          **/
         $baseUrl = 'https://api.gnavi.co.jp';
-        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
+        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
         $client = new \GuzzleHttp\Client([
             'base_uri' => $baseUrl,
         ]);
@@ -86,9 +89,10 @@ class MaintenancePageController extends Controller
     public function apitest()
     {
         // APIの実行
-        $responseData = self::execApi();
+        //$responseData = self::execApi();
+        $responseData = self::getApiData();
 
-        dd($responseData);
+        //dd($responseData);
 
         /* 整形用のデータを作成 */
         // 該当件数
@@ -122,6 +126,24 @@ class MaintenancePageController extends Controller
             }
         }
 
+        if ($totalHitCount > $hitPerPage) {
+
+            $mod = $totalHitCount - $hitPerPage;
+            if ($mod < 100) {
+
+                //self::getApiData();
+            }
+            //$mod = $totalHitCount % $hitPerPage;
+
+            // 検索回数の設定
+            //$mod > 0 ? $maxOffset = ($totalHitCount / $hitPerPage) - ($mod / 10) + 1 : $maxOffset = ($totalHitCount / $hitPerPage);
+            dd($responseData);
+        }
+
+
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000' . '&';
+        //dd($totalHitCount);
+
         // チェック用
         //dd($restaurantArray);
         //dd($viewData);
@@ -139,9 +161,14 @@ class MaintenancePageController extends Controller
          * /RestSearchAPI/:レストラン検索API
          * keyid:アクセスキー
          * address:地名
-         * category_l:業態
+         * areacode_m:エリアコード
+         * category_l:大業態/RSFST21000=お酒
+         * category_s:小業態
          **/
         //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_s=RSFST21001,RSFST21002,RSFST21004';
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000,RSFST09000';
+        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
 
         /**
          * 口コミ検索
@@ -162,7 +189,7 @@ class MaintenancePageController extends Controller
          * エリアSマスタ:GAreaSmallSearchAPI
          * keyid:アクセスキー
          **/
-        $path = '/master/GAreaMiddleSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY');
+        //$path = '/master/GAreaMiddleSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY');
 
         /**
          * 業態マスタ取得
@@ -171,6 +198,8 @@ class MaintenancePageController extends Controller
          * keyid:アクセスキー
          **/
         //$path = '/master/CategorySmallSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY');
+
+        //dd($path);
 
         $client = new \GuzzleHttp\Client([
             'base_uri' => $baseUrl,
@@ -193,6 +222,50 @@ class MaintenancePageController extends Controller
         $responseData = json_decode($responseBody, true);
 
         dd($responseBody);
+        return $responseData;
+    }
+
+    // レストラン検索等のAPIの実行
+    public function getApiData()
+    {
+        $baseUrl = 'https://api.gnavi.co.jp';
+        /**
+         * 飲食店検索
+         * guzzleHttpClientによるAPI実行
+         * /RestSearchAPI/:レストラン検索API
+         * keyid:アクセスキー
+         * address:地名
+         * areacode_m:エリアコード
+         * category_l:大業態/RSFST21000=お酒
+         * category_s:小業態
+         **/
+        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100';
+        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100&offset_page=2';
+
+
+        //dd($path);
+
+        $client = new \GuzzleHttp\Client([
+            'base_uri' => $baseUrl,
+        ]);
+
+        $headers = [
+            'Origin'                    => 'https://google.com',
+            'Accept-Encoding'           => 'gzip, deflate, br',
+            'Accept-Language'           => 'ja,en-US;q=0.8,en;q=0.6',
+            'Upgrade-Insecure-Requests' => '1',
+            'Content-Type'              => 'application/json; charset=utf-8',
+        ];
+
+        $response = $client->request('GET', $path, [
+            'allow_redirects' => false,
+            'headers'         => $headers,
+        ]);
+        $responseBody = (string)$response->getBody();
+
+        $responseData = json_decode($responseBody, true);
+
+        //dd($responseBody);
         return $responseData;
     }
 }
