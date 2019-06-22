@@ -36,10 +36,10 @@ class CreateShopinfoTable extends Migration
             $table->string('access')->nullable()->comment('アクセス');
             $table->string('parking_lots')->nullable()->comment('駐車場');
             $table->string('pr_short')->nullable()->comment('紹介文short');
-            $table->string('pr_long')->nullable()->comment('紹介文long');
-            $table->integer('budget')->nullable()->comment('予算');
-            $table->integer('party')->nullable()->comment('夕食');
-            $table->integer('lunch')->nullable()->comment('昼食');
+            $table->text('pr_long')->nullable()->comment('紹介文long');
+            $table->string('budget')->nullable()->comment('予算');
+            $table->string('party')->nullable()->comment('夕食');
+            $table->string('lunch')->nullable()->comment('昼食');
             $table->string('credit_card')->nullable()->comment('クレジットカード');
             $table->string('e_money')->nullable()->comment('電子決済');
             $table->timestamps();

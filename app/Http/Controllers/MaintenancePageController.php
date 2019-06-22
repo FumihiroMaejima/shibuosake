@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \GuzzleHttp\Psr7;
+use Illuminate\Support\Facades\DB;
 
 class MaintenancePageController extends Controller
 {
@@ -128,9 +129,11 @@ class MaintenancePageController extends Controller
         // 1回の実行で取得出来る数よりも合計のデータ数が多い場合
         if ($totalHitCount > $hitPerPage) {
             $restaurantArray = self::getModData($totalHitCount, $hitPerPage, $restaurantArray);
-            dd($restaurantArray);
+            //dd($restaurantArray);
         }
 
+        // 店舗情報をDBへ登録
+        self::registShopInfo($restaurantArray);
 
         //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000' . '&';
         //dd($totalHitCount);
@@ -161,7 +164,6 @@ class MaintenancePageController extends Controller
         } else {
             $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100&offset_page='. $offsetNum;
         }
-
 
         //dd($path);
 
@@ -215,6 +217,77 @@ class MaintenancePageController extends Controller
         }
 
         return $restaturantData;
+    }
+
+    // 各店舗情報をDBに登録
+    public function registShopInfo($getData)
+    {
+        try {
+            // 現在のidの最大値を取得
+            $newInfoId = self::updateInfoId();
+
+            // 1店舗ごとにテーブルに登録する
+            foreach ($getData as $restInfo) {
+
+                // goodsオブジェクトを作成
+                $shopInfo = new \App\Model\ShopInfo;
+
+                // 値の登録
+                $shopInfo->info_id = $newInfoId;
+                $shopInfo->shop_id = $restInfo['id'];
+                $shopInfo->shop_update_date = $restInfo['update_date'];
+                $shopInfo->name = $restInfo['name'];
+                $shopInfo->latitude = $restInfo['latitude'];
+                $shopInfo->longitude = $restInfo['longitude'];
+                $shopInfo->category = $restInfo['category'];
+                $shopInfo->url = $restInfo['url'];
+                $shopInfo->url_mobile = $restInfo['url_mobile'];
+                $shopInfo->coupon_url_pc = $restInfo['coupon_url']['pc'];
+                $shopInfo->coupon_url_mobile = $restInfo['coupon_url']['mobile'];
+                $shopInfo->shop_image1 = $restInfo['image_url']['shop_image1'];
+                $shopInfo->shop_image2 = $restInfo['image_url']['shop_image2'];
+                $shopInfo->qrcode = $restInfo['image_url']['qrcode'];
+                $shopInfo->address = $restInfo['address'];
+                $shopInfo->tel = $restInfo['tel'];
+                $shopInfo->fax = $restInfo['fax'];
+                $shopInfo->opentime = $restInfo['opentime'];
+                $shopInfo->holiday = $restInfo['holiday'];
+                $shopInfo->access = $restInfo['access']['line'] . $restInfo['access']['line'] . $restInfo['access']['station'] . $restInfo['access']['station_exit'] . $restInfo['access']['walk'];
+                $shopInfo->parking_lots = $restInfo['parking_lots'];
+                $shopInfo->pr_short = $restInfo['pr']['pr_short'];
+                $shopInfo->pr_long = $restInfo['pr']['pr_long'];
+                $shopInfo->budget = $restInfo['budget'];
+                $shopInfo->party = $restInfo['party'];
+                $shopInfo->lunch = $restInfo['lunch'];
+                $shopInfo->credit_card = $restInfo['credit_card'];
+                $shopInfo->e_money = $restInfo['e_money'];
+
+                // 保存(DBに登録完了)
+                $shopInfo->save();
+            }
+
+        } catch (Exception $e) {
+            $e->getMessage();
+            return redirect()->to('errors/500');
+        }
+    }
+
+
+    // 情報IDの更新と取得処理
+    public function updateInfoId()
+    {
+        //$newInfoId = DB::table('shopinfo')->select('info_id')->get();
+        // 情報IDの最新値を取得して1つ更新した値を返す。
+        $infoId = DB::table('shopinfo')->select('info_id')->latest()->first();
+        dd($infoId);
+
+        if (isset($infoId)) {
+            $infoId = $infoId++;
+        } else {
+            $infoId = 1;
+        }
+        return $infoId;
+
     }
 
     // レストラン検索等のAPIの実行
