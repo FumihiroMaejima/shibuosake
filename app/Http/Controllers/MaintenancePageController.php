@@ -90,9 +90,7 @@ class MaintenancePageController extends Controller
     {
         // APIの実行
         //$responseData = self::execApi();
-        $responseData = self::getApiData();
-
-        //dd($responseData);
+        $responseData = self::getApiData(0);
 
         /* 整形用のデータを作成 */
         // 該当件数
@@ -125,19 +123,12 @@ class MaintenancePageController extends Controller
                     break;
             }
         }
+        //dd($restaurantArray);
 
+        // 1回の実行で取得出来る数よりも合計のデータ数が多い場合
         if ($totalHitCount > $hitPerPage) {
-
-            $mod = $totalHitCount - $hitPerPage;
-            if ($mod < 100) {
-
-                //self::getApiData();
-            }
-            //$mod = $totalHitCount % $hitPerPage;
-
-            // 検索回数の設定
-            //$mod > 0 ? $maxOffset = ($totalHitCount / $hitPerPage) - ($mod / 10) + 1 : $maxOffset = ($totalHitCount / $hitPerPage);
-            dd($responseData);
+            $restaurantArray = self::getModData($totalHitCount, $hitPerPage, $restaurantArray);
+            dd($restaurantArray);
         }
 
 
@@ -149,6 +140,81 @@ class MaintenancePageController extends Controller
         //dd($viewData);
 
         return view('maintenance.apitest')->with('viewData', $viewData);
+    }
+
+    // レストラン検索等のAPIの実行
+    public function getApiData($offsetNum)
+    {
+        $baseUrl = 'https://api.gnavi.co.jp';
+        /**
+         * 飲食店検索
+         * guzzleHttpClientによるAPI実行
+         * /RestSearchAPI/:レストラン検索API
+         * keyid:アクセスキー
+         * address:地名
+         * areacode_m:エリアコード
+         * category_l:大業態/RSFST21000=お酒
+         * category_s:小業態
+         **/
+        if ($offsetNum == 0) {
+            $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100';
+        } else {
+            $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100&offset_page='. $offsetNum;
+        }
+
+
+        //dd($path);
+
+        $client = new \GuzzleHttp\Client([
+            'base_uri' => $baseUrl,
+        ]);
+
+        $headers = [
+            'Origin'                    => 'https://google.com',
+            'Accept-Encoding'           => 'gzip, deflate, br',
+            'Accept-Language'           => 'ja,en-US;q=0.8,en;q=0.6',
+            'Upgrade-Insecure-Requests' => '1',
+            'Content-Type'              => 'application/json; charset=utf-8',
+        ];
+
+        $response = $client->request('GET', $path, [
+            'allow_redirects' => false,
+            'headers'         => $headers,
+        ]);
+        $responseBody = (string)$response->getBody();
+
+        $responseData = json_decode($responseBody, true);
+
+        //dd($responseBody);
+        return $responseData;
+    }
+
+    // APIの再実行&残りのデータの取得
+    public function getModData($totalCount, $hitCount, $restaturantData)
+    {
+        $execCount = 0;
+        $getDataCount = null;
+        // 全てのデータを取得出来るまでのAPIの実行回数を求める
+        do {
+            $execCount++;
+            $getDataCount = $hitCount * $execCount;
+        } while ($totalCount > $getDataCount);
+
+        // 条件に合う全てのデータを取得するまでAPIを実行する
+        for ($i = 2; $i <= $execCount; $i++) {
+            //$retryGetData = self::getApiData($i);
+            $tmpGetData = self::getApiData($i);
+            // 再実行して取得したデータを元の配列に追加する
+            foreach ($tmpGetData as $tmpKey => $tmpApiData) {
+                if ($tmpKey == 'rest') {
+                    foreach ($tmpApiData as $restData) {
+                        $restaturantData[] = $restData;
+                    }
+                }
+            }
+        }
+
+        return $restaturantData;
     }
 
     // レストラン検索等のAPIの実行
@@ -222,50 +288,6 @@ class MaintenancePageController extends Controller
         $responseData = json_decode($responseBody, true);
 
         dd($responseBody);
-        return $responseData;
-    }
-
-    // レストラン検索等のAPIの実行
-    public function getApiData()
-    {
-        $baseUrl = 'https://api.gnavi.co.jp';
-        /**
-         * 飲食店検索
-         * guzzleHttpClientによるAPI実行
-         * /RestSearchAPI/:レストラン検索API
-         * keyid:アクセスキー
-         * address:地名
-         * areacode_m:エリアコード
-         * category_l:大業態/RSFST21000=お酒
-         * category_s:小業態
-         **/
-        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100';
-        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=100&offset_page=2';
-
-
-        //dd($path);
-
-        $client = new \GuzzleHttp\Client([
-            'base_uri' => $baseUrl,
-        ]);
-
-        $headers = [
-            'Origin'                    => 'https://google.com',
-            'Accept-Encoding'           => 'gzip, deflate, br',
-            'Accept-Language'           => 'ja,en-US;q=0.8,en;q=0.6',
-            'Upgrade-Insecure-Requests' => '1',
-            'Content-Type'              => 'application/json; charset=utf-8',
-        ];
-
-        $response = $client->request('GET', $path, [
-            'allow_redirects' => false,
-            'headers'         => $headers,
-        ]);
-        $responseBody = (string)$response->getBody();
-
-        $responseData = json_decode($responseBody, true);
-
-        //dd($responseBody);
         return $responseData;
     }
 }
