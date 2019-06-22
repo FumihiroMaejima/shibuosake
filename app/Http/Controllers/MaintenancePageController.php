@@ -87,6 +87,8 @@ class MaintenancePageController extends Controller
         return $responseData;
     }
 
+    /** 以下は全てAPIのテスト処理関連 **/
+    // API実行テスト処理
     public function apitest()
     {
         // APIの実行
@@ -229,7 +231,7 @@ class MaintenancePageController extends Controller
             // 1店舗ごとにテーブルに登録する
             foreach ($getData as $restInfo) {
 
-                // goodsオブジェクトを作成
+                // shopInfoオブジェクトを作成
                 $shopInfo = new \App\Model\ShopInfo;
 
                 // 値の登録
@@ -278,16 +280,16 @@ class MaintenancePageController extends Controller
     {
         //$newInfoId = DB::table('shopinfo')->select('info_id')->get();
         // 情報IDの最新値を取得して1つ更新した値を返す。
-        $infoId = DB::table('shopinfo')->select('info_id')->latest()->first();
-        dd($infoId);
+        $queryData = DB::table('shopinfo')->select('info_id')->latest()->first();
+        $infoId = null;
 
-        if (isset($infoId)) {
-            $infoId = $infoId++;
+        if (isset($queryData)) {
+            $tmpId = $queryData->info_id;
+            $infoId = ++$tmpId;
         } else {
             $infoId = 1;
         }
         return $infoId;
-
     }
 
     // レストラン検索等のAPIの実行
