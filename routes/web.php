@@ -18,5 +18,6 @@ Route::get('/', 'MainPageController@index')->name('mainPage');
 // メンテナンスページ
 Route::group(['middleware' => 'ipLimit'], function () {
     Route::get('mainte', 'MaintenancePageController@index')->name('maintenancePage');
+    Route::get('page/{count}', 'MaintenancePageController@pageIndex')->name('modMaintenancePage');
     Route::get('apitest', 'MaintenancePageController@apitest')->name('apiTestPage');
 });

@@ -12,7 +12,12 @@ class MaintenancePageController extends Controller
     public function index()
     {
         // レストランデータの取得
-        $responseData = self::getRestaurantData();
+        $responseData = self::getRestaurantData(1);
+
+        // API実行エラーの場合
+        if ($responseData == "Client error") {
+            return redirect()->to('errors/404');
+        }
 
         /* 整形用のデータを作成 */
         // 該当件数
@@ -25,6 +30,8 @@ class MaintenancePageController extends Controller
         $restaurantArray = null;
         // 画面出力用データ
         $viewData = null;
+        // ページ数
+        $pageCount = 1;
 
         // 配列のkeyによってデータを振り分ける
         foreach ($responseData as $responseKey => $apiData) {
@@ -47,46 +54,153 @@ class MaintenancePageController extends Controller
             }
         }
 
-        return view('maintenance.index')->with('viewData', $viewData);
+        // 1回の実行で取得出来る数よりも合計のデータ数が多い場合
+        if ($totalHitCount > $hitPerPage) {
+            $pageCount = self::getPageCount($totalHitCount, $hitPerPage);
+        }
+
+        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount);
+    }
+
+    // ページリクエスト処理
+    public function pageIndex($count)
+    {
+        // 数値チェック
+        $isDigit = ctype_digit($count);
+        if ($isDigit == false) {
+            return view('errors.404');
+        }
+
+        // 桁数チェック
+        $isRightLength = mb_strlen($count);
+        if ($isRightLength > 2) {
+            return view('errors.404');
+        }
+
+        // レストランデータの取得
+        $responseData = self::getRestaurantData($count);
+
+        // API実行エラーの場合
+        if ($responseData == "Client error") {
+            return view('errors.404');
+        }
+
+        /* 整形用のデータを作成 */
+        // 該当件数
+        $totalHitCount = null;
+        // 表示件数
+        $hitPerPage = null;
+        // 表示ページ
+        $pageOffset = null;
+        // 飲食店情報配列
+        $restaurantArray = null;
+        // 画面出力用データ
+        $viewData = null;
+        // ページ数
+        $pageCount = 1;
+
+        // 配列のkeyによってデータを振り分ける
+        foreach ($responseData as $responseKey => $apiData) {
+            switch ($responseKey) {
+                case 'total_hit_count':
+                    $totalHitCount = $apiData;
+                    break;
+                case 'hit_per_page':
+                    $hitPerPage = $apiData;
+                    break;
+                case 'page_offset':
+                    $pageOffset = $apiData;
+                    break;
+                case 'rest':
+                    $restaurantArray = $apiData;
+                    $viewData = json_encode($restaurantArray);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // 1回の実行で取得出来る数よりも合計のデータ数が多い場合
+        if ($totalHitCount > $hitPerPage) {
+            $pageCount = self::getPageCount($totalHitCount, $hitPerPage);
+        }
+
+        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount);
     }
 
     // レストラン検索APIの実行
-    public function getRestaurantData()
+    public function getRestaurantData($offsetNum)
     {
-        /**
-         * guzzleHttpClientによるAPI実行
-         * /RestSearchAPI/:レストラン検索API
-         * keyid:アクセスキー
-         * address:地名
-         * areacode_m:エリアコード
-         * category_l:大業態/RSFST21000=お酒
-         **/
-        $baseUrl = 'https://api.gnavi.co.jp';
-        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
-        //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
-        $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
-        $client = new \GuzzleHttp\Client([
-            'base_uri' => $baseUrl,
-        ]);
+        try {
+            /**
+             * guzzleHttpClientによるAPI実行
+             * /RestSearchAPI/:レストラン検索API
+             * keyid:アクセスキー
+             * address:地名
+             * areacode_m:エリアコード
+             * category_l:大業態/RSFST21000=お酒
+             * hit_per_page:１ページあたりの店舗情報数学
+             * offset_page:街灯のページ数
+             **/
+            $baseUrl = 'https://api.gnavi.co.jp';
+            //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&address=渋谷&category_l=RSFST21000';
+            //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
+            //$path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000';
+            if ($offsetNum == 1) {
+                $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=10&offset_page=1';
+            } else {
+                $path = '/RestSearchAPI/v3/?keyid=' . env('GURUNAVI_ACCESS_KEY') . '&areacode_m=AREAM2126&category_l=RSFST21000&hit_per_page=10&offset_page=' . $offsetNum;
+            }
 
-        $headers = [
-            'Origin'                    => 'https://google.com',
-            'Accept-Encoding'           => 'gzip, deflate, br',
-            'Accept-Language'           => 'ja,en-US;q=0.8,en;q=0.6',
-            'Upgrade-Insecure-Requests' => '1',
-            'Content-Type'              => 'application/json; charset=utf-8',
-        ];
+            $client = new \GuzzleHttp\Client([
+                'base_uri' => $baseUrl,
+            ]);
 
-        $response = $client->request('GET', $path, [
-            'allow_redirects' => false,
-            'headers'         => $headers,
-        ]);
-        $responseBody = (string)$response->getBody();
+            $headers = [
+                'Origin'                    => 'https://google.com',
+                'Accept-Encoding'           => 'gzip, deflate, br',
+                'Accept-Language'           => 'ja,en-US;q=0.8,en;q=0.6',
+                'Upgrade-Insecure-Requests' => '1',
+                'Content-Type'              => 'application/json; charset=utf-8',
+            ];
 
-        $responseData = json_decode($responseBody, true);
+            $response = $client->request('GET', $path, [
+                'allow_redirects' => false,
+                'http_errors'     => false,
+                'headers'         => $headers,
+            ]);
 
-        return $responseData;
+            $responseBody = (string)$response->getBody();
+
+            $responseData = json_decode($responseBody, true);
+
+            // クライアントエラーチェック
+            $isClientError = array_key_exists('error', $responseData);
+            if ($isClientError) {
+                $responseData = "Client error";
+            }
+
+            return $responseData;
+        } catch (Exception $e) {
+            return redirect()->to('errors/500');
+        }
     }
+
+    // 店舗情報のページ数の取得
+    public function getPageCount($totalCount, $hitCount)
+    {
+        $execCount = 0;
+        $maxDataCount = null;
+        // 全てのデータを取得出来るまでのAPIの実行回数を求める
+        do {
+            $execCount++;
+            $maxDataCount = $hitCount * $execCount;
+        } while ($totalCount > $maxDataCount);
+
+        return $execCount;
+    }
+
+
 
     /** 以下は全てAPIのテスト処理関連 **/
     // API実行テスト処理
