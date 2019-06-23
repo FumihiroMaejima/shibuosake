@@ -41,6 +41,11 @@ class GetShopInfo extends Command
         // レストラン検索APIの実行
         $responseData = self::getApiData(0);
 
+        // API実行エラーの場合
+        if ($responseData == "Client error") {
+            die;
+        }
+
         /* 整形用のデータを作成 */
         // 該当件数
         $totalHitCount = null;
@@ -107,12 +112,18 @@ class GetShopInfo extends Command
 
         $response = $client->request('GET', $path, [
             'allow_redirects' => false,
+            'http_errors'     => false,
             'headers'         => $headers,
         ]);
         $responseBody = (string)$response->getBody();
 
         $responseData = json_decode($responseBody, true);
 
+        // クライアントエラーチェック
+        $isClientError = array_key_exists('error', $responseData);
+        if ($isClientError) {
+            $responseData = "Client error";
+        }
         return $responseData;
     }
 

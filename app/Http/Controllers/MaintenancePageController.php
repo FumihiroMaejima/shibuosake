@@ -210,6 +210,11 @@ class MaintenancePageController extends Controller
         //$responseData = self::execApi();
         $responseData = self::getApiData(0);
 
+        // API実行エラーの場合
+        if ($responseData == "Client error") {
+            return view('errors.404');
+        }
+
         /* 整形用のデータを作成 */
         // 該当件数
         $totalHitCount = null;
@@ -298,11 +303,18 @@ class MaintenancePageController extends Controller
 
         $response = $client->request('GET', $path, [
             'allow_redirects' => false,
+            'http_errors'     => false,
             'headers'         => $headers,
         ]);
         $responseBody = (string)$response->getBody();
 
         $responseData = json_decode($responseBody, true);
+
+        // クライアントエラーチェック
+        $isClientError = array_key_exists('error', $responseData);
+        if ($isClientError) {
+            $responseData = "Client error";
+        }
 
         //dd($responseBody);
         return $responseData;
