@@ -65,17 +65,8 @@ class MaintenancePageController extends Controller
     // ページリクエスト処理
     public function pageIndex($count)
     {
-        // 数値チェック
-        $isDigit = ctype_digit($count);
-        if ($isDigit == false) {
-            return view('errors.404');
-        }
-
-        // 桁数チェック
-        $isRightLength = mb_strlen($count);
-        if ($isRightLength > 2) {
-            return view('errors.404');
-        }
+        // パラメーターチェック
+        self::countCheck($count);
 
         // レストランデータの取得
         $responseData = self::getRestaurantData($count);
@@ -124,7 +115,6 @@ class MaintenancePageController extends Controller
         if ($totalHitCount > $hitPerPage) {
             $pageCount = self::getPageCount($totalHitCount, $hitPerPage);
         }
-
         return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount);
     }
 
@@ -183,6 +173,19 @@ class MaintenancePageController extends Controller
             return $responseData;
         } catch (Exception $e) {
             return redirect()->to('errors/500');
+        }
+    }
+
+    // 店舗情報のページ数の取得
+    public function countCheck($num)
+    {
+        // 数値チェック
+        $isDigit = ctype_digit($num);
+        // 桁数チェック
+        $isRightLength = mb_strlen($num);
+
+        if (($isDigit == false) || ($isRightLength > 2)) {
+            return view('errors.404');
         }
     }
 
