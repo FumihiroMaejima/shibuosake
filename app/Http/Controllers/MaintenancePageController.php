@@ -21,8 +21,9 @@ class MaintenancePageController extends Controller
         $hitPerPage = null;
         // 表示ページ
         $pageOffset = null;
-        //$restArray = null;
+        // 飲食店情報配列
         $restaurantArray = null;
+        // 画面出力用データ
         $viewData = null;
 
         // 配列のkeyによってデータを振り分ける
@@ -102,7 +103,7 @@ class MaintenancePageController extends Controller
         $hitPerPage = null;
         // 表示ページ
         $pageOffset = null;
-        //$restArray = null;
+        // 飲食店情報配列
         $restaurantArray = null;
         $viewData = null;
 
@@ -197,12 +198,12 @@ class MaintenancePageController extends Controller
     public function getModData($totalCount, $hitCount, $restaturantData)
     {
         $execCount = 0;
-        $getDataCount = null;
+        $maxDataCount = null;
         // 全てのデータを取得出来るまでのAPIの実行回数を求める
         do {
             $execCount++;
-            $getDataCount = $hitCount * $execCount;
-        } while ($totalCount > $getDataCount);
+            $maxDataCount = $hitCount * $execCount;
+        } while ($totalCount > $maxDataCount);
 
         // 条件に合う全てのデータを取得するまでAPIを実行する
         for ($i = 2; $i <= $execCount; $i++) {
@@ -217,7 +218,6 @@ class MaintenancePageController extends Controller
                 }
             }
         }
-
         return $restaturantData;
     }
 
@@ -230,7 +230,6 @@ class MaintenancePageController extends Controller
 
             // 1店舗ごとにテーブルに登録する
             foreach ($getData as $restInfo) {
-
                 // shopInfoオブジェクトを作成
                 $shopInfo = new \App\Model\ShopInfo;
 
@@ -267,7 +266,6 @@ class MaintenancePageController extends Controller
                 // 保存(DBに登録完了)
                 $shopInfo->save();
             }
-
         } catch (Exception $e) {
             $e->getMessage();
             return redirect()->to('errors/500');
