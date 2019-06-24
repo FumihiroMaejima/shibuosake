@@ -37,6 +37,12 @@ class CreateShopinfoTable extends Migration
             $table->string('parking_lots')->nullable()->comment('駐車場');
             $table->string('pr_short')->nullable()->comment('紹介文short');
             $table->text('pr_long')->nullable()->comment('紹介文long');
+            $table->string('areacode_s')->nullable()->comment('エリアSコード');
+            $table->string('areaname_s')->nullable()->comment('エリアS名');
+            $table->string('category_code_l')->nullable()->comment('大業態コード');
+            $table->string('category_name_l')->nullable()->comment('大業態名称');
+            $table->string('category_code_s')->nullable()->comment('小業態コード');
+            $table->string('category_name_s')->nullable()->comment('小業態名称');
             $table->string('budget')->nullable()->comment('予算');
             $table->string('party')->nullable()->comment('夕食');
             $table->string('lunch')->nullable()->comment('昼食');

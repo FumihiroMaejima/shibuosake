@@ -191,6 +191,12 @@ class GetShopInfo extends Command
                 $shopInfo->parking_lots = $restInfo['parking_lots'];
                 $shopInfo->pr_short = $restInfo['pr']['pr_short'];
                 $shopInfo->pr_long = $restInfo['pr']['pr_long'];
+                $shopInfo->areacode_s = $restInfo['code']['areacode_s'];
+                $shopInfo->areaname_s = $restInfo['code']['areaname_s'];
+                $shopInfo->category_code_l = implode(",", $restInfo['code']['category_code_l']);
+                $shopInfo->category_name_l = implode(",", $restInfo['code']['category_name_l']);
+                $shopInfo->category_code_s = implode(",", $restInfo['code']['category_code_s']);
+                $shopInfo->category_name_s = implode(",", $restInfo['code']['category_name_s']);
                 $shopInfo->budget = $restInfo['budget'];
                 $shopInfo->party = $restInfo['party'];
                 $shopInfo->lunch = $restInfo['lunch'];
