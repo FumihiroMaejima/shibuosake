@@ -361,6 +361,55 @@ article section img {
 /* 画面サイズごとの設定 終了 */
 
 
+// ページ繊維ボタン
+.page_change_area{
+    padding: 0px 2px 0px 2px;
+}
+
+.page_change_btn {
+  display: inline-block;
+  text-decoration: none;
+  background: #87befd;
+  color: #FFF;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 3px #87befd;
+  border: dashed 1px #FFF;
+  transition: .4s;
+  margin: 2px 2px 2px 2px;
+}
+
+.page_change_btn:hover {
+  background: #668ad8;
+  box-shadow: 0px 0px 0px 5px #668ad8;
+}
+
+.active_page_btn {
+  display: inline-block;
+  text-decoration: none;
+  background: #db4e02;
+  color: #FFF;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 3px #db4e02;
+  border: dashed 1px #FFF;
+  transition: .4s;
+  margin: 2px 2px 2px 2px;
+}
+
+.active_page_btn:hover {
+  background: #668ad8;
+  box-shadow: 0px 0px 0px 5px #668ad8;
+}
+
 /* タブバー設定について(各画面共通) */
 
 input[type="radio"] {

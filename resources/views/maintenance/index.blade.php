@@ -17,15 +17,17 @@
                 <div class="panel_area">
                     <div id="panel1" class="tab_panel">
                         <maintenance v-bind:view-data="{{ $viewData }}"></maintenance>
-                        @if ($pageCount > 1)
-                            @for ($i=1;$i<=$pageCount;$i++)
-                                @if ($pageCount == $pageOffset)
-                                    <a href="javascript::void(0)" class="btn btn-primary btn-success">page{{ $i }}</a>
-                                @else
-                                    <a href="/page/{{ $i }}" class="btn btn-primary btn-sm">page{{ $i }}</a>
-                                @endif
-                            @endfor
-                        @endif
+                        <div class="page_change_area">
+                            @if ($pageCount > 1)
+                                @for ($i=1;$i<=$pageCount;$i++)
+                                    @if ($i == $pageOffset)
+                                        <a class="active_page_btn" href="javascript:void(0)">{{ $i }}</a>
+                                    @else
+                                        <a class="page_change_btn" href="/page/{{ $i }}">{{ $i }}</a>
+                                    @endif
+                                @endfor
+                            @endif
+                        </div>
                     </div>
                     <div id="panel2" class="tab_panel">
                         <p>maintenance tab2</p>
