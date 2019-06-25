@@ -203,12 +203,52 @@ class MaintenancePageController extends Controller
         return $execCount;
     }
 
+    // DBに登録されている店舗情報の検索
+    public function getShopInfoQueryData()
+    {
+        try {
+            // 最新の情報IDを取得する
+            $queryData = DB::table('shopinfo')->select('info_id')->latest()->first();
+
+            // 情報IDが取得出来た場合
+            if (isset($queryData)) {
+                $shopInfo = DB::table('shopinfo')
+                    ->selectRaw('
+                        info_id,shop_id,
+                        name,
+                        category,
+                        areacode_s,
+                        areaname_s,
+                        category_code_l,
+                        category_name_l,
+                        category_code_s,
+                        category_name_s
+                    ')
+                    ->whereRaw('info_id = ?', $queryData)
+                    ->get();
+
+                //self::dividedData($shopInfo);
+            }
+        } catch (Exception $e) {
+            return redirect()->to('errors/500');
+        }
+    }
+
+    /*
+    public function dividedData($registedData)
+    {
+
+    }
+    */
 
 
     /** 以下は全てAPIのテスト処理関連 **/
     // API実行テスト処理
     public function apitest()
     {
+        // DBクエリテスト
+        self::getShopInfoQueryData();
+
         // APIの実行
         //$responseData = self::execApi();
         $responseData = self::getApiData(0);
