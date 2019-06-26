@@ -214,7 +214,8 @@ class MaintenancePageController extends Controller
             if (isset($queryData)) {
                 $shopInfo = DB::table('shopinfo')
                     ->selectRaw('
-                        info_id,shop_id,
+                        info_id,
+                        shop_id,
                         name,
                         category,
                         areacode_s,
@@ -227,19 +228,43 @@ class MaintenancePageController extends Controller
                     ->whereRaw('info_id = ?', $queryData)
                     ->get();
 
-                //self::dividedData($shopInfo);
+                self::divideData($shopInfo);
             }
         } catch (Exception $e) {
             return redirect()->to('errors/500');
         }
     }
 
-    /*
-    public function dividedData($registedData)
+    public function divideData($registedData)
     {
+        $tmpShopId = null;
+        $areaTmp = null;
+        $categoryTmp = null;
+        $returnData = null;
 
+        // 配列のkeyによってデータを振り分ける
+        foreach ($registedData as $shopRow) {
+            foreach ($shopRow as $rowKey => $rowData) {
+                switch ($rowKey) {
+                    case 'shop_id':
+                        $tmpShopId = $rowData;
+                        break;
+                    case 'areaname_s':
+                        $areaTmp[$tmpShopId] = $rowData;
+                        break;
+                    case 'category_name_s':
+                        $categoryTmp[$tmpShopId] = explode(',', $rowData);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        $returnData['area'] = $areaTmp;
+        $returnData['category'] = $categoryTmp;
+
+        return $returnData;
     }
-    */
 
 
     /** 以下は全てAPIのテスト処理関連 **/
