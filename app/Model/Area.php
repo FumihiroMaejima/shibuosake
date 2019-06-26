@@ -5,10 +5,10 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ShopInfo extends Model
+class Area extends Model
 {
     //テーブル名指定
-    protected $table = 'shopinfo';
+    protected $table = 'area';
 
     // カラムの自動更新をEloquentに許可
     public $timestamps = true;
