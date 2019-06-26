@@ -235,6 +235,7 @@ class MaintenancePageController extends Controller
         }
     }
 
+    // クエリデータをエリアとカテゴリーに分ける
     public function divideData($registedData)
     {
         $tmpShopId = null;
