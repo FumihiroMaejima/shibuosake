@@ -491,6 +491,50 @@ class MaintenancePageController extends Controller
         return $infoId;
     }
 
+    // エリア情報をDBに登録
+    public function registArea()
+    {
+        try {
+            // categoryオブジェクトを作成
+            $area = new \App\Model\Area;
+
+            // 値の登録
+            $area->area_info_id = 1;
+            $area->areacode_m = "AREAM2126";
+            $area->areaname_m = "渋谷";
+            $area->areacode_s = "AREAS2128";
+            $area->areaname_s = "渋谷南口";
+
+            // 保存(DBに登録完了)
+            $area->save();
+        } catch (Exception $e) {
+            $e->getMessage();
+            return redirect()->to('errors/500');
+        }
+    }
+
+    // カテゴリー情報をDBに登録
+    public function registCategory()
+    {
+        try {
+            // categoryオブジェクトを作成
+            $category = new \App\Model\Category;
+
+            // 値の登録
+            $category->category_info_id = 1;
+            $category->category_l_code = "RSFST21000";
+            $category->category_l_name = "お酒";
+            $category->category_code_s = "RSFST21013";
+            $category->category_name_s = "お酒 その他";
+
+            // 保存(DBに登録完了)
+            $category->save();
+        } catch (Exception $e) {
+            $e->getMessage();
+            return redirect()->to('errors/500');
+        }
+    }
+
     // レストラン検索等のAPIの実行
     public function execApi()
     {
