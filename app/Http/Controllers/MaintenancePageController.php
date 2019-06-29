@@ -227,7 +227,22 @@ class MaintenancePageController extends Controller
                     ->whereRaw('info_id = ?', $queryData)
                     ->get();
 
-                self::divideData($shopInfo);
+                $shopData = null;
+                // 店舗情報の整形
+                foreach ($shopInfo as $shopRow) {
+                    $tmpId = $shopRow->shop_id;
+                    $tmpAreaCode = $shopRow->areacode_s;
+                    $thisCategoryCode = explode(',', $shopRow->category_code_s);
+                    $thisCategoryName = explode(',', $shopRow->category_name_s);
+                    $tmpCategoryName = $thisCategoryName;
+
+                    $shopData[$tmpId]['area'] = $tmpAreaCode;
+                    $shopData[$tmpId]['category_code'] = $thisCategoryCode;
+                    $shopData[$tmpId]['category_name'] = $tmpCategoryName;
+                }
+                dd($shopData);
+
+                // エリア情報とカテゴリー情報の取得
                 $areaData = self::getAreaData();
                 $categoryData = self::getCategoryData();
             } else {
@@ -236,38 +251,6 @@ class MaintenancePageController extends Controller
         } catch (Exception $e) {
             return redirect()->to('errors/500');
         }
-    }
-
-    // クエリデータをエリアとカテゴリーに分ける
-    public function divideData($registedData)
-    {
-        $tmpShopId = null;
-        $areaTmp = null;
-        $categoryTmp = null;
-        $returnData = null;
-
-        // 配列のkeyによってデータを振り分ける
-        foreach ($registedData as $shopRow) {
-            foreach ($shopRow as $rowKey => $rowData) {
-                switch ($rowKey) {
-                    case 'shop_id':
-                        $tmpShopId = $rowData;
-                        break;
-                    case 'areaname_s':
-                        $areaTmp[$tmpShopId] = $rowData;
-                        break;
-                    case 'category_name_s':
-                        $categoryTmp[$tmpShopId] = explode(',', $rowData);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        $returnData['area'] = $areaTmp;
-        $returnData['category'] = $categoryTmp;
-
-        return $returnData;
     }
 
     // エリア情報の取得
@@ -319,7 +302,6 @@ class MaintenancePageController extends Controller
                     $categoryData[$tmpCode] = $categoryRow->category_name_s;
                 }
 
-                dd($categoryData);
                 return $categoryData;
             } else {
                 return redirect()->to('errors/404');
