@@ -231,20 +231,19 @@ class MaintenancePageController extends Controller
                 // 店舗情報の整形
                 foreach ($shopInfo as $shopRow) {
                     $tmpId = $shopRow->shop_id;
+                    $tmpShopName = $shopRow->name;
                     $tmpAreaCode = $shopRow->areacode_s;
                     $thisCategoryCode = explode(',', $shopRow->category_code_s);
                     $thisCategoryName = explode(',', $shopRow->category_name_s);
                     $tmpCategoryName = $thisCategoryName;
 
+                    $shopData[$tmpId]['name'] = $tmpShopName;
                     $shopData[$tmpId]['area'] = $tmpAreaCode;
                     $shopData[$tmpId]['category_code'] = $thisCategoryCode;
                     $shopData[$tmpId]['category_name'] = $tmpCategoryName;
                 }
-                dd($shopData);
 
-                // エリア情報とカテゴリー情報の取得
-                $areaData = self::getAreaData();
-                $categoryData = self::getCategoryData();
+                return $shopData;
             } else {
                 return redirect()->to('errors/404');
             }
@@ -311,12 +310,35 @@ class MaintenancePageController extends Controller
         }
     }
 
+    // 店舗情報とエリア情報の照会
+    public function makeAreaViewData($shopData, $areaData)
+    {
+        $areaViewData = null;
+        // １店舗ごとに合致するエリアを探索する
+        foreach ($shopData as $shopId => $shopInfo) {
+            foreach ($areaData as $areaCode => $areaName) {
+                if ($shopInfo['area'] === $areaCode) {
+                    $areaViewData[$areaName][$shopId] = $shopInfo;
+                    break;
+                }
+            }
+        }
+
+        return $areaViewData;
+    }
+
     /** 以下は全てAPIのテスト処理関連 **/
     // API実行テスト処理
     public function apitest()
     {
-        // DBクエリテスト
-        self::getShopInfoQueryData();
+        // 店舗情報の取得
+        $shopData = self::getShopInfoQueryData();
+        // エリア情報とカテゴリー情報の取得
+        $areaData = self::getAreaData();
+        $categoryData = self::getCategoryData();
+
+        // 店舗情報とエリア情報の照会
+        $areaViewData = self::makeAreaViewData($shopData, $areaData);
 
         // APIの実行
         //$responseData = self::execApi();
