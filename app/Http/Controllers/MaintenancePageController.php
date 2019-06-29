@@ -210,10 +210,9 @@ class MaintenancePageController extends Controller
             // 最新の情報IDを取得する
             $queryData = DB::table('shopinfo')->select('info_id')->latest()->first();
 
-            // 情報IDが取得出来た場合
+            // 情報IDが取得出来た場合最新の店舗情報を取得
             if (isset($queryData)) {
-                $shopInfo = DB::table('shopinfo')
-                    ->selectRaw('
+                $shopInfo = \App\Model\ShopInfo::selectRaw('
                         info_id,
                         shop_id,
                         name,
@@ -229,6 +228,10 @@ class MaintenancePageController extends Controller
                     ->get();
 
                 self::divideData($shopInfo);
+                $areaData = self::getAreaData();
+                $categoryData = self::getCategoryData();
+            } else {
+                return redirect()->to('errors/404');
             }
         } catch (Exception $e) {
             return redirect()->to('errors/500');
@@ -267,6 +270,64 @@ class MaintenancePageController extends Controller
         return $returnData;
     }
 
+    // エリア情報の取得
+    public function getAreaData()
+    {
+        try {
+            // 最新のエリア情報IDを取得する
+            $latestAreaInfoId = DB::table('area')->select('area_info_id')->latest()->first();
+
+            // エリアIDが取得出来た場合最新のエリア情報を取得する
+            if (isset($latestAreaInfoId)) {
+                $areaInfo = \App\Model\Area::where('area_info_id', $latestAreaInfoId->area_info_id)
+                    ->orderBy('areacode_s', 'asc')
+                    ->get();
+
+                $areaData = null;
+                // エリア情報の整形
+                foreach ($areaInfo as $areaRow) {
+                    $tmpCode = $areaRow->areacode_s;
+                    $areaData[$tmpCode] = $areaRow->areaname_s;
+                }
+
+                return $areaData;
+            } else {
+                return redirect()->to('errors/404');
+            }
+        } catch (Exception $e) {
+            return redirect()->to('errors/500');
+        }
+    }
+
+    //カテゴリー情報の取得
+    public function getCategoryData()
+    {
+        try {
+            // 最新のエリア情報IDを取得する
+            $latestCategoryInfoId = DB::table('category')->select('category_info_id')->latest()->first();
+
+            // エリアIDが取得出来た場合最新のエリア情報を取得する
+            if (isset($latestCategoryInfoId)) {
+                $categoryInfo = \App\Model\Category::where('category_info_id', $latestCategoryInfoId->category_info_id)
+                    ->orderBy('category_code_s', 'asc')
+                    ->get();
+
+                $categoryData = null;
+                // カテゴリー情報の整形
+                foreach ($categoryInfo as $categoryRow) {
+                    $tmpCode = $categoryRow->category_code_s;
+                    $categoryData[$tmpCode] = $categoryRow->category_name_s;
+                }
+
+                dd($categoryData);
+                return $categoryData;
+            } else {
+                return redirect()->to('errors/404');
+            }
+        } catch (Exception $e) {
+            return redirect()->to('errors/500');
+        }
+    }
 
     /** 以下は全てAPIのテスト処理関連 **/
     // API実行テスト処理
