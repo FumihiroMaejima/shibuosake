@@ -30,7 +30,27 @@
                         </div>
                     </div>
                     <div id="panel2" class="tab_panel">
-                        <p>maintenance tab2</p>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div>
+                                        @foreach ($areaViewData as $area => $areaShop)
+                                            <table>
+                                                <tr>
+                                                    <th>{{ $area }}</th>
+                                                </tr>
+                                                @foreach ($areaShop as $key => $shopInfo)
+                                                    <tr>
+                                                        <td style="text-align:left;">{{ $shopInfo['name'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                            <br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="panel3" class="tab_panel">
                         <p>maintenance tab3</p>

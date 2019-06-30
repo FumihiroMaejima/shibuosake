@@ -71,7 +71,12 @@ class MaintenancePageController extends Controller
         // 店舗情報とカテゴリー情報の照会
         $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
 
-        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount)->with('areaViewData', $areaViewData)->with('categoryViewData', $categoryViewData);
+        return view('maintenance.index')
+            ->with('viewData', $viewData)
+            ->with('pageOffset', $pageOffset)
+            ->with('pageCount', $pageCount)
+            ->with('areaViewData', $areaViewData)
+            ->with('categoryViewData', $categoryViewData);
     }
 
     // ページリクエスト処理
@@ -140,7 +145,12 @@ class MaintenancePageController extends Controller
         // 店舗情報とカテゴリー情報の照会
         $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
 
-        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount)->with('areaViewData', $areaViewData)->with('categoryViewData', $categoryViewData);
+        return view('maintenance.index')
+            ->with('viewData', $viewData)
+            ->with('pageOffset', $pageOffset)
+            ->with('pageCount', $pageCount)
+            ->with('areaViewData', $areaViewData)
+            ->with('categoryViewData', $categoryViewData);
     }
 
     // レストラン検索APIの実行
