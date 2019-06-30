@@ -384,6 +384,7 @@ class MaintenancePageController extends Controller
     // API実行テスト処理
     public function apitest()
     {
+        /*
         // 店舗情報の取得
         $shopData = self::getShopInfoQueryData();
         // エリア情報とカテゴリー情報の取得
@@ -391,9 +392,10 @@ class MaintenancePageController extends Controller
         $categoryData = self::getCategoryData();
 
         // 店舗情報とエリア情報の照会
-        //$areaViewData = self::makeAreaViewData($shopData, $areaData);
+        $areaViewData = self::makeAreaViewData($shopData, $areaData);
         // 店舗情報とカテゴリー情報の照会
-        //$categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        */
 
         // APIの実行
         //$responseData = self::execApi();
