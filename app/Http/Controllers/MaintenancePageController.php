@@ -59,7 +59,19 @@ class MaintenancePageController extends Controller
             $pageCount = self::getPageCount($totalHitCount, $hitPerPage);
         }
 
-        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount);
+        /** エリア情報ごとカテゴリーごとの情報を取得 **/
+        // 店舗情報の取得
+        $shopData = self::getShopInfoQueryData();
+        // エリア情報とカテゴリー情報の取得
+        $areaData = self::getAreaData();
+        $categoryData = self::getCategoryData();
+
+        // 店舗情報とエリア情報の照会
+        $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        // 店舗情報とカテゴリー情報の照会
+        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+
+        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount)->with('areaViewData', $areaViewData)->with('categoryViewData', $categoryViewData);
     }
 
     // ページリクエスト処理
@@ -115,7 +127,20 @@ class MaintenancePageController extends Controller
         if ($totalHitCount > $hitPerPage) {
             $pageCount = self::getPageCount($totalHitCount, $hitPerPage);
         }
-        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount);
+
+        /** エリア情報ごとカテゴリーごとの情報を取得 **/
+        // 店舗情報の取得
+        $shopData = self::getShopInfoQueryData();
+        // エリア情報とカテゴリー情報の取得
+        $areaData = self::getAreaData();
+        $categoryData = self::getCategoryData();
+
+        // 店舗情報とエリア情報の照会
+        $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        // 店舗情報とカテゴリー情報の照会
+        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+
+        return view('maintenance.index')->with('viewData', $viewData)->with('pageOffset', $pageOffset)->with('pageCount', $pageCount)->with('areaViewData', $areaViewData)->with('categoryViewData', $categoryViewData);
     }
 
     // レストラン検索APIの実行
@@ -327,6 +352,24 @@ class MaintenancePageController extends Controller
         return $areaViewData;
     }
 
+    // 店舗情報とカテゴリー情報の照会
+    public function makeCategoryViewData($shopData, $categoryData)
+    {
+        $categoryViewData = null;
+        // １店舗ごとに合致するエリアを探索する
+        foreach ($shopData as $shopId => $shopInfo) {
+            foreach ($categoryData as $categoryCode => $categoryName) {
+                $categoryIsMatch = array_search($categoryCode, $shopInfo['category_code']);
+                if ($categoryIsMatch) {
+                    $categoryViewData[$categoryName][$shopId] = $shopInfo;
+                    break;
+                }
+            }
+        }
+
+        return $categoryViewData;
+    }
+
     /** 以下は全てAPIのテスト処理関連 **/
     // API実行テスト処理
     public function apitest()
@@ -339,6 +382,8 @@ class MaintenancePageController extends Controller
 
         // 店舗情報とエリア情報の照会
         $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        // 店舗情報とカテゴリー情報の照会
+        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
 
         // APIの実行
         //$responseData = self::execApi();
