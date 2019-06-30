@@ -10,6 +10,7 @@
   <rule ref="rulesets/controversial.xml" />
   <rule ref="rulesets/design.xml" />
   <rule ref="rulesets/naming.xml">
+    <exclude name="ExcessiveClassComplexity" />
     <exclude name="ShortVariable" />
     <exclude name="ShortMethodName" />
   </rule>
