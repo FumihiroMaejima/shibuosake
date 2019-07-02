@@ -13936,6 +13936,8 @@ article section img {
   box-shadow: 0px 0px 0px 5px #668ad8;
 }
 
+/* テーブル */
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -13948,18 +13950,20 @@ table tr {
 }
 
 table tr:hover {
-  background-color: #d4f0fd;
+  background-color: #d7e9ea;
 }
 
 table th {
   text-align: center;
   width: 25%;
   padding: 15px 0;
-  background-color: #d7e9ea;
+  border-radius: 12px;
+  background-color: #90c9cc;
 }
 
 table td {
-  text-align: center;
+  text-align: left;
+  border-radius: 12px;
   width: 25%;
   padding: 15px 0;
 }

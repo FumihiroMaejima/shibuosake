@@ -41,7 +41,7 @@
                                                 </tr>
                                                 @foreach ($areaShop as $key => $shopInfo)
                                                     <tr>
-                                                        <td style="text-align:left;">{{ $shopInfo['name'] }}</td>
+                                                        <td>{{ $shopInfo['name'] }}</td>
                                                     </tr>
                                                 @endforeach
                                             </table>
