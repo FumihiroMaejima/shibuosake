@@ -13946,7 +13946,6 @@ table {
 
 table tr {
   border-bottom: solid 1px #eee;
-  cursor: pointer;
 }
 
 table tr:hover {
@@ -13955,17 +13954,35 @@ table tr:hover {
 
 table th {
   text-align: center;
+  color: #ffffff;
+  font-size: 20px;
   width: 25%;
   padding: 15px 0;
   border-radius: 12px;
   background-color: #90c9cc;
+  box-shadow: 0 0 6px #c9c9c4;
 }
 
 table td {
+  cursor: pointer;
   text-align: left;
+  color: #000000;
   border-radius: 12px;
   width: 25%;
   padding: 15px 0;
+}
+
+table td .inline-span {
+  box: inline-blok;
+}
+
+table td .target-area-shop-image {
+  height: 100px;
+  width: 100px;
+}
+
+table td .target-area-shop-link {
+  text-decoration: none;
 }
 
 /* タブバー設定について(各画面共通) */

@@ -251,6 +251,8 @@ class MaintenancePageController extends Controller
                         info_id,
                         shop_id,
                         name,
+                        url,
+                        shop_image1,
                         category,
                         areacode_s,
                         areaname_s,
@@ -267,12 +269,16 @@ class MaintenancePageController extends Controller
                 foreach ($shopInfo as $shopRow) {
                     $tmpId = $shopRow->shop_id;
                     $tmpShopName = $shopRow->name;
+                    $tmpShopURL = $shopRow->url;
+                    $tmpShopImage1 = $shopRow->shop_image1;
                     $tmpAreaCode = $shopRow->areacode_s;
                     $thisCategoryCode = explode(',', $shopRow->category_code_s);
                     $thisCategoryName = explode(',', $shopRow->category_name_s);
                     $tmpCategoryName = $thisCategoryName;
 
                     $shopData[$tmpId]['name'] = $tmpShopName;
+                    $shopData[$tmpId]['url'] = $tmpShopURL;
+                    $shopData[$tmpId]['shop_image1'] = $tmpShopImage1;
                     $shopData[$tmpId]['area'] = $tmpAreaCode;
                     $shopData[$tmpId]['category_code'] = $thisCategoryCode;
                     $shopData[$tmpId]['category_name'] = $tmpCategoryName;

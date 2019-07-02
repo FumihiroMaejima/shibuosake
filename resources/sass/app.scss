@@ -417,23 +417,40 @@ table {
   width: 100%;
   tr {
     border-bottom: solid 1px #eee;
-    cursor: pointer;
     &:hover {
       background-color: #d7e9ea;
     }
   }
   th {
     text-align: center;
+    color: #ffffff;
+    font-size: 20px;
     width: 25%;
     padding: 15px 0;
     border-radius: 12px;
     background-color: #90c9cc;
+    box-shadow: 0 0 6px #c9c9c4;
   }
   td {
+    cursor: pointer;
     text-align: left;
+    color: #000000;
     border-radius: 12px;
     width: 25%;
     padding: 15px 0;
+  }
+
+  td .inline-span {
+      box: inline-blok;
+  }
+
+  td .target-area-shop-image {
+      height: 100px;
+      width: 100px;
+  }
+
+  td .target-area-shop-link {
+      text-decoration: none;
   }
 }
 
