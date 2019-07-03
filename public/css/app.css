@@ -13945,7 +13945,7 @@ table {
 }
 
 table tr {
-  border-bottom: solid 1px #eee;
+  border-bottom: solid 3px #eee;
 }
 
 table tr:hover {
@@ -13964,7 +13964,6 @@ table th {
 }
 
 table td {
-  cursor: pointer;
   text-align: left;
   color: #000000;
   border-radius: 12px;
@@ -13973,7 +13972,9 @@ table td {
 }
 
 table td .inline-span {
-  box: inline-blok;
+  display: inline-blok;
+  cursor: pointer;
+  padding: 3px;
 }
 
 table td .target-area-shop-image {
@@ -13984,6 +13985,7 @@ table td .target-area-shop-image {
 table td .target-area-shop-link {
   text-decoration: none;
   color: #000000;
+  font-size: 20px;
 }
 
 /* タブバー設定について(各画面共通) */

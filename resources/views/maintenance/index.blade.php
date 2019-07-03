@@ -11,8 +11,8 @@
 
                 <div class="tab_area">
                     <label class="tab1_label fa fa-beer" for="tab1">&nbsp;osake</label>
-                    <label class="tab2_label fa fa-edit" for="tab2">&nbsp;tab2</label>
-                    <label class="tab3_label fa fa-user" for="tab3">&nbsp;tab3</label>
+                    <label class="tab2_label fa fa-edit" for="tab2">&nbsp;area</label>
+                    <label class="tab3_label fa fa-user" for="tab3">&nbsp;type</label>
                 </div>
                 <div class="panel_area">
                     <div id="panel1" class="tab_panel">
@@ -43,11 +43,11 @@
                                                     @if ($key != 'shopCount')
                                                         <tr>
                                                             <td>
-                                                                <span class="inline-span col-md-4">
-                                                                    <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                                </span>
-                                                                <span class="inline-div col-md-8">
-                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >&nbsp;&nbsp;{{ $shopInfo['name'] }}</a>
+                                                                <span class="inline-span">
+                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >
+                                                                        <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
+                                                                        &nbsp;&nbsp;{{ $shopInfo['name'] }}
+                                                                    </a>
                                                                 </span>
                                                             </td>
                                                         </tr>
@@ -75,11 +75,11 @@
                                                     @if ($key != 'shopCount')
                                                         <tr>
                                                             <td>
-                                                                <span class="inline-span col-md-4">
-                                                                    <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                                </span>
-                                                                <span class="inline-div col-md-8">
-                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >&nbsp;&nbsp;{{ $shopInfo['name'] }}</a>
+                                                                <span class="inline-span">
+                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}">
+                                                                        <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
+                                                                        &nbsp;&nbsp;{{ $shopInfo['name'] }}
+                                                                    </a>
                                                                 </span>
                                                             </td>
                                                         </tr>

@@ -416,7 +416,7 @@ table {
   border-spacing: 0;
   width: 100%;
   tr {
-    border-bottom: solid 1px #eee;
+    border-bottom: solid 3px #eee;
     &:hover {
       background-color: #d7e9ea;
     }
@@ -432,7 +432,6 @@ table {
     box-shadow: 0 0 6px #c9c9c4;
   }
   td {
-    cursor: pointer;
     text-align: left;
     color: #000000;
     border-radius: 12px;
@@ -441,7 +440,9 @@ table {
   }
 
   td .inline-span {
-      box: inline-blok;
+      display: inline-blok;
+      cursor: pointer;
+      padding: 3px;
   }
 
   td .target-area-shop-image {
@@ -452,6 +453,7 @@ table {
   td .target-area-shop-link {
       text-decoration: none;
       color: #000000;
+      font-size: 20px;
   }
 }
 
