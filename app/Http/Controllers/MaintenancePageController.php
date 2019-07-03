@@ -359,7 +359,10 @@ class MaintenancePageController extends Controller
         foreach ($shopData as $shopId => $shopInfo) {
             foreach ($areaData as $areaCode => $areaName) {
                 if ($shopInfo['area'] === $areaCode) {
+                    $areaViewData[$areaName]['shopCount'] = null;
                     $areaViewData[$areaName][$shopId] = $shopInfo;
+                    $shopCount = count($areaViewData[$areaName]);
+                    $areaViewData[$areaName]['shopCount'] = $shopCount;
                     break;
                 }
             }
@@ -377,7 +380,10 @@ class MaintenancePageController extends Controller
             foreach ($categoryData as $categoryCode => $categoryName) {
                 $categoryIsMatch = array_search($categoryCode, $shopInfo['category_code']);
                 if ($categoryIsMatch) {
+                    $categoryViewData[$categoryName]['shopCount'] = null;
                     $categoryViewData[$categoryName][$shopId] = $shopInfo;
+                    $shopCount = count($categoryViewData[$categoryName]);
+                    $categoryViewData[$categoryName]['shopCount'] = $shopCount;
                     break;
                 }
             }

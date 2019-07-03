@@ -37,19 +37,21 @@
                                         @foreach ($areaViewData as $area => $areaShop)
                                             <table>
                                                 <tr>
-                                                    <th>{{ $area }}</th>
+                                                    <th>{{ $area }}&nbsp;&nbsp;店舗数：{{ $areaShop['shopCount'] }}</th>
                                                 </tr>
                                                 @foreach ($areaShop as $key => $shopInfo)
-                                                    <tr>
-                                                        <td>
-                                                            <span class="inline-span col-md-4">
-                                                                <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                            </span>
-                                                            <span class="inline-div col-md-8">
-                                                                <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >&nbsp;&nbsp;{{ $shopInfo['name'] }}</a>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
+                                                    @if ($key != 'shopCount')
+                                                        <tr>
+                                                            <td>
+                                                                <span class="inline-span col-md-4">
+                                                                    <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
+                                                                </span>
+                                                                <span class="inline-div col-md-8">
+                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >&nbsp;&nbsp;{{ $shopInfo['name'] }}</a>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                 @endforeach
                                             </table>
                                             <br>
@@ -67,19 +69,21 @@
                                         @foreach ($categoryViewData as $category => $categoryShop)
                                             <table>
                                                 <tr>
-                                                    <th>{{ $category }}</th>
+                                                    <th>{{ $category }}&nbsp;&nbsp;店舗数：{{ $categoryShop['shopCount'] }}</th>
                                                 </tr>
                                                 @foreach ($categoryShop as $key => $shopInfo)
-                                                    <tr>
-                                                        <td>
-                                                            <span class="inline-span col-md-4">
-                                                                <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                            </span>
-                                                            <span class="inline-div col-md-8">
-                                                                <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >&nbsp;&nbsp;{{ $shopInfo['name'] }}</a>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
+                                                    @if ($key != 'shopCount')
+                                                        <tr>
+                                                            <td>
+                                                                <span class="inline-span col-md-4">
+                                                                    <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
+                                                                </span>
+                                                                <span class="inline-div col-md-8">
+                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >&nbsp;&nbsp;{{ $shopInfo['name'] }}</a>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                 @endforeach
                                             </table>
                                             <br>
