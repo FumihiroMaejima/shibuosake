@@ -23,6 +23,10 @@
     @yield('content')
 </main>
 
+<footer>
+    <address>Copyright(C)2019 calicocat.tokyo,Allright Reserved.</address>
+</footer>
+
 <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
