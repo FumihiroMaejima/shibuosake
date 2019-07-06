@@ -1,30 +1,8 @@
 <<template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-
-                <!--
-                <div class="card text-white bg-dark" style="width: 20rem;" v-for="(value, key) in viewData" v-bind:key="restaurant.id">
-                    <img class="card-img-top" :src="restaurant.image_url.shop_image1" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ restaurant.key }}</h4>
-                        <p class="card-text">{{ restaurant.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                -->
-
-                <!--
-                <div class="card text-white bg-dark" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
-                    <img class="card-img-top" :src="restaurant.image_url.shop_image1" width="100%" height="100%" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ restaurant.name }}</h4>
-                        <p class="card-text">{{ restaurant.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
-                    </div>
-                </div>
-                -->
-
+            <!-- tab1 shop list  -->
+            <div class="col-md-12" v-if="tabCheck == 1">
 
                 <div class="card text-white bg-dark mb-3" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
                     <div class="row no-gutters">
@@ -98,8 +76,37 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-
+            <!-- tab2 area list  -->
+            <div class="col-md-12" v-else-if="tabCheck == 2">
+                <p>area test</p>
+                <!--
+                <div>
+                    @foreach ($areaViewData as $area => $areaShop)
+                        <table>
+                            <tr>
+                                <th>{{ $area }}&nbsp;&nbsp;店舗数：{{ $areaShop['shopCount'] }}</th>
+                            </tr>
+                            @foreach ($areaShop as $key => $shopInfo)
+                                @if ($key != 'shopCount')
+                                    <tr>
+                                        <td>
+                                            <span class="inline-span">
+                                                <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >
+                                                    <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
+                                                    &nbsp;&nbsp;{{ $shopInfo['name'] }}
+                                                </a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </table>
+                        <br>
+                    @endforeach
+                </div>
+                -->
             </div>
         </div>
     </div>
@@ -111,6 +118,9 @@
            viewData: {
                type: Array
            },
+           tabCheck: {
+               type: Number
+           },
        },
         data() {
             return {
@@ -120,8 +130,8 @@
                 pr_long: 'pr_long',
                 opentime: 'opentime',
                 holiday: 'holiday',
-                party: 'shop_image1',
-                lunch: 'shop_image1',
+                party: 'party',
+                lunch: 'lunch',
                 address: 'address',
                 tel: 'tel',
                 url: 'localhost'

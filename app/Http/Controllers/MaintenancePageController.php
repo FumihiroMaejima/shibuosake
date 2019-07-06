@@ -70,13 +70,16 @@ class MaintenancePageController extends Controller
         $areaViewData = self::makeAreaViewData($shopData, $areaData);
         // 店舗情報とカテゴリー情報の照会
         $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        // Vueファイルのテンプレート切替用の変数
+        $tabCheckData = array('shop' => 1, 'area' => 2, 'category' => 3);
 
         return view('maintenance.index')
             ->with('viewData', $viewData)
             ->with('pageOffset', $pageOffset)
             ->with('pageCount', $pageCount)
             ->with('areaViewData', $areaViewData)
-            ->with('categoryViewData', $categoryViewData);
+            ->with('categoryViewData', $categoryViewData)
+            ->with('tabCheckData', $tabCheckData);
     }
 
     // ページリクエスト処理
@@ -144,13 +147,16 @@ class MaintenancePageController extends Controller
         $areaViewData = self::makeAreaViewData($shopData, $areaData);
         // 店舗情報とカテゴリー情報の照会
         $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        // Vueファイルのテンプレート切替用の変数
+        $tabCheckData = array('shop' => 1, 'area' => 2, 'category' => 3);
 
         return view('maintenance.index')
             ->with('viewData', $viewData)
             ->with('pageOffset', $pageOffset)
             ->with('pageCount', $pageCount)
             ->with('areaViewData', $areaViewData)
-            ->with('categoryViewData', $categoryViewData);
+            ->with('categoryViewData', $categoryViewData)
+            ->with('tabCheckData', $tabCheckData);
     }
 
     // レストラン検索APIの実行
