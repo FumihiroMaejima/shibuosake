@@ -14006,7 +14006,7 @@ table td .target-area-shop-link {
 }
 
 .target-area-shop-link h5 {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #ffffff;
   font-size: 20px;
 }

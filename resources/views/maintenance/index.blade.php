@@ -33,7 +33,7 @@
                         <maintenance v-bind:area-data="{{ $areaViewData }}" v-bind:tab-check="{{ $tabCheckData['area'] }}"></maintenance>
                     </div>
                     <div id="panel3" class="tab_panel">
-                        <maintenance v-bind:view-data="{{ $viewData }}" v-bind:tab-check="{{ $tabCheckData['category'] }}"></maintenance>
+                        <maintenance v-bind:category-data="{{ $categoryViewData }}" v-bind:tab-check="{{ $tabCheckData['category'] }}"></maintenance>
                     </div>
                 </div>
             </div>

@@ -103,6 +103,25 @@
 
             <!-- tab3 area list  -->
             <div class="col-md-12" v-else-if="tabCheck == 3">
+                <div v-for="(shopData, category) in categoryData">
+                    <div class="list-header">{{ category }}</div>
+
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData" v-if="shopId != 'shopCont'">
+
+                        <div class="row no-gutters" v-if="shopId != 'shopCont'">
+                            <div class="col-md-4">
+                                <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="target-area-shop-link" :href="shopInfo.url">
+                                        <h5 class="card-title">{{ shopInfo.name }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!--
                 <div class="container">
                     <div class="row justify-content-center">
@@ -147,6 +166,9 @@
                type: Array
            },
            areaData: {
+               type: Object
+           },
+           categoryData: {
                type: Object
            },
            tabCheck: {
