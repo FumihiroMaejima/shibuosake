@@ -13988,6 +13988,29 @@ table td .target-area-shop-link {
   font-size: 20px;
 }
 
+.list-header {
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 12px;
+  background-color: #90c9cc;
+  box-shadow: 0 0 6px #c9c9c4;
+}
+
+.target-area-shop-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.target-area-shop-link h5 {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 20px;
+}
+
 /* タブバー設定について(各画面共通) */
 
 input[type=radio] {

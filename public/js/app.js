@@ -2182,10 +2182,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     viewData: {
       type: Array
+    },
+    areaData: {
+      type: Object
     },
     tabCheck: {
       type: Number
@@ -38273,9 +38304,63 @@ var render = function() {
             2
           )
         : _vm.tabCheck == 2
-        ? _c("div", { staticClass: "col-md-12" }, [
-            _c("p", [_vm._v("area test")])
-          ])
+        ? _c(
+            "div",
+            { staticClass: "col-md-12" },
+            _vm._l(_vm.areaData, function(shopData, area) {
+              return _c(
+                "div",
+                [
+                  _c("div", { staticClass: "list-header" }, [
+                    _vm._v(_vm._s(area))
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(shopData, function(shopInfo, shopId) {
+                    return shopId != "shopCont"
+                      ? _c(
+                          "div",
+                          { staticClass: "card text-white bg-dark mb-3" },
+                          [
+                            _c("div", { staticClass: "row no-gutters" }, [
+                              _c("div", { staticClass: "col-md-4" }, [
+                                _c("img", {
+                                  staticClass: "card-img",
+                                  attrs: {
+                                    src: shopInfo.shop_image1,
+                                    alt: "no image"
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-8" }, [
+                                _c("div", { staticClass: "card-body" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "target-area-shop-link",
+                                      attrs: { href: shopInfo.url }
+                                    },
+                                    [
+                                      _c("h5", { staticClass: "card-title" }, [
+                                        _vm._v(_vm._s(shopInfo.name))
+                                      ])
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      : _vm._e()
+                  })
+                ],
+                2
+              )
+            }),
+            0
+          )
+        : _vm.tabCheck == 3
+        ? _c("div", { staticClass: "col-md-12" })
         : _vm._e()
     ])
   ])

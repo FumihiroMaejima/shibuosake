@@ -80,31 +80,59 @@
 
             <!-- tab2 area list  -->
             <div class="col-md-12" v-else-if="tabCheck == 2">
-                <p>area test</p>
+                <div v-for="(shopData, area) in areaData">
+                    <div class="list-header">{{ area }}</div>
+
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData" v-if="shopId != 'shopCont'">
+
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="target-area-shop-link" :href="shopInfo.url">
+                                        <h5 class="card-title">{{ shopInfo.name }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tab3 area list  -->
+            <div class="col-md-12" v-else-if="tabCheck == 3">
                 <!--
-                <div>
-                    @foreach ($areaViewData as $area => $areaShop)
-                        <table>
-                            <tr>
-                                <th>{{ $area }}&nbsp;&nbsp;店舗数：{{ $areaShop['shopCount'] }}</th>
-                            </tr>
-                            @foreach ($areaShop as $key => $shopInfo)
-                                @if ($key != 'shopCount')
-                                    <tr>
-                                        <td>
-                                            <span class="inline-span">
-                                                <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >
-                                                    <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                    &nbsp;&nbsp;{{ $shopInfo['name'] }}
-                                                </a>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        </table>
-                        <br>
-                    @endforeach
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div>
+                                @foreach ($categoryViewData as $category => $categoryShop)
+                                    <table>
+                                        <tr>
+                                            <th>{{ $category }}&nbsp;&nbsp;店舗数：{{ $categoryShop['shopCount'] }}</th>
+                                        </tr>
+                                        @foreach ($categoryShop as $key => $shopInfo)
+                                            @if ($key != 'shopCount')
+                                                <tr>
+                                                    <td>
+                                                        <span class="inline-span">
+                                                            <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}">
+                                                                <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
+                                                                &nbsp;&nbsp;{{ $shopInfo['name'] }}
+                                                            </a>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </table>
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 -->
             </div>
@@ -117,6 +145,9 @@
        props: {
            viewData: {
                type: Array
+           },
+           areaData: {
+               type: Object
            },
            tabCheck: {
                type: Number

@@ -67,9 +67,11 @@ class MaintenancePageController extends Controller
         $categoryData = self::getCategoryData();
 
         // 店舗情報とエリア情報の照会
-        $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        $tmpAreaViewData = self::makeAreaViewData($shopData, $areaData);
+        $areaViewData = json_encode($tmpAreaViewData);
         // 店舗情報とカテゴリー情報の照会
-        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $tmpCategoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $categoryViewData = json_encode($tmpCategoryViewData);
         // Vueファイルのテンプレート切替用の変数
         $tabCheckData = array('shop' => 1, 'area' => 2, 'category' => 3);
 
@@ -144,9 +146,11 @@ class MaintenancePageController extends Controller
         $categoryData = self::getCategoryData();
 
         // 店舗情報とエリア情報の照会
-        $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        $tmpAreaViewData = self::makeAreaViewData($shopData, $areaData);
+        $areaViewData = json_encode($tmpAreaViewData);
         // 店舗情報とカテゴリー情報の照会
-        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $tmpCategoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $categoryViewData = json_encode($tmpCategoryViewData);
         // Vueファイルのテンプレート切替用の変数
         $tabCheckData = array('shop' => 1, 'area' => 2, 'category' => 3);
 
