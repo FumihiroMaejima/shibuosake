@@ -13,7 +13,7 @@ jobs:
       - run: echo 'Hello PHP!'
       - run: echo 'This is laravel Environmental'
       - run: echo 'apt install start'
-      - run: sudo apt-cache -y policy sqlite3 zlib1g-dev
+      - run: sudo apt-cache policy sqlite3 zlib1g-dev
       - run: sudo composer self-update
       - run: touch composer.json
       - run: touch composer.lock
