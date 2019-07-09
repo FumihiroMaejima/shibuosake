@@ -3,7 +3,6 @@
         <div class="row justify-content-center">
             <!-- tab1 shop list  -->
             <div class="col-md-12" v-if="tabCheck == 1">
-
                 <div class="card text-white bg-dark mb-3" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
                     <div class="row no-gutters">
                         <div class="col-md-4">
@@ -80,11 +79,15 @@
 
             <!-- tab2 area list  -->
             <div class="col-md-12" v-else-if="tabCheck == 2">
+                <div class="half-chart">
+                    <doughnut-chart :chart-data="doughnutAreaCollection"></doughnut-chart>
+                     <input type="hidden" class="area_count_data" :name="area" :value="count" v-for="(count, area) in areaCount">
+                </div>
+
                 <div v-for="(shopData, area) in areaData">
                     <div class="list-header">{{ area }}</div>
 
-                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData" v-if="shopId != 'shopCont'">
-
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData">
                         <div class="row no-gutters">
                             <div class="col-md-4">
                                 <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
@@ -103,11 +106,15 @@
 
             <!-- tab3 area list  -->
             <div class="col-md-12" v-else-if="tabCheck == 3">
+                <div class="half-chart">
+                    <doughnut-chart :chart-data="doughnutCategoryCollection"></doughnut-chart>
+                     <input type="hidden" class="category_count_data" :name="category" :value="count" v-for="(count, category) in categoryCount">
+                </div>
+
                 <div v-for="(shopData, category) in categoryData">
                     <div class="list-header">{{ category }}</div>
 
-                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData" v-if="shopId != 'shopCont'">
-
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData">
                         <div class="row no-gutters" v-if="shopId != 'shopCont'">
                             <div class="col-md-4">
                                 <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
@@ -122,59 +129,38 @@
                         </div>
                     </div>
                 </div>
-                <!--
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <div>
-                                @foreach ($categoryViewData as $category => $categoryShop)
-                                    <table>
-                                        <tr>
-                                            <th>{{ $category }}&nbsp;&nbsp;店舗数：{{ $categoryShop['shopCount'] }}</th>
-                                        </tr>
-                                        @foreach ($categoryShop as $key => $shopInfo)
-                                            @if ($key != 'shopCount')
-                                                <tr>
-                                                    <td>
-                                                        <span class="inline-span">
-                                                            <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}">
-                                                                <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                                &nbsp;&nbsp;{{ $shopInfo['name'] }}
-                                                            </a>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </table>
-                                    <br>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-   export default {
-       props: {
-           viewData: {
-               type: Array
-           },
-           areaData: {
-               type: Object
-           },
-           categoryData: {
-               type: Object
-           },
-           tabCheck: {
-               type: Number
-           },
-       },
+    import DoughnutChart from '../chart/DoughnutChart.js'
+
+    export default {
+        components: {
+            DoughnutChart, /* <doughnut-chart></doughnut-chart> */
+        },
+        props: {
+            viewData: {
+                type: Array
+            },
+            areaData: {
+                type: Object
+            },
+            categoryData: {
+                type: Object
+            },
+            areaCount: {
+                type: Object
+            },
+            categoryCount: {
+                type: Object
+            },
+            tabCheck: {
+                type: Number
+            },
+        },
         data() {
             return {
                 title: 'title',
@@ -187,8 +173,14 @@
                 lunch: 'lunch',
                 address: 'address',
                 tel: 'tel',
-                url: 'localhost'
+                url: 'localhost',
+                doughnutAreaCollection: {},
+                doughnutCategoryCollection: {},
             }
+        },
+        mounted () {
+            this.getAreaObjectCount()
+            this.getCategoryObjectCount()
         },
         methods: {
             attach: function(object) {
@@ -203,6 +195,67 @@
                 this.address = object.address
                 this.tel = object.tel
                 this.url = object.url
+            },
+            getAreaObjectCount () {
+                var labels = []
+                var dataset = []
+                var loopCnt = 0
+                var targetTab = 2
+                var selectData = document.querySelectorAll(".area_count_data");
+                loopCnt = selectData.length
+                for(var i=0;i<selectData.length;i++){
+                    labels.push(selectData[i].name)
+                    dataset.push(selectData[i].value)
+                }
+
+                this.fillData(labels, dataset, loopCnt, targetTab)
+            },
+            getCategoryObjectCount () {
+                var labels = []
+                var dataset = []
+                var loopCnt = 0
+                var targetTab = 3
+                var selectData = document.querySelectorAll(".category_count_data");
+                loopCnt = selectData.length
+                for(var i=0;i<selectData.length;i++){
+                    labels.push(selectData[i].name)
+                    dataset.push(selectData[i].value)
+                }
+
+                this.fillData(labels, dataset, loopCnt, targetTab)
+            },
+            fillData (labels, dataset, loopCnt, chartKey) {
+                var dColors = []
+
+                for (var i = 0; i < loopCnt;i++){
+                    var code = i * 40
+                    //dColors.push('rgba(255,'+code+','+code+',0.4)')
+                    dColors.push('rgba('+code+',255,'+code+',0.5)')
+                }
+
+                if(chartKey == 2){
+                    this.doughnutAreaCollection = {
+                        labels: labels,
+                        datasets: [{
+                            data: dataset,
+                            backgroundColor: dColors
+                        }],
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    }
+                }
+                else{
+                    this.doughnutCategoryCollection = {
+                        labels: labels,
+                        datasets: [{
+                            data: dataset,
+                            backgroundColor: dColors
+                        }]
+                    }
+                }
+
             }
         },
        name:'maintenance'

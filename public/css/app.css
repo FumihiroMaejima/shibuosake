@@ -13814,6 +13814,12 @@ article section img {
   .tab_area label:hover {
     opacity: 0.5;
   }
+
+  .half-chart {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
 }
 
 /* 480px以上 764px以下*/
@@ -13849,6 +13855,12 @@ article section img {
   .tab_area label:hover {
     opacity: 0.5;
   }
+
+  .half-chart {
+    width: 45%;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
 }
 
 /* 765px以上 */
@@ -13883,6 +13895,12 @@ article section img {
 
   .tab_area label:hover {
     opacity: 0.5;
+  }
+
+  .half-chart {
+    width: 45%;
+    display: inline-block;
+    margin-bottom: 15px;
   }
 }
 
@@ -14010,6 +14028,15 @@ table td .target-area-shop-link {
   color: #ffffff;
   font-size: 20px;
 }
+
+/*
+.half-chart {
+    //margin-left: 180px;
+    width: 45%;
+    display: inline-block;
+    margin-bottom:15px;
+}
+*/
 
 /* タブバー設定について(各画面共通) */
 

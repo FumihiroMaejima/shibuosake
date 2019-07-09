@@ -289,6 +289,13 @@ article section img {
             }
         }
     }
+
+    .half-chart {
+        //margin-left: 180px;
+        width: 100%;
+        display: inline-block;
+        margin-bottom:15px;
+    }
 }
 
 /* 480px以上 764px以下*/
@@ -323,6 +330,13 @@ article section img {
             }
         }
     }
+
+    .half-chart {
+        //margin-left: 180px;
+        width: 45%;
+        display: inline-block;
+        margin-bottom:15px;
+    }
 }
 
 /* 765px以上 */
@@ -356,6 +370,13 @@ article section img {
                 opacity: 0.5;
             }
         }
+    }
+
+    .half-chart {
+        //margin-left: 180px;
+        width: 45%;
+        display: inline-block;
+        margin-bottom:15px;
     }
 }
 /* 画面サイズごとの設定 終了 */
@@ -479,6 +500,15 @@ table {
     color: #ffffff;
     font-size: 20px;
 }
+
+/*
+.half-chart {
+    //margin-left: 180px;
+    width: 45%;
+    display: inline-block;
+    margin-bottom:15px;
+}
+*/
 
 /* タブバー設定について(各画面共通) */
 

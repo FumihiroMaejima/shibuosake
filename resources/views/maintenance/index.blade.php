@@ -30,10 +30,10 @@
                         </div>
                     </div>
                     <div id="panel2" class="tab_panel">
-                        <maintenance v-bind:area-data="{{ $areaViewData }}" v-bind:tab-check="{{ $tabCheckData['area'] }}"></maintenance>
+                        <maintenance v-bind:area-data="{{ $areaViewData }}" v-bind:tab-check="{{ $tabCheckData['area'] }}" v-bind:area-count="{{ $areaCount }}"></maintenance>
                     </div>
                     <div id="panel3" class="tab_panel">
-                        <maintenance v-bind:category-data="{{ $categoryViewData }}" v-bind:tab-check="{{ $tabCheckData['category'] }}"></maintenance>
+                        <maintenance v-bind:category-data="{{ $categoryViewData }}" v-bind:tab-check="{{ $tabCheckData['category'] }}" v-bind:category-count="{{ $categoryCount }}"></maintenance>
                     </div>
                 </div>
             </div>
