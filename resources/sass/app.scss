@@ -291,7 +291,6 @@ article section img {
     }
 
     .half-chart {
-        //margin-left: 180px;
         width: 100%;
         display: inline-block;
         margin-bottom:15px;
@@ -373,7 +372,7 @@ article section img {
     }
 
     .half-chart {
-        //margin-left: 180px;
+        margin-left: 180px;
         width: 45%;
         display: inline-block;
         margin-bottom:15px;
@@ -431,53 +430,6 @@ article section img {
   box-shadow: 0px 0px 0px 5px #668ad8;
 }
 
-/* テーブル */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  tr {
-    border-bottom: solid 3px #eee;
-    &:hover {
-      background-color: #d7e9ea;
-    }
-  }
-  th {
-    text-align: center;
-    color: #ffffff;
-    font-size: 20px;
-    width: 25%;
-    padding: 15px 0;
-    border-radius: 12px;
-    background-color: #90c9cc;
-    box-shadow: 0 0 6px #c9c9c4;
-  }
-  td {
-    text-align: left;
-    color: #000000;
-    border-radius: 12px;
-    width: 25%;
-    padding: 15px 0;
-  }
-
-  td .inline-span {
-      display: inline-blok;
-      cursor: pointer;
-      padding: 3px;
-  }
-
-  td .target-area-shop-image {
-      height: 100px;
-      width: 100px;
-  }
-
-  td .target-area-shop-link {
-      text-decoration: none;
-      color: #000000;
-      font-size: 20px;
-  }
-}
-
 .list-header {
     text-align: center;
     color: #ffffff;
@@ -501,14 +453,6 @@ table {
     font-size: 20px;
 }
 
-/*
-.half-chart {
-    //margin-left: 180px;
-    width: 45%;
-    display: inline-block;
-    margin-bottom:15px;
-}
-*/
 
 /* タブバー設定について(各画面共通) */
 
@@ -582,4 +526,37 @@ footer address{
     color: #fff;          /*文字色の指定*/
     letter-spacing: 5px;    /*文字と文字の間隔をあける*/
     font-style: normal;     /*文字の斜体を取り消す*/
+}
+
+#page_top{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background: #3f98ef;
+    opacity: 0.6;
+}
+
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+#page_top a::before{
+    font-weight: 900;
+    content: '\2191';
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
 }
