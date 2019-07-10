@@ -16,7 +16,7 @@
                 </div>
                 <div class="panel_area">
                     <div id="panel1" class="tab_panel">
-                        <maintenance v-bind:view-data="{{ $viewData }}"></maintenance>
+                        <maintenance v-bind:view-data="{{ $viewData }}" v-bind:tab-check="{{ $tabCheckData['shop'] }}"></maintenance>
                         <div class="page_change_area">
                             @if ($pageCount > 1)
                                 @for ($i=1;$i<=$pageCount;$i++)
@@ -30,68 +30,10 @@
                         </div>
                     </div>
                     <div id="panel2" class="tab_panel">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-12">
-                                    <div>
-                                        @foreach ($areaViewData as $area => $areaShop)
-                                            <table>
-                                                <tr>
-                                                    <th>{{ $area }}&nbsp;&nbsp;店舗数：{{ $areaShop['shopCount'] }}</th>
-                                                </tr>
-                                                @foreach ($areaShop as $key => $shopInfo)
-                                                    @if ($key != 'shopCount')
-                                                        <tr>
-                                                            <td>
-                                                                <span class="inline-span">
-                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}" >
-                                                                        <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                                        &nbsp;&nbsp;{{ $shopInfo['name'] }}
-                                                                    </a>
-                                                                </span>
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            </table>
-                                            <br>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <maintenance v-bind:area-data="{{ $areaViewData }}" v-bind:tab-check="{{ $tabCheckData['area'] }}" v-bind:area-count="{{ $areaCount }}"></maintenance>
                     </div>
                     <div id="panel3" class="tab_panel">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-12">
-                                    <div>
-                                        @foreach ($categoryViewData as $category => $categoryShop)
-                                            <table>
-                                                <tr>
-                                                    <th>{{ $category }}&nbsp;&nbsp;店舗数：{{ $categoryShop['shopCount'] }}</th>
-                                                </tr>
-                                                @foreach ($categoryShop as $key => $shopInfo)
-                                                    @if ($key != 'shopCount')
-                                                        <tr>
-                                                            <td>
-                                                                <span class="inline-span">
-                                                                    <a class="target-area-shop-link" href="{{ $shopInfo['url'] }}">
-                                                                        <img class="target-area-shop-image" src="{{ $shopInfo['shop_image1'] }}" alt="no image">
-                                                                        &nbsp;&nbsp;{{ $shopInfo['name'] }}
-                                                                    </a>
-                                                                </span>
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            </table>
-                                            <br>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <maintenance v-bind:category-data="{{ $categoryViewData }}" v-bind:tab-check="{{ $tabCheckData['category'] }}" v-bind:category-count="{{ $categoryCount }}"></maintenance>
                     </div>
                 </div>
             </div>

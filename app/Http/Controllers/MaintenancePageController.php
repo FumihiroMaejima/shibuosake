@@ -67,16 +67,26 @@ class MaintenancePageController extends Controller
         $categoryData = self::getCategoryData();
 
         // 店舗情報とエリア情報の照会
-        $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        $tmpAreaViewData = self::makeAreaViewData($shopData, $areaData);
+        $areaCount = json_encode(self::getCountData($tmpAreaViewData), true);
+        $areaViewData = json_encode($tmpAreaViewData, true);
+
         // 店舗情報とカテゴリー情報の照会
-        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $tmpCategoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $categoryCount = json_encode(self::getCountData($tmpCategoryViewData));
+        $categoryViewData = json_encode($tmpCategoryViewData);
+        // Vueファイルのテンプレート切替用の変数
+        $tabCheckData = array('shop' => 1, 'area' => 2, 'category' => 3);
 
         return view('maintenance.index')
             ->with('viewData', $viewData)
             ->with('pageOffset', $pageOffset)
             ->with('pageCount', $pageCount)
             ->with('areaViewData', $areaViewData)
-            ->with('categoryViewData', $categoryViewData);
+            ->with('categoryViewData', $categoryViewData)
+            ->with('areaCount', $areaCount)
+            ->with('categoryCount', $categoryCount)
+            ->with('tabCheckData', $tabCheckData);
     }
 
     // ページリクエスト処理
@@ -141,16 +151,25 @@ class MaintenancePageController extends Controller
         $categoryData = self::getCategoryData();
 
         // 店舗情報とエリア情報の照会
-        $areaViewData = self::makeAreaViewData($shopData, $areaData);
+        $tmpAreaViewData = self::makeAreaViewData($shopData, $areaData);
+        $areaCount = json_encode(self::getCountData($tmpAreaViewData));
+        $areaViewData = json_encode($tmpAreaViewData);
         // 店舗情報とカテゴリー情報の照会
-        $categoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $tmpCategoryViewData = self::makeCategoryViewData($shopData, $categoryData);
+        $categoryCount = json_encode(self::getCountData($tmpCategoryViewData));
+        $categoryViewData = json_encode($tmpCategoryViewData);
+        // Vueファイルのテンプレート切替用の変数
+        $tabCheckData = array('shop' => 1, 'area' => 2, 'category' => 3);
 
         return view('maintenance.index')
             ->with('viewData', $viewData)
             ->with('pageOffset', $pageOffset)
             ->with('pageCount', $pageCount)
             ->with('areaViewData', $areaViewData)
-            ->with('categoryViewData', $categoryViewData);
+            ->with('categoryViewData', $categoryViewData)
+            ->with('areaCount', $areaCount)
+            ->with('categoryCount', $categoryCount)
+            ->with('tabCheckData', $tabCheckData);
     }
 
     // レストラン検索APIの実行
@@ -359,10 +378,7 @@ class MaintenancePageController extends Controller
         foreach ($shopData as $shopId => $shopInfo) {
             foreach ($areaData as $areaCode => $areaName) {
                 if ($shopInfo['area'] === $areaCode) {
-                    $areaViewData[$areaName]['shopCount'] = null;
                     $areaViewData[$areaName][$shopId] = $shopInfo;
-                    $shopCount = count($areaViewData[$areaName]);
-                    $areaViewData[$areaName]['shopCount'] = $shopCount;
                     break;
                 }
             }
@@ -380,16 +396,24 @@ class MaintenancePageController extends Controller
             foreach ($categoryData as $categoryCode => $categoryName) {
                 $categoryIsMatch = array_search($categoryCode, $shopInfo['category_code']);
                 if ($categoryIsMatch) {
-                    $categoryViewData[$categoryName]['shopCount'] = null;
                     $categoryViewData[$categoryName][$shopId] = $shopInfo;
-                    $shopCount = count($categoryViewData[$categoryName]);
-                    $categoryViewData[$categoryName]['shopCount'] = $shopCount;
                     break;
                 }
             }
         }
 
         return $categoryViewData;
+    }
+
+    // エリア・カテゴリーごとの店舗数をカウントする
+    public function getCountData($targetData)
+    {
+        $returnData = null;
+        foreach ($targetData as $targetKey => $shop) {
+            $tmpCount = count($shop);
+            $returnData[$targetKey] = $tmpCount;
+        }
+        return $returnData;
     }
 
     /** 以下は全てAPIのテスト処理関連 **/

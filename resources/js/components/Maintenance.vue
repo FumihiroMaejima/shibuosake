@@ -1,31 +1,8 @@
 <<template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-
-                <!--
-                <div class="card text-white bg-dark" style="width: 20rem;" v-for="(value, key) in viewData" v-bind:key="restaurant.id">
-                    <img class="card-img-top" :src="restaurant.image_url.shop_image1" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ restaurant.key }}</h4>
-                        <p class="card-text">{{ restaurant.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                -->
-
-                <!--
-                <div class="card text-white bg-dark" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
-                    <img class="card-img-top" :src="restaurant.image_url.shop_image1" width="100%" height="100%" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ restaurant.name }}</h4>
-                        <p class="card-text">{{ restaurant.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
-                    </div>
-                </div>
-                -->
-
-
+            <!-- tab1 shop list  -->
+            <div class="col-md-12" v-if="tabCheck == 1">
                 <div class="card text-white bg-dark mb-3" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
                     <div class="row no-gutters">
                         <div class="col-md-4">
@@ -98,20 +75,92 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- tab2 area list  -->
+            <div class="col-md-12" v-else-if="tabCheck == 2">
+                <div class="half-chart">
+                    <doughnut-chart :chart-data="doughnutAreaCollection"></doughnut-chart>
+                     <input type="hidden" class="area_count_data" :name="area" :value="count" v-for="(count, area) in areaCount">
+                </div>
 
+                <div v-for="(shopData, area) in areaData">
+                    <div class="list-header">{{ area }}</div>
+
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="target-area-shop-link" :href="shopInfo.url">
+                                        <h5 class="card-title">{{ shopInfo.name }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tab3 area list  -->
+            <div class="col-md-12" v-else-if="tabCheck == 3">
+                <div class="half-chart">
+                    <doughnut-chart :chart-data="doughnutCategoryCollection"></doughnut-chart>
+                     <input type="hidden" class="category_count_data" :name="category" :value="count" v-for="(count, category) in categoryCount">
+                </div>
+
+                <div v-for="(shopData, category) in categoryData">
+                    <div class="list-header">{{ category }}</div>
+
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData">
+                        <div class="row no-gutters" v-if="shopId != 'shopCont'">
+                            <div class="col-md-4">
+                                <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="target-area-shop-link" :href="shopInfo.url">
+                                        <h5 class="card-title">{{ shopInfo.name }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-   export default {
-       props: {
-           viewData: {
-               type: Array
-           },
-       },
+    import DoughnutChart from '../chart/DoughnutChart.js'
+
+    export default {
+        components: {
+            DoughnutChart, /* <doughnut-chart></doughnut-chart> */
+        },
+        props: {
+            viewData: {
+                type: Array
+            },
+            areaData: {
+                type: Object
+            },
+            categoryData: {
+                type: Object
+            },
+            areaCount: {
+                type: Object
+            },
+            categoryCount: {
+                type: Object
+            },
+            tabCheck: {
+                type: Number
+            },
+        },
         data() {
             return {
                 title: 'title',
@@ -120,12 +169,18 @@
                 pr_long: 'pr_long',
                 opentime: 'opentime',
                 holiday: 'holiday',
-                party: 'shop_image1',
-                lunch: 'shop_image1',
+                party: 'party',
+                lunch: 'lunch',
                 address: 'address',
                 tel: 'tel',
-                url: 'localhost'
+                url: 'localhost',
+                doughnutAreaCollection: {},
+                doughnutCategoryCollection: {},
             }
+        },
+        mounted () {
+            this.getAreaObjectCount()
+            this.getCategoryObjectCount()
         },
         methods: {
             attach: function(object) {
@@ -140,6 +195,67 @@
                 this.address = object.address
                 this.tel = object.tel
                 this.url = object.url
+            },
+            getAreaObjectCount () {
+                var labels = []
+                var dataset = []
+                var loopCnt = 0
+                var targetTab = 2
+                var selectData = document.querySelectorAll(".area_count_data");
+                loopCnt = selectData.length
+                for(var i=0;i<selectData.length;i++){
+                    labels.push(selectData[i].name)
+                    dataset.push(selectData[i].value)
+                }
+
+                this.fillData(labels, dataset, loopCnt, targetTab)
+            },
+            getCategoryObjectCount () {
+                var labels = []
+                var dataset = []
+                var loopCnt = 0
+                var targetTab = 3
+                var selectData = document.querySelectorAll(".category_count_data");
+                loopCnt = selectData.length
+                for(var i=0;i<selectData.length;i++){
+                    labels.push(selectData[i].name)
+                    dataset.push(selectData[i].value)
+                }
+
+                this.fillData(labels, dataset, loopCnt, targetTab)
+            },
+            fillData (labels, dataset, loopCnt, chartKey) {
+                var dColors = []
+
+                for (var i = 0; i < loopCnt;i++){
+                    var code = i * 40
+                    //dColors.push('rgba(255,'+code+','+code+',0.4)')
+                    dColors.push('rgba('+code+',255,'+code+',0.5)')
+                }
+
+                if(chartKey == 2){
+                    this.doughnutAreaCollection = {
+                        labels: labels,
+                        datasets: [{
+                            data: dataset,
+                            backgroundColor: dColors
+                        }],
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    }
+                }
+                else{
+                    this.doughnutCategoryCollection = {
+                        labels: labels,
+                        datasets: [{
+                            data: dataset,
+                            backgroundColor: dColors
+                        }]
+                    }
+                }
+
             }
         },
        name:'maintenance'

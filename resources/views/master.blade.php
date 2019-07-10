@@ -23,6 +23,8 @@
     @yield('content')
 </main>
 
+<div id="page_top"><a href="#"></a></div>
+
 <footer>
     <address>Copyright(C)2019 calicocat.tokyo,Allright Reserved.</address>
 </footer>
