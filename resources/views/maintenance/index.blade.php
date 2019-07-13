@@ -10,7 +10,7 @@
                 <input id="tab3" type="radio" name="tab_btn">
 
                 <div class="tab_area">
-                    <label class="tab1_label fa fa-beer" for="tab1">&nbsp;osake</label>
+                    <label class="tab1_label fa fa-beer" for="tab1">&nbsp;new</label>
                     <label class="tab2_label fa fa-edit" for="tab2">&nbsp;area</label>
                     <label class="tab3_label fa fa-user" for="tab3">&nbsp;type</label>
                 </div>

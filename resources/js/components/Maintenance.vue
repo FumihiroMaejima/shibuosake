@@ -29,7 +29,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img class="card-img-top" :src="shop_image2" width="100%" height="100%" alt="Card image cap">
+                                <img class="card-img-top" :src="shop_image2" width="100%" height="100%" alt="no image">
                                 <br>
                                 <br>
                                 <div class="shopInfo">

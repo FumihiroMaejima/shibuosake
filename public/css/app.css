@@ -14088,3 +14088,25 @@ footer address {
   text-align: center;
 }
 
+/* メインページ以外のレイアウト */
+
+.other-page-wrap {
+  padding: 5px 20px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  box-shadow: 0px 0px 8px #dcdcdc;
+}
+
+.other-page-wrap h1 {
+  font-size: 18px;
+}
+
+.other-page-wrap p {
+  margin-left: 10px;
+  max-width: 600px;
+}
+
+.strength-ward {
+  color: #ff0000;
+}
+

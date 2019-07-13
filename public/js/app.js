@@ -70857,7 +70857,7 @@ var render = function() {
                                 src: _vm.shop_image2,
                                 width: "100%",
                                 height: "100%",
-                                alt: "Card image cap"
+                                alt: "no image"
                               }
                             }),
                             _vm._v(" "),
