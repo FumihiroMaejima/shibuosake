@@ -13,7 +13,9 @@ class ShopInfo extends Model
     // カラムの自動更新をEloquentに許可
     public $timestamps = true;
 
-    use SoftDeletes;
+    // テーブルから削除する為、ソフトデリートは不要
+    //use SoftDeletes;
+
     // ソフトデリートの有効化(日付へキャストする属性)
     protected $dates = ['deleted_at'];
 

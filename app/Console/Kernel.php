@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\GetShopInfo::class
+        Commands\GetShopInfo::class,
+        Commands\DeleteShopInfo::class
     ];
 
 
@@ -26,7 +27,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('get:shopinfo')
-                ->hourlyAt(5);
+            ->hourlyAt(5)
+            ->between('9:00', '23:00');
+        $schedule->command('delete:shopinfo')
+            ->hourlyAt(30)
+            ->between('0:00', '14:00');
     }
 
     /**
