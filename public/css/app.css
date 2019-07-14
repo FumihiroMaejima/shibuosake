@@ -13577,6 +13577,7 @@ main {
   padding-top: 30px;
   text-align: center;
   font-weight: 200;
+  font-family: Courier !important;
 }
 
 .global-header .header-text h1 a {
