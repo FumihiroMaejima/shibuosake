@@ -3,6 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+            Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
             <p style="text-align:center;color:#ff0000;">maintenance page</p>
             <div class="tab_wrap">
                 <input id="tab1" type="radio" name="tab_btn" checked>
