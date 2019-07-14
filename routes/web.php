@@ -13,12 +13,14 @@
 
 // メインページ
 Route::get('/', 'MainPageController@index')->name('mainPage');
+// その他の店舗情報ページ
+Route::get('page/{count}', 'MainPageController@pageIndex')->name('subPage');
 // aboutページ
 Route::get('about', 'AboutPageController@index')->name('aboutPage');
 
 // メンテナンスページ
 Route::group(['middleware' => 'ipLimit'], function () {
     Route::get('mainte', 'MaintenancePageController@index')->name('maintenancePage');
-    Route::get('page/{count}', 'MaintenancePageController@pageIndex')->name('modMaintenancePage');
+    Route::get('pagemainte/{count}', 'MaintenancePageController@pageIndex')->name('modMaintenancePage');
     Route::get('apitest', 'MaintenancePageController@apitest')->name('apiTestPage');
 });

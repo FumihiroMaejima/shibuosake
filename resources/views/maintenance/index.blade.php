@@ -24,7 +24,7 @@
                                     @if ($i == $pageOffset)
                                         <a class="active_page_btn" href="javascript:void(0)">{{ $i }}</a>
                                     @else
-                                        <a class="page_change_btn" href="/page/{{ $i }}">{{ $i }}</a>
+                                        <a class="page_change_btn" href="/pagemainte/{{ $i }}">{{ $i }}</a>
                                     @endif
                                 @endfor
                             @endif

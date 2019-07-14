@@ -23,8 +23,8 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 Vue.component('paginate', require('vuejs-paginate'));
-Vue.component('main-page', require('./components/MainPage.vue'));
-Vue.component('maintenance', require('./components/Maintenance.vue').default);
+Vue.component('main-page', require('./components/MainPage.vue').default);
+Vue.component('maintenance', require('./components/Maintenance.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

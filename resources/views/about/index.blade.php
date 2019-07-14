@@ -3,7 +3,6 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <p style="text-align:center;color:#ff0000;">maintenance page</p>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="other-page-wrap sub-wrap-tool1">

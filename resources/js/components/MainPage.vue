@@ -1,82 +1,68 @@
 <<template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-                <!--
-                <div class="card text-white bg-dark" style="width: 20rem;">
-                    <img class="card-img-top viewData" :src="viewData.attributes.image_url.shop_image1" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                -->
-                <div class="card text-white bg-dark">
-                    <img class="card-img-top viewData" :src="viewData.attributes.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title viewData">{{ viewData.attributes.name }}</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p class="card-text viewData">{{ viewData.attributes.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
+            <!-- tab1 shop list  -->
+            <div class="col-md-12" v-if="tabCheck == 1">
+                <div class="card text-white bg-dark mb-3" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="card-img" :src="restaurant.image_url.shop_image1" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ restaurant.name }}</h5>
+                                <p class="card-text">{{ restaurant.pr.pr_short }}</p>
+                                <a v-on:click="attach(restaurant)" href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">詳細</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card text-white bg-dark">
-                    <img class="card-img-top viewData" :src="viewData.attributes2.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title viewData">{{ viewData.attributes2.name }}</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p class="card-text viewData">{{ viewData.attributes2.pr.pr_short }}</p>
-                        <a href="javascript::void(0)" class="btn btn-primary" data-toggle="modal" data-target="#detailModal2">詳細</a>
-                    </div>
-                </div>
-
-                <!-- Modal -->
+               <!-- modal -->
                 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content text-white bg-dark viewData">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">{{ viewData.attributes.name }}</h5>
+                                <h5 class="modal-title" id="ModalLongTitle">{{ title }}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#ffffff;">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img class="card-img-top" :src="viewData.attributes.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
+                                <img class="card-img-top" :src="shop_image2" width="100%" height="100%" alt="no image">
                                 <br>
                                 <br>
                                 <div class="shopInfo">
-                                    <p class="shopInfoMessage">{{ viewData.attributes.pr.pr_long }}</p>
+                                    <p class="shopInfoMessage">{{ pr_long }}</p>
                                 </div>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:
                                     </p>
-                                    <p class="shopInfoCalender">{{ viewData.attributes.opentime }}</p>
-                                    <p  class="shopInfoCalender">{{ viewData.attributes.holiday }}</p>
+                                    <p class="shopInfoCalender">{{ opentime }}</p>
+                                    <p  class="shopInfoCalender">{{ holiday }}</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-money"></span>&nbsp;価格:
                                     </p>
-                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ viewData.attributes.party }}円</p>
-                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ viewData.attributes.lunch }}円</p>
+                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ party }}円</p>
+                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ lunch }}円</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-home"></span>&nbsp;住所:
                                     </p>
-                                    <p class="shopInfoAddress">&nbsp;{{ viewData.attributes.address }}</p>
+                                    <p class="shopInfoAddress">&nbsp;{{ address }}</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
                                         <span class="fa fa-phone"></span>&nbsp;TEL:
                                     </p>
-                                    <p class="shopInfoPhone">{{ viewData.attributes.tel }}</p>
+                                    <p class="shopInfoPhone">{{ tel }}</p>
                                 </div>
                                 <br>
                                 <p>*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。</p>
@@ -84,83 +70,194 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">予約をする</button>
+                                <a :href="url" class="btn btn-success">予約をする</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Modal2 -->
-                <div class="modal fade" id="detailModal2" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content text-white bg-dark viewData">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">{{ viewData.attributes2.name }}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#ffffff;">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <img class="card-img-top" :src="viewData.attributes2.image_url.shop_image1" width="100%" height="180" alt="Card image cap">
-                                <br>
-                                <br>
-                                <div class="shopInfo">
-                                    <p class="shopInfoMessage">{{ viewData.attributes2.pr.pr_long }}</p>
-                                </div>
-                                <div class="shopInfo">
-                                    <p class="shopInfoTitle">
-                                        <span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:
-                                    </p>
-                                    <p class="shopInfoCalender">{{ viewData.attributes2.opentime }}</p>
-                                    <p  class="shopInfoCalender">{{ viewData.attributes2.holiday }}</p>
-                                </div>
-                                <br>
-                                <div class="shopInfo">
-                                    <p class="shopInfoTitle">
-                                        <span class="fa fa-money"></span>&nbsp;価格:
-                                    </p>
-                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ viewData.attributes2.party }}円</p>
-                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ viewData.attributes2.lunch }}円</p>
-                                </div>
-                                <br>
-                                <div class="shopInfo">
-                                    <p class="shopInfoTitle">
-                                        <span class="fa fa-home"></span>&nbsp;住所:
-                                    </p>
-                                    <p class="shopInfoAddress">&nbsp;{{ viewData.attributes2.address }}</p>
-                                </div>
-                                <br>
-                                <div class="shopInfo">
-                                    <p class="shopInfoTitle">
-                                        <span class="fa fa-phone"></span>&nbsp;TEL:
-                                    </p>
-                                    <p class="shopInfoPhone">{{ viewData.attributes2.tel }}</p>
-                                </div>
-                                <br>
-                                <p>*「予約をする」ボタンを押下すると「ぐるなび」のサイトへ移動します。</p>
+            <!-- tab2 area list  -->
+            <div class="col-md-12" v-else-if="tabCheck == 2">
+                <div class="half-chart">
+                    <doughnut-chart :chart-data="doughnutAreaCollection"></doughnut-chart>
+                     <input type="hidden" class="area_count_data" :name="area" :value="count" v-for="(count, area) in areaCount">
+                </div>
 
+                <div v-for="(shopData, area) in areaData">
+                    <div class="list-header">{{ area }}</div>
+
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">予約をする</button>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="target-area-shop-link" :href="shopInfo.url">
+                                        <h5 class="card-title">{{ shopInfo.name }}</h5>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- tab3 area list  -->
+            <div class="col-md-12" v-else-if="tabCheck == 3">
+                <div class="half-chart">
+                    <doughnut-chart :chart-data="doughnutCategoryCollection"></doughnut-chart>
+                     <input type="hidden" class="category_count_data" :name="category" :value="count" v-for="(count, category) in categoryCount">
+                </div>
+
+                <div v-for="(shopData, category) in categoryData">
+                    <div class="list-header">{{ category }}</div>
+
+                    <div class="card text-white bg-dark mb-3" v-for="(shopInfo, shopId) in shopData">
+                        <div class="row no-gutters" v-if="shopId != 'shopCont'">
+                            <div class="col-md-4">
+                                <img class="card-img" :src="shopInfo.shop_image1" alt="no image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="target-area-shop-link" :href="shopInfo.url">
+                                        <h5 class="card-title">{{ shopInfo.name }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-   export default {
-       props: {
-           viewData: Object,
-       },
-       mounted() {
-           //console.log('MainPageComponent mounted.');
-       },
+    import DoughnutChart from '../chart/DoughnutChart.js'
+
+    export default {
+        components: {
+            DoughnutChart, /* <doughnut-chart></doughnut-chart> */
+        },
+        props: {
+            viewData: {
+                type: Array
+            },
+            areaData: {
+                type: Object
+            },
+            categoryData: {
+                type: Object
+            },
+            areaCount: {
+                type: Object
+            },
+            categoryCount: {
+                type: Object
+            },
+            tabCheck: {
+                type: Number
+            },
+        },
+        data() {
+            return {
+                title: 'title',
+                shop_image1: 'favicon.ico',
+                shop_image2: 'favicon.ico',
+                pr_long: 'pr_long',
+                opentime: 'opentime',
+                holiday: 'holiday',
+                party: 'party',
+                lunch: 'lunch',
+                address: 'address',
+                tel: 'tel',
+                url: 'localhost',
+                doughnutAreaCollection: {},
+                doughnutCategoryCollection: {},
+            }
+        },
+        mounted () {
+            this.getAreaObjectCount()
+            this.getCategoryObjectCount()
+        },
+        methods: {
+            attach: function(object) {
+                this.title = object.name
+                this.shop_image1 = object.image_url.shop_image1
+                this.shop_image2 = object.image_url.shop_image2
+                this.pr_long = object.pr.pr_long
+                this.opentime = object.opentime
+                this.holiday = object.holiday
+                this.party = object.party
+                this.lunch = object.lunch
+                this.address = object.address
+                this.tel = object.tel
+                this.url = object.url
+            },
+            getAreaObjectCount () {
+                var labels = []
+                var dataset = []
+                var loopCnt = 0
+                var targetTab = 2
+                var selectData = document.querySelectorAll(".area_count_data");
+                loopCnt = selectData.length
+                for(var i=0;i<selectData.length;i++){
+                    labels.push(selectData[i].name)
+                    dataset.push(selectData[i].value)
+                }
+
+                this.fillData(labels, dataset, loopCnt, targetTab)
+            },
+            getCategoryObjectCount () {
+                var labels = []
+                var dataset = []
+                var loopCnt = 0
+                var targetTab = 3
+                var selectData = document.querySelectorAll(".category_count_data");
+                loopCnt = selectData.length
+                for(var i=0;i<selectData.length;i++){
+                    labels.push(selectData[i].name)
+                    dataset.push(selectData[i].value)
+                }
+
+                this.fillData(labels, dataset, loopCnt, targetTab)
+            },
+            fillData (labels, dataset, loopCnt, chartKey) {
+                var dColors = []
+
+                for (var i = 0; i < loopCnt;i++){
+                    var code = i * 40
+                    //dColors.push('rgba(255,'+code+','+code+',0.4)')
+                    dColors.push('rgba('+code+',255,'+code+',0.5)')
+                }
+
+                if(chartKey == 2){
+                    this.doughnutAreaCollection = {
+                        labels: labels,
+                        datasets: [{
+                            data: dataset,
+                            backgroundColor: dColors
+                        }],
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    }
+                }
+                else{
+                    this.doughnutCategoryCollection = {
+                        labels: labels,
+                        datasets: [{
+                            data: dataset,
+                            backgroundColor: dColors
+                        }]
+                    }
+                }
+
+            }
+        },
        name:'main-page'
    }
 </script>
