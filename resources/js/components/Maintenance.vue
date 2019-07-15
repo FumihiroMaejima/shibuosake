@@ -258,7 +258,7 @@
 
             }
         },
-       name:'main-page'
+       name:'maintenance'
    }
 </script>
 

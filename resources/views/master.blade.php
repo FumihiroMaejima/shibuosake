@@ -23,6 +23,22 @@
     @yield('content')
 </main>
 
+<div id="page_top"><a href="#"></a></div>
+<div id="page_navi">
+    <input id="nav-input" type="checkbox" class="nav-unshown">
+    <label id="nav-open" for="nav-input"><span></span></label>
+    <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+    <div id="nav-content">
+        <li><a href="{{ route('mainPage') }}">TOP</a></li>
+        <li><a href="{{ route('aboutPage') }}">About</a></li>
+
+    </div>
+</div>
+
+<footer>
+    <address>Copyright(C)2019 calicocat.tokyo,Allright Reserved.</address>
+</footer>
+
 <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
