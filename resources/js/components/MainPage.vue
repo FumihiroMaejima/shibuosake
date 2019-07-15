@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
-                                        <span class="fa fa-calendar"></span>&nbsp;店舗スケジュール:
+                                        </span>&nbsp;店舗スケジュール:
                                     </p>
                                     <p class="shopInfoCalender">{{ opentime }}</p>
                                     <p  class="shopInfoCalender">{{ holiday }}</p>
@@ -45,22 +45,22 @@
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
-                                        <span class="fa fa-money"></span>&nbsp;価格:
+                                        </span>&nbsp;価格:
                                     </p>
-                                    <p class="shopInfoCost"><span class="fa fa-moon-o"></span>&nbsp;夜:{{ party }}円</p>
-                                    <p class="shopInfoCost"><span class="fa fa-sun-o"></span>&nbsp;昼:{{ lunch }}円</p>
+                                    <p class="shopInfoCost"></span>&nbsp;夜:{{ party }}円</p>
+                                    <p class="shopInfoCost"></span>&nbsp;昼:{{ lunch }}円</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
-                                        <span class="fa fa-home"></span>&nbsp;住所:
+                                        &nbsp;住所:
                                     </p>
                                     <p class="shopInfoAddress">&nbsp;{{ address }}</p>
                                 </div>
                                 <br>
                                 <div class="shopInfo">
                                     <p class="shopInfoTitle">
-                                        <span class="fa fa-phone"></span>&nbsp;TEL:
+                                        &nbsp;TEL:
                                     </p>
                                     <p class="shopInfoPhone">{{ tel }}</p>
                                 </div>
