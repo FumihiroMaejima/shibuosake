@@ -26,9 +26,20 @@
                     </div>
                     <div class="other-page-wrap sub-wrap-tool1">
                         <br>
+                        <h1>このサイトを作った人</h1>
+                        <br>
+                        <p>名前：<strong>たぬき</strong></p>
+                        <p>Web開発をしているエンジニアです。</p>
+                        <p>現在はPHPを使用しています。</p>
+                        <p>「たぬき」は適当に考えたニックネームです。</p>
+                        <p>このサイトは私自身が個人の責任で開発・管理をしているものであり、所属する組織・団体が管理責任を負っているものではございません。（一応）</p>
+                        </p>
+                    </div>
+                    <div class="other-page-wrap sub-wrap-tool1">
+                        <br>
                         <h1>問い合わせ先</h1>
                         <br>
-                        <p>ご意見・ご感想、ご要望等はお手数かけますが<a href="{{$access}}">Twitter</a>までお願いします。</p>
+                        <p>ご意見・ご感想、ご要望等はお手数かけますが<a href="{{$access}}">Twitter</a>までご連絡をお願い致します。</p>
                         </p>
                     </div>
                 </div>
