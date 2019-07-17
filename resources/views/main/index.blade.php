@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-top:-50px;">
             Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
             <div class="tab_wrap">
                 <input id="tab1" type="radio" name="tab_btn" checked>
