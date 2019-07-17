@@ -262,8 +262,7 @@ article section img {
 /* 479px以下 */
 @media screen and (max-width:479px) {
     .header-text h1{
-        font-size: 150%;
-        //font-weight: 100;
+        font-size: 80%!important;
     }
     .tab_wrap {
         width: 350px;
