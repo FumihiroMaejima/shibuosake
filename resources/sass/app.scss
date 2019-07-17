@@ -262,7 +262,7 @@ article section img {
 /* 479px以下 */
 @media screen and (max-width:479px) {
     .header-text h1{
-        font-size: 80%!important;
+        font-size: 150%!important;
     }
     .tab_wrap {
         width: 350px;
@@ -304,6 +304,10 @@ article section img {
 
 /* 480px以上 764px以下*/
 @media screen and (min-width:480px) and (max-width:764px) {
+    .header-text h1{
+        font-size: 150%!important;
+    }
+
     .tab_wrap {
         width: 470px;
         margin: 10px auto;
