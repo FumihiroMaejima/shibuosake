@@ -6,7 +6,7 @@
                 <div class="card text-white bg-dark mb-3" v-for="(restaurant, key) in viewData" v-bind:key="restaurant.id">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img class="card-img" :src="restaurant.image_url.shop_image1" alt="...">
+                            <img class="card-img" :src="restaurant.image_url.shop_image1" alt="no image">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
