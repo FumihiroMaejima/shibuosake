@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MainPageCommon extends TestCase
 {
+    protected $data;
+
     /**
      * 数値チェック
      */
@@ -19,6 +21,12 @@ class MainPageCommon extends TestCase
             print "Invalid first[" . $value1 . "] second[" . $value2 . "]\n";
             return false;
         }
+    }
+
+    public function setData($paramData)
+    {
+        $data = $paramData;
+        return true;
     }
 
     /**
