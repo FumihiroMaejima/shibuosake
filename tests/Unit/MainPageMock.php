@@ -153,10 +153,17 @@ class MainPageMock extends MainPageCommon
 
         $existKey = array_key_exists($searchKey, $checkData);
         if ($existKey === false) {
+            print $commonObj->getDate() . "$searchKey is no exit." . "\n";
             return false;
         }
 
-        print $commonObj->getDate() . "$searchKey is $searchData" . "\n";
+        if (is_array($searchData)) {
+            print $commonObj->getDate() . "$searchKey is array data" . "\n";
+        } else {
+            print $commonObj->getDate() . "$searchKey is $searchData" . "\n";
+        }
+
+
         return $existKey;
     }
 
@@ -177,5 +184,4 @@ class MainPageMock extends MainPageCommon
         return ($ret);
     }
     */
-
 }

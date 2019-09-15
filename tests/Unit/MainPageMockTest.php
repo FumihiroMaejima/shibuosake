@@ -44,8 +44,16 @@ class MainPageMockTest extends MainPageMock
 
         //$result = $this->object->classificationData('total_hit_count', $mockObj);
         $result = $this->object->classificationData('total_hit_count', $this->commonObj);
+        $result2 = $this->object->classificationData('hit_per_page', $this->commonObj);
+        $result3 = $this->object->classificationData('page_offset', $this->commonObj);
+        $result4 = $this->object->classificationData('rest', $this->commonObj);
+        $result5 = $this->object->classificationData('test', $this->commonObj);
         //$this->assertEquals(1003, $result);
         $this->assertTrue($result);
+        $this->assertTrue($result2);
+        $this->assertTrue($result3);
+        $this->assertTrue($result4);
+        $this->assertFalse($result5);
     }
 
 

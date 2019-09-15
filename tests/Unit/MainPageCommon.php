@@ -23,12 +23,6 @@ class MainPageCommon extends TestCase
         }
     }
 
-    public function setData($paramData)
-    {
-        $data = $paramData;
-        return true;
-    }
-
     /**
      * 1000を返す
      */
