@@ -88,19 +88,14 @@ class MainPageMock extends MainPageCommon
                 ),
             ),
         );
-
-        //$this->commonObj->setData($testData);
-        //print var_dump($this->commonObj->data);
         $this->commonObj->data = $testData;
     }
 
     /**
      * データ分類のテスト
      */
-    public function classificationData($searchKey, $commonObj)
+    public function classificationData($target, $searchKey, $commonObj)
     {
-        //print var_dump($commonObj);
-        //print var_dump($commonObj->data);
         $test = isset($commonObj->data);
         if (!$test) {
             return false;
@@ -109,43 +104,12 @@ class MainPageMock extends MainPageCommon
 
         $searchData = null;
 
-        /* 整形用のデータを作成 */
-        /*
-        // 該当件数
-        $totalHitCount = null;
-        // 表示件数
-        $hitPerPage = null;
-        // 表示ページ
-        $pageOffset = null;
-        // 飲食店情報配列
-        $restaurantArray = null;
-        // 画面出力用データ
-        $viewData = null;
-        // ページ数
-        $pageCount = 1;
-        */
-
         // 配列のkeyによってデータを振り分ける
         foreach ($checkData as $responseKey => $apiData) {
             switch ($responseKey) {
                 case $searchKey:
                     $searchData = $apiData;
                     break;
-                /*
-                case 'total_hit_count':
-                    $totalHitCount = $apiData;
-                    break;
-                case 'hit_per_page':
-                    $hitPerPage = $apiData;
-                    break;
-                case 'page_offset':
-                    $pageOffset = $apiData;
-                    break;
-                case 'rest':
-                    $restaurantArray = $apiData;
-                    $viewData = json_encode($restaurantArray);
-                    break;
-                */
                 default:
                     break;
             }
@@ -153,18 +117,28 @@ class MainPageMock extends MainPageCommon
 
         $existKey = array_key_exists($searchKey, $checkData);
         if ($existKey === false) {
-            print $commonObj->getDate() . "$searchKey is no exit." . "\n";
+            print $commonObj->getDate() . "$searchKey is no exist." . "\n";
+            return $existKey;
+        }
+
+        if ($target == 'key') {
+            if (is_array($searchData)) {
+                print $commonObj->getDate() . "$searchKey is array data" . "\n";
+            } else {
+                print $commonObj->getDate() . "$searchKey is $searchData" . "\n";
+            }
+            return $existKey;
+        } elseif ($target == 'data') {
+            if (is_array($searchData)) {
+                print $commonObj->getDate() . "$searchKey is array data" . "\n";
+                return false;
+            } else {
+                print $commonObj->getDate() . "$searchKey is $searchData" . "\n";
+            }
+            return $searchData;
+        } else {
             return false;
         }
-
-        if (is_array($searchData)) {
-            print $commonObj->getDate() . "$searchKey is array data" . "\n";
-        } else {
-            print $commonObj->getDate() . "$searchKey is $searchData" . "\n";
-        }
-
-
-        return $existKey;
     }
 
     /**

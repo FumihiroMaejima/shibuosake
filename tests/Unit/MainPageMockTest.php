@@ -19,18 +19,21 @@ class MainPageMockTest extends MainPageMock
      */
     protected function setUp(): void
     {
+        // MainPageMockクラスのsetUp()処理を行う
+        // $this->commonObjが利用可能になる
         parent::setUp();
 
         // テストするオブジェクトを生成する
+        // このインスタンスではsetUp()処理が行われない
         $this->object = new MainPageMock();
-        //print var_dump($this->commonObj);
     }
 
     /**
      * モックオブジェクトの説明(MainPageCommon.phpのモックを作ってみる)
      */
-    public function testClassificationData()
+    public function testClassificationDataOfKey()
     {
+        $testTarget = 'key';
         $mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array(/*'checkInteger', */'getThousand', 'getDate'))->getMock();
         //$mockObj = $this->object;
 
@@ -43,19 +46,50 @@ class MainPageMockTest extends MainPageMock
         //$mockObj->expects($this->once())->method('getDate')->willReturn(date("Y/m/d H:i:s") . " : ");
 
         //$result = $this->object->classificationData('total_hit_count', $mockObj);
-        $result = $this->object->classificationData('total_hit_count', $this->commonObj);
-        $result2 = $this->object->classificationData('hit_per_page', $this->commonObj);
-        $result3 = $this->object->classificationData('page_offset', $this->commonObj);
-        $result4 = $this->object->classificationData('rest', $this->commonObj);
-        $result5 = $this->object->classificationData('test', $this->commonObj);
+        $totalHitCountKey = $this->object->classificationData($testTarget, 'total_hit_count', $this->commonObj);
+        $hitPerPageKey = $this->object->classificationData($testTarget, 'hit_per_page', $this->commonObj);
+        $pageOffsetKey = $this->object->classificationData($testTarget, 'page_offset', $this->commonObj);
+        $restKey = $this->object->classificationData($testTarget, 'rest', $this->commonObj);
+        $falseKey = $this->object->classificationData($testTarget, 'test', $this->commonObj);
         //$this->assertEquals(1003, $result);
-        $this->assertTrue($result);
-        $this->assertTrue($result2);
-        $this->assertTrue($result3);
-        $this->assertTrue($result4);
-        $this->assertFalse($result5);
+        $this->assertTrue($totalHitCountKey);
+        $this->assertTrue($hitPerPageKey);
+        $this->assertTrue($pageOffsetKey);
+        $this->assertTrue($restKey);
+        $this->assertFalse($falseKey);
     }
 
+    public function testClassificationDataOfData()
+    {
+        $testTarget = 'data';
+
+        $totalHitCountData = $this->object->classificationData($testTarget, 'total_hit_count', $this->commonObj);
+        $hitPerPageData = $this->object->classificationData($testTarget, 'hit_per_page', $this->commonObj);
+        $pageOffsetData = $this->object->classificationData($testTarget, 'page_offset', $this->commonObj);
+        $restData = $this->object->classificationData($testTarget, 'rest', $this->commonObj);
+        $falseData = $this->object->classificationData($testTarget, 'test', $this->commonObj);
+
+        $this->assertEquals(181, $totalHitCountData);
+        $this->assertEquals(10, $hitPerPageData);
+        $this->assertEquals(1, $pageOffsetData);
+        $this->assertFalse($restData);
+        $this->assertFalse($falseData);
+    }
+
+    /**
+     * モックオブジェクトの説明(Common.phpのモックを作ってみる)
+     */
+    /*
+    public function testTutorial()
+    {
+        $mockObj = $this->getMockBuilder('Common')->setMethods(array('checkInteger'))->getMock();
+
+        $mockObj->expects($this->once())->method('checkInteger')->with(1, 2)->willReturn(true);
+
+        $result = $mockObj->checkInteger(1, 2);
+        $this->assertTrue($result);
+    }
+    */
 
     /**
      * モックオブジェクトの説明(Common.phpのモックを作ってみる)
