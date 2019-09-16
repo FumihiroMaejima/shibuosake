@@ -77,6 +77,31 @@ class MainPageMockTest extends MainPageMock
     }
 
     /**
+     *  totalHitCount test data
+     */
+    public function totalHitCountProvider()
+    {
+        return array(
+            'test1' => array(181, 10, 19),
+        );
+    }
+
+    /**
+     * @dataProvider totalHitCountProvider
+     */
+    public function testGetPageCount($totalCount, $hitCount, $result)
+    {
+        $mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array('checkTotalHitCount', 'getDate'))->getMock();
+
+        $mockObj->expects($this->once())->method('checkTotalHitCount')->with($totalCount, $hitCount)->willReturn(true);
+        $mockObj->expects($this->once())->method('getDate')->willReturn(date("Y/m/d H:i:s") . " : ");
+
+        // mockオブジェクトをパラメーターに渡し、mockオブジェクトで設定したメソッドを必ず利用すること
+        $execCount = $this->object->getPageCount($totalCount, $hitCount, $mockObj);
+        $this->assertEquals($result, $execCount);
+    }
+
+    /**
      * モックオブジェクトの説明(Common.phpのモックを作ってみる)
      */
     /*

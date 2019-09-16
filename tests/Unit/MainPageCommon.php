@@ -24,6 +24,19 @@ class MainPageCommon extends TestCase
     }
 
     /**
+     * 合計検索数チェック
+     */
+    public function checkTotalHitCount($totalHitCount, $hitPerPage)
+    {
+        // 1回の実行で取得出来る数よりも合計のデータ数が多い場合
+        if ($totalHitCount > $hitPerPage) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 1000を返す
      */
     public function getThousand()

@@ -142,6 +142,29 @@ class MainPageMock extends MainPageCommon
     }
 
     /**
+     * 店舗情報のページ数の取得
+     */
+    public function getPageCount($totalCount, $hitCount, $commonObj)
+    {
+        $countOver = $commonObj->checkTotalHitCount($totalCount, $hitCount);
+
+        if ($countOver) {
+            $execCount = 0;
+            $maxDataCount = null;
+            // 全てのデータを取得出来るまでのAPIの実行回数を求める
+            do {
+                $execCount++;
+                $maxDataCount = $hitCount * $execCount;
+            } while ($totalCount > $maxDataCount);
+
+            print $commonObj->getDate() . "execCount is $execCount" . "\n";
+            return $execCount;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 足し算かつ1,000プラスして返却
      */
     /*
