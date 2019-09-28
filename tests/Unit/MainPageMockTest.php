@@ -29,7 +29,7 @@ class MainPageMockTest extends MainPageMock
     }
 
     /**
-     * モックオブジェクトの説明(MainPageCommon.phpのモックを作ってみる)
+     * APIデータの分類処理テスト　key
      */
     public function testClassificationDataOfKey()
     {
@@ -59,6 +59,9 @@ class MainPageMockTest extends MainPageMock
         $this->assertFalse($falseKey);
     }
 
+    /**
+     * APIデータの分類処理テスト データ
+     */
     public function testClassificationDataOfData()
     {
         $testTarget = 'data';
@@ -77,7 +80,10 @@ class MainPageMockTest extends MainPageMock
     }
 
     /**
-     *  totalHitCount test data
+     * totalHitCount test data
+     * param1.total
+     * param2.shop count per page
+     * param3.pageCount
      */
     public function totalHitCountProvider()
     {
@@ -87,9 +93,10 @@ class MainPageMockTest extends MainPageMock
     }
 
     /**
+     * 店舗情報の件数チェック
      * @dataProvider totalHitCountProvider
      */
-    public function testGetPageCount($totalCount, $hitCount, $result)
+    public function testGetShopInfoQueryData($totalCount, $hitCount, $result)
     {
         $mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array('checkTotalHitCount', 'getDate'))->getMock();
 
@@ -99,6 +106,15 @@ class MainPageMockTest extends MainPageMock
         // mockオブジェクトをパラメーターに渡し、mockオブジェクトで設定したメソッドを必ず利用すること
         $execCount = $this->object->getPageCount($totalCount, $hitCount, $mockObj);
         $this->assertEquals($result, $execCount);
+    }
+
+    /**
+     * DBから店舗情報取得処理テスト
+     */
+    public function testGetPageCount()
+    {
+        $lastedShopInfoId = $this->object->getShopInfoQueryData($this->commonObj);
+        $this->assertTrue($lastedShopInfoId);
     }
 
     /**

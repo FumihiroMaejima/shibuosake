@@ -165,6 +165,21 @@ class MainPageMock extends MainPageCommon
     }
 
     /**
+     * DBに登録されている店舗情報の検索
+     */
+    public function getShopInfoQueryData($commonObj)
+    {
+        $latestId = $commonObj->getShopInfoData();
+        if (!$latestId) {
+            print $commonObj->getDate() . "ShipInfoId None." . "\n";
+            return false;
+        } else {
+            print $commonObj->getDate() . "Latest shipInfoId $latestId" . "\n";
+            return true;
+        }
+    }
+
+    /**
      * 足し算かつ1,000プラスして返却
      */
     /*

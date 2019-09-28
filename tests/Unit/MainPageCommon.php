@@ -3,6 +3,9 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Model\Area;
+use App\Model\Category;
+use App\Model\ShopInfo;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -31,6 +34,24 @@ class MainPageCommon extends TestCase
         // 1回の実行で取得出来る数よりも合計のデータ数が多い場合
         if ($totalHitCount > $hitPerPage) {
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getShopInfoData()
+    {
+        //$queryData = $this->ShopInfo->all();
+        //$shopinfotest = new \App\Model\ShopInfo();
+        $shopinfotest = new \App\Model\ShopInfo();
+        $queryData = $shopinfotest->select('info_id')->latest()->first();
+        //echo var_dump($queryData);
+        //$queryData = DB::table('shopinfo')->select('info_id')->latest()->first();
+
+
+        // データを取得出来た場合
+        if ($queryData) {
+            return $queryData->info_id;
         } else {
             return false;
         }
