@@ -165,17 +165,51 @@ class MainPageMock extends MainPageCommon
     }
 
     /**
-     * DBに登録されている店舗情報の検索
+     * DBに登録されている店舗情報IDの検索
      */
-    public function getShopInfoQueryData($commonObj)
+    public function getShopInfoQueryCount($commonObj)
     {
-        $latestId = $commonObj->getShopInfoData();
+        $latestId = $commonObj->getShopInfoCount();
         if (!$latestId) {
-            print $commonObj->getDate() . "ShipInfoId None." . "\n";
+            print $commonObj->getDate() . "ShopInfoId None." . "\n";
             return false;
         } else {
-            print $commonObj->getDate() . "Latest shipInfoId $latestId" . "\n";
+            print $commonObj->getDate() . "Latest shopInfoId $latestId" . "\n";
             return true;
+        }
+    }
+
+    /**
+     * DBに登録されている店舗情報の検索
+     */
+    public function getShopInfoQueryData($targetId, $commonObj)
+    {
+        echo var_dump($targetId);
+        $shopInfo = $commonObj->getShopInfoData($targetId);
+        if (!$shopInfo) {
+            print $commonObj->getDate() . "ShopInfoId None." . "\n";
+            return false;
+        } else {
+            $shopData = null;
+            foreach ($shopInfo as $shopRow) {
+                $tmpId = $shopRow->shop_id;
+                $tmpShopName = $shopRow->name;
+                $tmpShopURL = $shopRow->url;
+                $tmpShopImage1 = $shopRow->shop_image1;
+                $tmpAreaCode = $shopRow->areacode_s;
+                $thisCategoryCode = explode(',', $shopRow->category_code_s);
+                $thisCategoryName = explode(',', $shopRow->category_name_s);
+                $tmpCategoryName = $thisCategoryName;
+
+                $shopData[$tmpId]['name'] = $tmpShopName;
+                $shopData[$tmpId]['url'] = $tmpShopURL;
+                $shopData[$tmpId]['shop_image1'] = $tmpShopImage1;
+                $shopData[$tmpId]['area'] = $tmpAreaCode;
+                $shopData[$tmpId]['category_code'] = $thisCategoryCode;
+                $shopData[$tmpId]['category_name'] = $tmpCategoryName;
+            }
+            print $commonObj->getDate() . "Get Latest shopInfo" . "\n";
+            return $shopData;
         }
     }
 

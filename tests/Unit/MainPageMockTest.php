@@ -96,7 +96,7 @@ class MainPageMockTest extends MainPageMock
      * 店舗情報の件数チェック
      * @dataProvider totalHitCountProvider
      */
-    public function testGetShopInfoQueryData($totalCount, $hitCount, $result)
+    public function testGetPageCount($totalCount, $hitCount, $result)
     {
         $mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array('checkTotalHitCount', 'getDate'))->getMock();
 
@@ -111,10 +111,40 @@ class MainPageMockTest extends MainPageMock
     /**
      * DBから店舗情報取得処理テスト
      */
-    public function testGetPageCount()
+    public function testGetShopInfoQueryCount()
     {
-        $lastedShopInfoId = $this->object->getShopInfoQueryData($this->commonObj);
+        $lastedShopInfoId = $this->object->getShopInfoQueryCount($this->commonObj);
         $this->assertTrue($lastedShopInfoId);
+    }
+
+
+    /**
+     * totalHitCount test data
+     * param1.shopId
+     */
+    public function latestShopIdProvider()
+    {
+        return array(
+            'latestShopId' => array(47),
+        );
+    }
+
+    /**
+     * 最新の店舗情報のID
+     * @dataProvider latestShopIdProvider
+     */
+    public function testGetShopInfoQueryData($latestShopId)
+    {
+        //$mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array('getShopInfoCount','getShopInfoData', 'getDate'))->getMock();
+
+        //$mockObj->expects($this->once())->method('getShopInfoCount')->willReturn($latestShopId);
+        //$mockObj->expects($this->once())->method('getShopInfoData')->willReturn($latestShopId);
+        //$mockObj->expects($this->once())->method('getDate')->willReturn(date("Y/m/d H:i:s") . " : ");
+
+        // mockオブジェクトをパラメーターに渡し、mockオブジェクトで設定したメソッドを必ず利用すること
+        $latestShopInfo = $this->object->getShopInfoQueryData($latestShopId, $this->commonObj);
+        //$this->assertArrayHasKey($latestShopId, $latestShopInfo);
+        $this->assertIsArray($latestShopInfo);
     }
 
     /**

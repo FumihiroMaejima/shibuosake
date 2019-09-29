@@ -39,15 +39,10 @@ class MainPageCommon extends TestCase
         }
     }
 
-    public function getShopInfoData()
+    public function getShopInfoCount()
     {
-        //$queryData = $this->ShopInfo->all();
-        //$shopinfotest = new \App\Model\ShopInfo();
-        $shopinfotest = new \App\Model\ShopInfo();
-        $queryData = $shopinfotest->select('info_id')->latest()->first();
-        //echo var_dump($queryData);
-        //$queryData = DB::table('shopinfo')->select('info_id')->latest()->first();
-
+        $shopinfoObj = new \App\Model\ShopInfo();
+        $queryData = $shopinfoObj->select('info_id')->latest()->first();
 
         // データを取得出来た場合
         if ($queryData) {
@@ -57,6 +52,33 @@ class MainPageCommon extends TestCase
         }
     }
 
+    public function getShopInfoData($targetId)
+    {
+        $shopinfoObj = new \App\Model\ShopInfo();
+        $queryData = $shopinfoObj->selectRaw('
+                        info_id,
+                        shop_id,
+                        name,
+                        url,
+                        shop_image1,
+                        category,
+                        areacode_s,
+                        areaname_s,
+                        category_code_l,
+                        category_name_l,
+                        category_code_s,
+                        category_name_s
+                    ')
+                    ->whereRaw('info_id = ?', $targetId)
+                    ->get();
+
+        // データを取得出来た場合
+        if ($queryData) {
+            return $queryData;
+        } else {
+            return false;
+        }
+    }
     /**
      * 1000を返す
      */
