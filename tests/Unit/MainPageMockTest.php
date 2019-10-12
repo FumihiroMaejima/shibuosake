@@ -34,16 +34,6 @@ class MainPageMockTest extends MainPageMock
     public function testClassificationDataOfKey()
     {
         $testTarget = 'key';
-        $mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array(/*'checkInteger', */'getThousand', 'getDate'))->getMock();
-        //$mockObj = $this->object;
-
-        //$mockObj = $this->createMock(MainPageCommon::class);
-
-        //print var_dump($this->object);
-        //$mockObj->expects($this->once())->method('checkInteger')->willReturn(true);
-        //$mockObj->expects($this->once())->method('setData')->willReturn(true);
-        //$mockObj->expects($this->exactly(2))->method('getThousand')->willReturn(1000);
-        //$mockObj->expects($this->once())->method('getDate')->willReturn(date("Y/m/d H:i:s") . " : ");
 
         //$result = $this->object->classificationData('total_hit_count', $mockObj);
         $totalHitCountKey = $this->object->classificationData($testTarget, 'total_hit_count', $this->commonObj);
@@ -135,13 +125,6 @@ class MainPageMockTest extends MainPageMock
      */
     public function testGetShopInfoQueryData($latestShopId)
     {
-        //$mockObj = $this->getMockBuilder('MainPageCommon')->setMethods(array('getShopInfoCount','getShopInfoData', 'getDate'))->getMock();
-
-        //$mockObj->expects($this->once())->method('getShopInfoCount')->willReturn($latestShopId);
-        //$mockObj->expects($this->once())->method('getShopInfoData')->willReturn($latestShopId);
-        //$mockObj->expects($this->once())->method('getDate')->willReturn(date("Y/m/d H:i:s") . " : ");
-
-        // mockオブジェクトをパラメーターに渡し、mockオブジェクトで設定したメソッドを必ず利用すること
         $latestShopInfo = $this->object->getShopInfoQueryData($latestShopId, $this->commonObj);
         //$this->assertArrayHasKey($latestShopId, $latestShopInfo);
         $this->assertIsArray($latestShopInfo);
@@ -164,51 +147,4 @@ class MainPageMockTest extends MainPageMock
         $areaData = $this->object->getCategoryData($this->commonObj);
         $this->assertIsArray($areaData);
     }
-
-    /**
-     * モックオブジェクトの説明(Common.phpのモックを作ってみる)
-     */
-    /*
-    public function testTutorial()
-    {
-        $mockObj = $this->getMockBuilder('Common')->setMethods(array('checkInteger'))->getMock();
-
-        $mockObj->expects($this->once())->method('checkInteger')->with(1, 2)->willReturn(true);
-
-        $result = $mockObj->checkInteger(1, 2);
-        $this->assertTrue($result);
-    }
-    */
-
-    /**
-     * モックオブジェクトの説明(Common.phpのモックを作ってみる)
-     */
-    /*
-    public function testTutorial()
-    {
-        $mockObj = $this->getMockBuilder('Common')->setMethods(array('checkInteger'))->getMock();
-
-        $mockObj->expects($this->once())->method('checkInteger')->with(1, 2)->willReturn(true);
-
-        $result = $mockObj->checkInteger(1, 2);
-        $this->assertTrue($result);
-    }
-    */
-
-    /**
-     * addThousandの検証
-     */
-    /*
-    public function testAddThousand()
-    {
-        $mockObj = $this->getMockBuilder('Common')->setMethods(array('checkInteger', 'getThousand', 'getDate'))->getMock();
-
-        $mockObj->expects($this->once())->method('checkInteger')->willReturn(true);
-        $mockObj->expects($this->exactly(2))->method('getThousand')->willReturn(1000);
-        $mockObj->expects($this->once())->method('getDate')->willReturn(date("Y/m/d H:i:s") . " : ");
-
-        $result = $this->object->addThousand(1, 2, $mockObj);
-        $this->assertEquals(1003, $result);
-    }
-    */
 }
