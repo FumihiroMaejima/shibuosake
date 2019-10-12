@@ -184,7 +184,6 @@ class MainPageMock extends MainPageCommon
      */
     public function getShopInfoQueryData($targetId, $commonObj)
     {
-        echo var_dump($targetId);
         $shopInfo = $commonObj->getShopInfoData($targetId);
         if (!$shopInfo) {
             print $commonObj->getDate() . "ShopInfoId None." . "\n";
@@ -210,6 +209,47 @@ class MainPageMock extends MainPageCommon
             }
             print $commonObj->getDate() . "Get Latest shopInfo" . "\n";
             return $shopData;
+        }
+    }
+
+    /**
+     * DBに登録されている店舗情報の検索
+     */
+    public function getAreaData($commonObj)
+    {
+        $areaInfo = $commonObj->getAreaQuery();
+        if (!$areaInfo) {
+            print $commonObj->getDate() . "AreaData None." . "\n";
+            return false;
+        } else {
+            $areaData = null;
+            foreach ($areaInfo as $areaRow) {
+                $tmpCode = $areaRow->areacode_s;
+                $areaData[$tmpCode] = $areaRow->areaname_s;
+            }
+            print $commonObj->getDate() . "Get Latest AreaData" . "\n";
+            return $areaData;
+        }
+    }
+
+    /**
+     * DBに登録されているカテゴリー情報の検索
+     */
+    public function getCategoryData($commonObj)
+    {
+        $categoryInfo = $commonObj->getCategoryQuery();
+        if (!$categoryInfo) {
+            print $commonObj->getDate() . "AreaData None." . "\n";
+            return false;
+        } else {
+            $categoryData = null;
+            // カテゴリー情報の整形
+            foreach ($categoryInfo as $categoryRow) {
+                $tmpCode = $categoryRow->category_code_s;
+                $categoryData[$tmpCode] = $categoryRow->category_name_s;
+            }
+            print $commonObj->getDate() . "Get Latest CategoryData" . "\n";
+            return $categoryData;
         }
     }
 

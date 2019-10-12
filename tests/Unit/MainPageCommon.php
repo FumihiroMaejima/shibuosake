@@ -41,8 +41,7 @@ class MainPageCommon extends TestCase
 
     public function getShopInfoCount()
     {
-        $shopinfoObj = new \App\Model\ShopInfo();
-        $queryData = $shopinfoObj->select('info_id')->latest()->first();
+        $queryData = ShopInfo::select('info_id')->latest()->first();
 
         // データを取得出来た場合
         if ($queryData) {
@@ -54,8 +53,7 @@ class MainPageCommon extends TestCase
 
     public function getShopInfoData($targetId)
     {
-        $shopinfoObj = new \App\Model\ShopInfo();
-        $queryData = $shopinfoObj->selectRaw('
+        $queryData = ShopInfo::selectRaw('
                         info_id,
                         shop_id,
                         name,
@@ -79,6 +77,39 @@ class MainPageCommon extends TestCase
             return false;
         }
     }
+
+    public function getAreaQuery()
+    {
+        // 最新のエリア情報IDを取得する
+        $latestAreaInfoId = Area::select('area_info_id')->latest()->first();
+        $queryData = Area::where('area_info_id', $latestAreaInfoId->area_info_id)
+            ->orderBy('areacode_s', 'asc')
+            ->get();
+
+        // データを取得出来た場合
+        if ($queryData) {
+            return $queryData;
+        } else {
+            return false;
+        }
+    }
+
+    public function getCategoryQuery()
+    {
+        // 最新のカテゴリー情報IDを取得する
+        $latestCategoryInfoId = Category::select('category_info_id')->latest()->first();
+        $queryData = Category::where('category_info_id', $latestCategoryInfoId->category_info_id)
+            ->orderBy('category_code_s', 'asc')
+            ->get();
+
+        // データを取得出来た場合
+        if ($queryData) {
+            return $queryData;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * 1000を返す
      */

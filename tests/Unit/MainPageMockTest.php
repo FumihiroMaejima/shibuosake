@@ -125,12 +125,12 @@ class MainPageMockTest extends MainPageMock
     public function latestShopIdProvider()
     {
         return array(
-            'latestShopId' => array(47),
+            'latestShopId' => array(1247),
         );
     }
 
     /**
-     * 最新の店舗情報のID
+     * 最新の店舗情報の取得テスト
      * @dataProvider latestShopIdProvider
      */
     public function testGetShopInfoQueryData($latestShopId)
@@ -145,6 +145,24 @@ class MainPageMockTest extends MainPageMock
         $latestShopInfo = $this->object->getShopInfoQueryData($latestShopId, $this->commonObj);
         //$this->assertArrayHasKey($latestShopId, $latestShopInfo);
         $this->assertIsArray($latestShopInfo);
+    }
+
+    /**
+     * 最新のエリア情報の取得テスト
+     */
+    public function testGetAreaData()
+    {
+        $areaData = $this->object->getAreaData($this->commonObj);
+        $this->assertIsArray($areaData);
+    }
+
+    /**
+     * 最新のカテゴリー情報の取得テスト
+     */
+    public function testGetCategoryData()
+    {
+        $areaData = $this->object->getCategoryData($this->commonObj);
+        $this->assertIsArray($areaData);
     }
 
     /**
